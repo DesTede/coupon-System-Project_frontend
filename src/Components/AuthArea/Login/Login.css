@@ -1,0 +1,7 @@
+.Login {
+	text-align: center;
+}
+
+.Login .MuiFormControl-root{
+    margin-bottom: 20px;
+}
