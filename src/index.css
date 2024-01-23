@@ -1,8 +1,8 @@
 body, html, #root {
   margin: 0;
   height: 100%;
-  background-image: linear-gradient(#FFF5EE, white);
+  background-image: linear-gradient(#fac09e, white);
   direction: ltr;
-  color: white;
+  color: black;
 }
   

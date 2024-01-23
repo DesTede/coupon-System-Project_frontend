@@ -1,3 +1,7 @@
-.PublicNavbar {
+.PublicNavbar img {
+    /*display:  xs: 'none'md: 'flex' };*/
+/*// Adjust the width and height as needed*/
+    width: 100px; 
+    height: auto; 
 	
 }
