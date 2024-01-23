@@ -13,9 +13,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import {Link, Navigate, NavLink} from "react-router-dom";
 
 const pages = ['Login', 'Coupons'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Home'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -37,16 +38,17 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar className={"appBar"} position="static" sx={{backgroundColor: "#ec9f73"} }>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    {/*<img src={"the-coupon-emporium-favicon-black.png"} alt={"Logo"}/>*/}
-                    <img src={"the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/>
+                    <NavLink to={"home"}><img src={"the-coupon-emporium-favicon-white.png"} alt={"Logo"}/></NavLink>
+                    
+                    {/*<img src={"the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/>*/}
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                        component={Link}
+                        to="/login"
                         sx={{
                             mr: 2,
                             display: {xs: 'none', md: 'flex'},
@@ -57,7 +59,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        The Coupon Emporium
+                        {/*Hello Guest */}
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -68,6 +70,7 @@ function ResponsiveAppBar() {
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
                             color="inherit"
+                            href={"/login"}
                         >
                             <MenuIcon/>
                         </IconButton>
@@ -101,8 +104,8 @@ function ResponsiveAppBar() {
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                        component={Link}
+                        to="/coupons"
                         sx={{
                             mr: 2,
                             display: {xs: 'flex', md: 'none'},
@@ -114,24 +117,27 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        {/*LOGO*/}
                     </Typography>
+                    
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
+                                href={page ==='Login' ? "/login" : "/coupons"}
+                                
                             >
                                 {page}
                             </Button>
                         ))}
                     </Box>
 
-                    {/*<Box sx={{ flexGrow: 0 }}>*/}
+                    {/*<Box sx={{ flexGrow:  }}>*/}
                     {/*    <Tooltip title="Open settings">*/}
                     {/*        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>*/}
-                    {/*            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />*/}
+                    {/*            <Avatar alt="Remy Sharp" src="the-coupon-emporium-favicon-black.png" />*/}
                     {/*        </IconButton>*/}
                     {/*    </Tooltip>*/}
                     {/*<Menu*/}
@@ -150,11 +156,11 @@ function ResponsiveAppBar() {
                     {/*    open={Boolean(anchorElUser)}*/}
                     {/*    onClose={handleCloseUserMenu}*/}
                     {/*>*/}
-                    {/*    /!*{settings.map((setting) => (*!/*/}
-                    {/*    /!*    <MenuItem key={setting} onClick={handleCloseUserMenu}>*!/*/}
-                    {/*    /!*        <Typography textAlign="center">{setting}</Typography>*!/*/}
-                    {/*    /!*    </MenuItem>*!/*/}
-                    {/*    /!*))}*!/*/}
+                    {/*    {settings.map((setting) => (*/}
+                    {/*        <MenuItem key={setting} onClick={handleCloseUserMenu}>*/}
+                    {/*            <Typography textAlign="center">{setting}</Typography>*/}
+                    {/*        </MenuItem>*/}
+                    {/*    ))}*/}
                     {/*</Menu>*/}
                     {/*</Box>*/}
                 </Toolbar>
