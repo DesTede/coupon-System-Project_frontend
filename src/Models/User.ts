@@ -1,18 +1,20 @@
+import {ClientType} from "./ClientType";
+
 export class User{
     public id:number;
     public name:string;
     public firstName:string;
     public lastName:string;
     public email:string;
-    public role:string;
+    public clientType:ClientType;
 
-    constructor(id:number, name:string, lastname:string, firstName:string, email:string, role:string){
-        this.email = email;
-        this.lastName = lastname;
-        this.firstName = firstName;
-        this.name = name;
-        this.role = role;
+    constructor(id:number, name:string, firstName:string,lastname:string, email:string, clientType:ClientType){
         this.id = id;
+        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastname;
+        this.email = email;
+        this.clientType = clientType;
     }
 }
 export default User;
