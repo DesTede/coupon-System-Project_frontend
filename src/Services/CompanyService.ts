@@ -29,26 +29,34 @@ class CompanyService{
     }
     
     public async getCouponByCategory(category:Category){
-        const responseData = (await axios.get<Coupon[]>(appConfig.url + "/company/coupons/" + category)).data;
-        return responseData;
+        if (companyStore.getState().value.length === 0) {
+            return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;
+        }
+        return companyStore.getState().value.filter(e=>e.category === category);
     }
 
     public async getCouponByPrice(price:number){
-        const responseData = (await axios.get<Coupon[]>(appConfig.url + "/company/coupons/" + price)).data;
-        return responseData;
+        if (companyStore.getState().value.length === 0) {
+            return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByPrice/" + price)).data;
+        }
+        return companyStore.getState().value.filter(e=>e.price <= price);
     }
     
     public async addCoupon(coupon:Coupon){
-        const responseData = (await axios.post<Coupon>(appConfig.url+ "/company/coupons", coupon)).data;
+        const responseData = (await axios.post<Coupon>(appConfig.url+ "/company/addCoupon", coupon)).data;
+        companyStore.dispatch(add(responseData));
         return responseData;
     }
     
     public async updateCoupon(coupon:Coupon){
-        const responseData = (await axios.put<Coupon>(appConfig.url+ "/company/coupons", coupon)).data;
+        const responseData = (await axios.put<Coupon>(appConfig.url+ "/company/updateCoupon", coupon)).data;
+        companyStore.dispatch(update(coupon));
+        return responseData;
     }
     
     public async deleteCoupon(id:number){
-        const responseData = (await axios.delete( appConfig.url + "/company/" + id)).data;
+        const responseData = (await axios.delete( appConfig.url + "/company/deleteCoupon/" + id)).data;
+        companyStore.dispatch(remove(id));
         return responseData;
         
     }
