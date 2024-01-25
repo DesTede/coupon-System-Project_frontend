@@ -1,8 +1,8 @@
 .NotFound img{
-    width: 2000px;
-    height: 60px;
-    align-content: center;
-    text-align: center;
+    width: 95%;
+    height: 600px;
+    align-content: space-evenly;
+    text-align: right;
     /*object-fit: cover;*/
     /*object-position: center;*/
     /*position: absolute;*/

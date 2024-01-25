@@ -3,15 +3,15 @@ import {BrowserRouter, useNavigate} from "react-router-dom";
 import Header from "../Header/Header";
 import Routing from "../Routing/Routing";
 import Footer from "../Footer/Footer";
-import {useEffect, useState} from "react";
-import Navbar from "../Navbar/Navbar";
+import React, {useEffect, useState} from "react";
 import {authStore} from "../../../Redux/OurStore";
 import PublicNavbar from "../../NavbarArea/PublicNavbar/PublicNavbar";
-import {ClientType} from "../../../Models/ClientType";
 import AdminNavbar from "../../NavbarArea/AdminNavbar/AdminNavbar";
 import CompanyNavbar from "../../NavbarArea/CompanyNavbar/CompanyNavbar";
 import CustomerNavbar from "../../NavbarArea/CustomerNavbar/CustomerNavbar";
 import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Layout(): JSX.Element{
     
@@ -20,13 +20,13 @@ function Layout(): JSX.Element{
 
     useEffect(() => {
         switch (authStore.getState().user?.clientType) {
-            case ClientType.Administrator:
+            case "Administrator":
                 setNav(<AdminNavbar/>);
                 break;
-            case ClientType.Company:
+            case "Company":
                 setNav(<CompanyNavbar/>);
                 break;
-            case ClientType.Customer:
+            case "Customer":
                 setNav(<CustomerNavbar/>);
                 break;
             default:
@@ -35,13 +35,13 @@ function Layout(): JSX.Element{
         }
         const unsubscribe = authStore.subscribe(() => {
             switch (authStore.getState().user?.clientType) {
-                case ClientType.Administrator:
+                case "Administrator":
                     setNav(<AdminNavbar/>);
                     break;
-                case ClientType.Company:
+                case "Company":
                     setNav(<CompanyNavbar/>);
                     break;
-                case ClientType.Customer:
+                case "Customer":
                     setNav(<CustomerNavbar/>);
                     break;
                 default:

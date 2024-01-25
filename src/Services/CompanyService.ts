@@ -23,7 +23,7 @@ class CompanyService{
     
     public async getCoupon(id:number){
         if (companyStore.getState().value.length === 0) {
-            return (await axios.get<Coupon>(appConfig.url + "/company/coupons/" + id)).data;
+            return (await axios.get<Coupon>(appConfig.url + "/company/coupon/" + id)).data;
         }
         return companyStore.getState().value.find(e=>e.id === id);
     }

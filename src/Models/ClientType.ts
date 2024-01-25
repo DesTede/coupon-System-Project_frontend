@@ -5,6 +5,6 @@ export enum ClientType{
     // Customer = "Customer",
     // Admin = "Admin",
     // Guest = "Guest"
-    Company, Customer, Administrator
+    Administrator, Company, Customer
 }
 // export default ClientType;

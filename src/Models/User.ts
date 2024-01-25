@@ -6,9 +6,9 @@ export class User{
     public firstName:string;
     public lastName:string;
     public email:string;
-    public clientType:ClientType;
+    public clientType:string;
 
-    constructor(id:number, name:string, firstName:string,lastname:string, email:string, clientType:ClientType){
+    constructor(id:number, name:string, firstName:string,lastname:string, email:string, clientType:string){
         this.id = id;
         this.name = name;
         this.firstName = firstName;

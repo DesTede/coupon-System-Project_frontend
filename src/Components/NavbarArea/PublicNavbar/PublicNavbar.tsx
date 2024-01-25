@@ -117,7 +117,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        {/*LOGO*/}
+                        LOGO
                     </Typography>
                     
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>

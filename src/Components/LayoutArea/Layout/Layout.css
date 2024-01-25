@@ -2,5 +2,21 @@
     display: grid;
     height: 100%;
     grid-template-rows: 9% 5% 80% 6%;
-	
+}
+
+.Layout>main{
+    padding: 20px;
+    overflow: auto;
+    margin-top: 80px;
+}
+
+
+
+.Toastify__toast-theme--light.Toastify__toast--success {
+    background-color: lightgreen;
+}
+
+.Toastify__toast-theme--light.Toastify__toast--error {
+    background-color: red;
+    color: white;
 }

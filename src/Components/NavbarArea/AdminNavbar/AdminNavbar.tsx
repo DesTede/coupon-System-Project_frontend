@@ -1,4 +1,4 @@
-// import "./AdminNavbar.css";
+import "./AdminNavbar.css";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,7 +12,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import {useNavigate} from "react-router-dom";
+import errorHandler from "../../../Services/ErrorHandler";
+import authService from "../../../Services/AuthenticationService";
 
 const pages = ['Companies', 'Customers', 'Logout'];
 
@@ -37,12 +39,21 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
+    const navigate = useNavigate();
+    function handleCloseNav(page: string){
+        if (page === 'Logout') {
+            authService.logout()
+                .then(() => navigate("/login"))
+                .catch(err => errorHandler.showError(err));
+        }
+    }
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
-                    <img src={"the-coupon-emporium-high-resolution-logo.png"} alt={"Store logo"}/>
+                    <img src={"the-coupon-emporium-favicon-white.png"} alt={"Store logo"}/>
                     <Typography
                         variant="h6"
                         noWrap
@@ -58,7 +69,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        <img src={"the-coupon-emporium-high-resolution-logo.png"}/>
+                        {/*<img src={"\"the-coupon-emporium-favicon-white.png"}/>*/}
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -69,6 +80,7 @@ function ResponsiveAppBar() {
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
                             color="inherit"
+                            href={"home"}
                         >
                             <MenuIcon/>
                         </IconButton>
@@ -98,7 +110,7 @@ function ResponsiveAppBar() {
                         </Menu>
                     </Box>
                     {/*<AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />*/}
-                    <img src={"the-coupon-emporium-high-resolution-logo.png"}/>
+                    {/*<img src={"the-coupon-emporium-favicon-white.png"}/>*/}
                     <Typography
                         variant="h5"
                         noWrap
@@ -123,6 +135,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
+                                href={page ==='Companies' ? "/admin/getcompanies" : page === 'Customers' ? "/admin/getcustomers" : "/login"}
                             >
                                 {page}
                             </Button>

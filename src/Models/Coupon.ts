@@ -1,7 +1,5 @@
 import {Category} from "./Category";
 import Company from "./Company";
-import Customer from "./Customer";
-import company from "./Company";
 
 class Coupon {
     public id: number;

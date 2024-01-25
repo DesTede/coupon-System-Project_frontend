@@ -2,11 +2,13 @@ import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Te
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import authService from "../../../Services/AuthenticationService";
 import errorHandler from "../../../Services/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
+import {useNavigate} from "react-router-dom";
+import authService from "../../../Services/AuthenticationService";
 
 function Login(): JSX.Element {
+    const navigate = useNavigate();
 
     const {register, handleSubmit, formState, getValues} = useForm();
 
@@ -16,7 +18,7 @@ function Login(): JSX.Element {
         const password = getValues("password");
         const clienttype = getValues("clienttype");
         authService.login(email, password, clienttype)
-            .then(t=> toast.success("Welcome back " + authStore.getState().user.name) )
+            .then(t=> {toast.success("Welcome back " + authStore.getState().user.name); navigate("/home") })
             .catch(err => errorHandler.showError(err))
         
     }
