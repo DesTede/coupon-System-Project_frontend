@@ -51,7 +51,7 @@ function UpdateCompany(): JSX.Element {
                     {...register('email', 
                         { required: true, 
                                  minLength: 2, 
-                                 maxLength: 15 })}
+                                 maxLength: 100 })}
                 />
                 <TextField 
                         variant="outlined" 

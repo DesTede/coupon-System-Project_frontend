@@ -8,20 +8,20 @@ class Coupon {
     public category: Category;
     public title: string;
     public description: string;
-    public image: string;
+    public imageUrl: string;
     public startDate: Date;
     public endDate: Date;
     public price: number;
 
 
-    constructor(id: number, company: Company, amount: number, category: Category, title: string, description: string, image: string, startDate: Date, endDate: Date, price: number) {
+    constructor(id: number, company: Company, amount: number, category: Category, title: string, description: string, imageUrl: string, startDate: Date, endDate: Date, price: number) {
         this.id = id;
         this.company = company;
         this.amount = amount;
         this.category = category;
         this.title = title;
         this.description = description;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;

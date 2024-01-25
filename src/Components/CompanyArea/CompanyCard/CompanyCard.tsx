@@ -21,8 +21,11 @@ function CompanyCard(props:CompanyProps): JSX.Element {
         <div className="CompanyCard">
             <Card>
                 <CardContent>
-                     <h3>{props.company.name}</h3> 
+                     <h3>{props.company.name}</h3>
+                    <h4>Id: {props.company.id}</h4>
                     <h4>{props.company.email}</h4>
+                    <h4>Password: {props.company.password}</h4>
+                    {/*<img src={props.company.imageUrl} alt="company image" />*/}
                     <button onClick={deleteMe}>Delete</button> 
                     <button><NavLink to={"/admin/updatecompany/" + props.company.id}>Update</NavLink></button>
                 </CardContent>
