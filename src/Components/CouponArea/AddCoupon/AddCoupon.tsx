@@ -11,20 +11,26 @@ import Company from "../../../Models/Company";
 
 function AddCoupon(): JSX.Element {
     const navigate = useNavigate();
-    const {register, handleSubmit, formState, } = useForm<Coupon>();
+    const {register, handleSubmit} = useForm<Coupon>();
 
+    
     const [company,setCompany] = useState<Company>()
     useEffect(() => {
         companyService.getDetails()
             .then(comp => setCompany(comp))
             .catch(err => errorHandler.showError(err));
     }, []);
+
+    // if (company === undefined) {
+    //     // Loading state or placeholder content
+    //     return <div>Loading...</div>;
+    // }
     
     function  getBase64(file: any){
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log(file);
+            console.log(reader.result);
             
         };
         reader.onerror = function (error) {
@@ -49,19 +55,28 @@ function AddCoupon(): JSX.Element {
                     variant="outlined"
                     label="Title"
                     id="title"
-                    {...register('title', { required: true, minLength: 2, maxLength: 100 })}
+                    {...register('title', 
+                            { required: true,
+                                     minLength: 2, 
+                                     maxLength: 100 })}
                 />
                 <TextField
                     variant="outlined"
                     label="Description"
-                    id="descripsion"
-                    {...register('description', { required: true, minLength: 2, maxLength: 100 })}
+                    id="description"
+                    {...register('description',
+                            { required: true,
+                                     minLength: 2, 
+                                     maxLength: 100 })}
                 />
                 <TextField
                     variant="outlined"
                     label="Category"
                     id="category"
-                    {...register('category', { required: true, minLength: 2, maxLength: 100 })}
+                    {...register('category', 
+                            { required: true,
+                                     minLength: 2,
+                                     maxLength: 100 })}
                 />
                 <TextField
                     variant="outlined"
@@ -69,7 +84,8 @@ function AddCoupon(): JSX.Element {
                     id="startDate"
                     type={"date"}
                     InputProps={{ inputProps: { min: "2024-01-01", max: "2025-01-01" } }}
-                    {...register('startDate', { required: true })}
+                    {...register('startDate', 
+                            { required: true })}
                 />
                 <TextField
                     variant="outlined"
@@ -77,7 +93,8 @@ function AddCoupon(): JSX.Element {
                     id="endDate"
                     type={"date"}
                     InputProps={{ inputProps: { min: "2024-01-01", max: "2027-12-31" } }}
-                    {...register('endDate', { required: true})}
+                    {...register('endDate', 
+                            { required: true})}
                 />
                 <TextField
                     variant="outlined"
@@ -85,7 +102,8 @@ function AddCoupon(): JSX.Element {
                     id="amount"
                     type={"number"}
                     InputProps={{ inputProps: { min: 1, max: 300 } }}
-                    {...register('amount', { required: true })}
+                    {...register('amount', 
+                            { required: true })}
                 />
                 <TextField
                     variant="outlined"
@@ -93,14 +111,15 @@ function AddCoupon(): JSX.Element {
                     id="price"
                     type={"number"}
                     InputProps={{ inputProps: { min: 1, max: 1000 } }}
-                    {...register('price', { required: true})}
+                    {...register('price', 
+                            { required: true})}
                 />
                 <TextField
                     variant="outlined"
-                    label={company.name}
+                    label={company?.name}
                     id="company"
                     // type={}
-                    defaultValue={company.name}
+                    defaultValue={company}
                     InputProps={ {readOnly: true}}
                     {...register('company')}
                 />
@@ -109,7 +128,10 @@ function AddCoupon(): JSX.Element {
                     label="Image"
                     id="imageUrl"
                     type={"file"}
-                    {...register('imageUrl', { required: true, minLength: 2, maxLength: 15 })}
+                    {...register('imageUrl',
+                        { required: true,
+                                 minLength: 2,
+                                 maxLength: 15 })}
                 />
                 
                 <Button variant="outlined" onClick={handleSubmit(sendCoupon)}>Add</Button>

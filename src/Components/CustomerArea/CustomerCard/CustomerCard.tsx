@@ -14,7 +14,7 @@ function CustomerCard(props:CustomerProps): JSX.Element {
     const navigate = useNavigate();
     function deleteMe(){
         adminService.deleteCustomer(props.customer.id)
-            .then(()=> {toast.success("Customer deleted");navigate("/admin/getcustomers")})
+            .then(()=> {toast.success("Customer deleted");navigate("/company/getcustomers")})
             .catch(err=>errorHandler.showError(err));
 
     }

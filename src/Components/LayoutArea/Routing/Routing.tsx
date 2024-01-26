@@ -17,6 +17,8 @@ import AddCoupon from "../../CouponArea/AddCoupon/AddCoupon";
 import UpdateCoupon from "../../CouponArea/UpdateCoupon/UpdateCoupon";
 import AboutUs from "../../FooterArea/AboutUs/AboutUs";
 import PurchaseCoupon from "../../CustomerArea/PurchaseCoupon/PurchaseCoupon";
+import CouponbyCategory from "../../CouponArea/CouponbyCategoryPrice/CouponbyCategory";
+import CouponbyPrice from "../../CouponArea/CouponbyPrice/CouponbyPrice";
 
 function Routing(): JSX.Element {
     return (
@@ -26,6 +28,8 @@ function Routing(): JSX.Element {
                 <Route path={"coupons"} element={<Coupons/>}/>
                 <Route path={"login"} element={<Login/>}/>
                 
+                
+                                    {/* Administrator*/}
                 <Route path={"admin/getcompanies"} element={<Companies/>}/>
                 <Route path={"admin/getCompany/:id"} element={<CompanyDetails/>}/>
                 <Route path={"admin/addcompany"} element={<AddCompany/>}/>
@@ -35,15 +39,18 @@ function Routing(): JSX.Element {
                 <Route path={"admin/addcustomer"} element={<AddCustomer/>}/>
                 <Route path={"admin/updatecustomer/:id"} element={<UpdateCustomer/>}/>
                 
+                    
+                                       {/* Company*/}
                 <Route path={"company/details"} element={<CompanyDetails/>}/>
                 <Route path={"company/coupons"} element={<Coupons/>}/>
                 <Route path={"company/coupon/:id"} element={<CouponDetails/>}/>
-                <Route path={"company/couponsbycategory/:category"} element={<Coupons/>}/>
-                <Route path={"company/couponsbyprice/:price"} element={<Coupons/>}/>
+                <Route path={"company/couponsbycategory/:category"} element={<CouponbyCategory/>}/>
+                <Route path={"company/couponsbyprice/:price"} element={<CouponbyPrice/>}/>
                 <Route path={"company/addcoupon"} element={<AddCoupon/>}/>
                 <Route path={"company/updatecoupon/:id"} element={<UpdateCoupon/>}/>
                 {/*<Route path={"company/update:id"} element={<UpdateCompany/>}/>*/}
                 
+                                        {/*Customer*/}
                 <Route path={"customer/details"} element={<CustomerDetails/>}/>
                 <Route path={"customer/purchasedcoupons"} element={<Coupons/>}/>
                 <Route path={"customer/availablecoupons"} element={<Coupons/>}/>

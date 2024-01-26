@@ -21,13 +21,13 @@ function UpdateCompany(): JSX.Element {
                 setValue("email", comp.email);
                 setValue("password", comp.password);
             })
-            .catch(err=> {errorHandler.showError(err); navigate("/admin/getcompanies")});
+            .catch(err=> {errorHandler.showError(err); navigate("/company/coupons")});
     }, []);
     
     function sendForm(comp: Company){
         comp.id = id;
         adminService.updateCompany(comp)
-            .then(c=> {toast.success("Company updated!"); navigate("/admin/getcompanies")})
+            .then(c=> {toast.success("Company updated!"); navigate("/company/coupons")})
             .catch(err=> errorHandler.showError(err));
     }
     
