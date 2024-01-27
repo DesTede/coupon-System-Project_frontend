@@ -1,7 +1,7 @@
 import "./CompanyDetails.css";
 import {useEffect, useState} from "react";
 import Company from "../../../Models/Company";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import errorHandler from "../../../Services/ErrorHandler";
 import {Card, CardContent} from "@mui/material";
 import companyService from "../../../Services/CompanyService";
@@ -10,7 +10,6 @@ import companyService from "../../../Services/CompanyService";
 function CompanyDetails(): JSX.Element {
     
     const [company, setCompany] = useState<Company>();
-    // const id = +(useParams().empid!);
 
     useEffect(()=>{
         companyService.getDetails()

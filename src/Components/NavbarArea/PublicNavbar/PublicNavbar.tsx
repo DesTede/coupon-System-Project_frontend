@@ -126,7 +126,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
-                                href={page ==='Login' ? "/login" : "/coupons"}
+                                href={page ==='Login' ? "/login" : "/public/coupons"}
                                 
                             >
                                 {page}

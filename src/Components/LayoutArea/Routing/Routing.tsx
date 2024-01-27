@@ -1,33 +1,35 @@
 import "./Routing.css";
 import {Navigate, Route, Routes} from "react-router-dom";
 import HomePage from "../../MainArea/HomePage/HomePage";
-import Coupons from "../../CouponArea/Coupons/Coupons";
+import CompanyCoupons from "../../CouponArea/CompanyCoupons/CompanyCoupons";
 import Login from "../../AuthArea/Login/Login";
 import NotFound from "../NotFound/NotFound";
-import Companies from "../../CompanyArea/Companies/Companies";
+import Companies from "../../AdminArea/Companies/Companies";
 import Customers from "../../CustomerArea/Customers/Customers";
-import UpdateCompany from "../../CompanyArea/UpdateCompany/UpdateCompany";
-import UpdateCustomer from "../../CustomerArea/UpdateCustomer/UpdateCustomer";
-import AddCompany from "../../CompanyArea/AddCompany/AddCompany";
-import AddCustomer from "../../CustomerArea/AddCustomer/AddCustomer";
+import UpdateCompany from "../../AdminArea/UpdateCompany/UpdateCompany";
+import UpdateCustomer from "../../AdminArea/UpdateCustomer/UpdateCustomer";
+import AddCompany from "../../AdminArea/AddCompany/AddCompany";
+import AddCustomer from "../../AdminArea/AddCustomer/AddCustomer";
 import CompanyDetails from "../../CompanyArea/CompanyDetails/CompanyDetails";
 import CustomerDetails from "../../CustomerArea/CustomerDetails/CustomerDetails";
 import CouponDetails from "../../CouponArea/CouponDetails/CouponDetails";
-import AddCoupon from "../../CouponArea/AddCoupon/AddCoupon";
-import UpdateCoupon from "../../CouponArea/UpdateCoupon/UpdateCoupon";
+import AddCoupon from "../../CompanyArea/AddCoupon/AddCoupon";
+import UpdateCoupon from "../../CompanyArea/UpdateCoupon/UpdateCoupon";
 import AboutUs from "../../FooterArea/AboutUs/AboutUs";
 import PurchaseCoupon from "../../CustomerArea/PurchaseCoupon/PurchaseCoupon";
 import CouponbyCategory from "../../CouponArea/CouponbyCategoryPrice/CouponbyCategory";
 import CouponbyPrice from "../../CouponArea/CouponbyPrice/CouponbyPrice";
+import PurchasedCoupons from "../../CustomerArea/PurchasedCoupons/PurchasedCoupons";
+import AllCoupons from "../../CouponArea/AllCoupons/AllCoupons";
 
 function Routing(): JSX.Element {
     return (
         <div className="Routing">
 			<Routes>
-                <Route path={"home"} element={<HomePage/>} />
-                <Route path={"coupons"} element={<Coupons/>}/>
-                <Route path={"login"} element={<Login/>}/>
                 
+                <Route path={"home"} element={<HomePage/>} />
+                <Route path={"/public/coupons"} element={<AllCoupons/>}/>
+                <Route path={"login"} element={<Login/>}/>
                 
                                     {/* Administrator*/}
                 <Route path={"admin/getcompanies"} element={<Companies/>}/>
@@ -42,20 +44,19 @@ function Routing(): JSX.Element {
                     
                                        {/* Company*/}
                 <Route path={"company/details"} element={<CompanyDetails/>}/>
-                <Route path={"company/coupons"} element={<Coupons/>}/>
+                <Route path={"company/coupons"} element={<CompanyCoupons/>}/>
                 <Route path={"company/coupon/:id"} element={<CouponDetails/>}/>
                 <Route path={"company/couponsbycategory/:category"} element={<CouponbyCategory/>}/>
                 <Route path={"company/couponsbyprice/:price"} element={<CouponbyPrice/>}/>
                 <Route path={"company/addcoupon"} element={<AddCoupon/>}/>
                 <Route path={"company/updatecoupon/:id"} element={<UpdateCoupon/>}/>
-                {/*<Route path={"company/update:id"} element={<UpdateCompany/>}/>*/}
                 
                                         {/*Customer*/}
                 <Route path={"customer/details"} element={<CustomerDetails/>}/>
-                <Route path={"customer/purchasedcoupons"} element={<Coupons/>}/>
-                <Route path={"customer/availablecoupons"} element={<Coupons/>}/>
-                <Route path={"customer/couponsbycategory/:category"} element={<Coupons/>}/>
-                <Route path={"customer/couponsbyprice/:price"} element={<Coupons/>}/>
+                <Route path={"customer/purchasedcoupons"} element={<PurchasedCoupons/>}/>
+                <Route path={"customer/availablecoupons"} element={<AllCoupons/>}/>
+                <Route path={"customer/couponsbycategory/:category"} element={<AllCoupons/>}/>
+                <Route path={"customer/couponsbyprice/:price"} element={<AllCoupons/>}/>
                 <Route path={"customer/purchaseCoupon"} element={<PurchaseCoupon/>}/>
                 
                 

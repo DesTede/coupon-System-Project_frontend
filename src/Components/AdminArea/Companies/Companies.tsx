@@ -4,7 +4,7 @@ import Company from "../../../Models/Company";
 import {useEffect, useState} from "react";
 import adminService from "../../../Services/AdminService";
 import {adminStore} from "../../../Redux/OurStore";
-import CompanyCard from "../CompanyCard/CompanyCard";
+import CompanyCard from "../../CompanyArea/CompanyCard/CompanyCard";
 
 function Companies(): JSX.Element {
     

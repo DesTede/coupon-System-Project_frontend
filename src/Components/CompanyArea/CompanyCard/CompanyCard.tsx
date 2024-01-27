@@ -9,7 +9,7 @@ import {Navigate, NavLink} from "react-router-dom";
 interface CompanyProps{
     company:Company
 }
-function CompanyCard(props:CompanyProps): JSX.Element {
+function CompanyCard(props:CompanyProps): JSX.Element{
     
     function deleteMe(){
         adminService.deleteCompany(props.company.id)

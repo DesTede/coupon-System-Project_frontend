@@ -7,6 +7,7 @@ class ClientInterceptors{
             if(authStore.getState().token.length > 0)
                 request.headers['Authorization'] = "Bearer " + authStore.getState().token;
             return request;
+            
         } );
     }
 }

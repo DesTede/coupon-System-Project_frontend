@@ -2,7 +2,7 @@ import "./CouponbyCategory.css";
 import {useEffect, useState} from "react";
 import companyService from "../../../Services/CompanyService";
 import {companyStore} from "../../../Redux/OurStore";
-import {NavLink, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import CouponCard from "../CouponCard/CouponCard";
 import errorHandler from "../../../Services/ErrorHandler";
 import Coupon from "../../../Models/Coupon";
