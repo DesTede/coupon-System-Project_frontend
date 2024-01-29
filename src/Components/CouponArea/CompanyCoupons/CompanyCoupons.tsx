@@ -1,5 +1,5 @@
 import "./CompanyCoupons.css";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {companyStore} from "../../../Redux/OurStore";
 import {NavLink} from "react-router-dom";
 import Coupon from "../../../Models/Coupon";
@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {Category} from "../../../Models/Category";
 import errorHandler from "../../../Services/ErrorHandler";
+import {Input} from "@mui/material";
 
 
  
@@ -19,6 +20,7 @@ function CompanyCoupons(): JSX.Element {
     const [coupons, setCoupons] = useState<Coupon[]>();
     const [categories, setCategories] = useState<Category[]>();
     const [category, setCategory] = useState<string>("");
+    const [price, setPrice] = useState<number | "">("");
 
     useEffect(() => {
         companyService.getCoupons()
@@ -38,16 +40,28 @@ function CompanyCoupons(): JSX.Element {
         return () => {
             unsubscribe();
         }
+        
+        
 
     }, []);
 
 
-    
 
-        const handleChange = (event: SelectChangeEvent) => {
-            setCategory(event.target.value as string);
-        };
+    const handleChange = (event: SelectChangeEvent) => {
+        // publicService.getByCategory(event.target.value as string)
+        setCategory(event.target.value as string);
+    };
 
+    const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPrice(event.target.value as number | "");
+    };
+
+
+
+    const filteredCoupons = coupons?.filter(c =>
+        (!category || c.category.toString() === category) &&
+        (!price || c.price <= (price as number))
+    );
 
     
 
@@ -76,13 +90,24 @@ function CompanyCoupons(): JSX.Element {
                 </FormControl>
             </div>
 
+            <span>Filter by price: </span>
+            <FormControl sx={{m: 1, minWidth: 80}}>
+                <InputLabel htmlFor="price-input">Price</InputLabel>
+                <Input
+                    id="price-input"
+                    type="number"
+                    value={price === "" ? "" : (price as number).toString()}
+                    onChange={handleChangePrice}
+                />
+            </FormControl>
+
 
             <NavLink to={"/company/addcoupon"}>
-                
+
                 <button>Add new coupon</button>
             </NavLink>
             <div className="container">
-                {coupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
+                {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
             </div>
         </div>
     );

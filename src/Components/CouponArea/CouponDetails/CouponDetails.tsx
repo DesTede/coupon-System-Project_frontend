@@ -20,7 +20,7 @@ function CouponDetails(): JSX.Element {
     return (
         <div className="CouponDetails">
             {coupon && <>
-            <img src={coupon.imageUrl} alt=""/><br/>
+            <img src={coupon.image as string} alt=""/><br/>
             <h3>{coupon.title}</h3>
             <h4>Id: {coupon.id}</h4>
             $ {coupon.price}

@@ -25,9 +25,10 @@ function CouponCard(props:CouponProps): JSX.Element {
         <div className="CouponCard">
 			<Card>
                 <CardContent>
-                    <img src={props.coupon.imageUrl} alt=""/> <br/>
                     <NavLink to={"/company/coupon/" + props.coupon.id}><h3>{props.coupon.title}</h3></NavLink><br/>
                     {/*<h4>Id: {props.coupon.id}</h4>*/}
+                    <img src={props.coupon.image as string} alt=""/> <br/>
+                    
                     $ {props.coupon.price}
                     {/*<p>Description: {props.coupon.description}</p>*/}
                     <h5>Category: {props.coupon.category}</h5>

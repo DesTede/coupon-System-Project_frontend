@@ -1,3 +1,4 @@
+import Coupon from "./Coupon";
 
 
 class Company{
@@ -5,15 +6,15 @@ class Company{
     public name:string;
     public email:string;
     public password:string;
-    // public coupons:Coupon[];
+    public coupons:Coupon[];
 
 
-    constructor(id: number, name: string, email: string, password: string) {
+    constructor(id: number, name: string, email: string, password: string, coupons:Coupon[]){
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        // this.coupons = coupons;
+        this.coupons = coupons;
     }
 }
 export default Company;

@@ -12,41 +12,69 @@ import Company from "../../../Models/Company";
 function AddCoupon(): JSX.Element {
     const navigate = useNavigate();
     const {register, handleSubmit} = useForm<Coupon>();
-
     
     const [company,setCompany] = useState<Company>()
+    
     useEffect(() => {
         companyService.getDetails()
             .then(comp => setCompany(comp))
             .catch(err => errorHandler.showError(err));
     }, []);
 
-    // if (company === undefined) {
-    //     // Loading state or placeholder content
-    //     return <div>Loading...</div>;
+    // function getBase64(file: File) {
+    //     // let document: string | ArrayBuffer = "";
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = function () {
+    //         console.log(reader.result);
+    //         // document = reader.result;
+    //        
+    //
+    //     };
+    //     reader.onerror = function (error) {
+    //         console.log('Error: ', error);
+    //     };
+    //    
+    // }
+
+    //
+    // function sendCoupon(coupon:Coupon) {
+    //     let image = document.getElementById("image") as HTMLInputElement;
+    //     if (image?.files && image.files.length > 0) {
+    //         const imageFile = image.files[0];
+    //         const base64String = getBase64(imageFile);
+    //         coupon.image = base64String;
+    //     }
+    //     // coupon.company = company;
+    //     console.log(coupon)
+    //     companyService.addCoupon(coupon)
+    //         .then(t => {
+    //             toast.success("Coupon added! ");navigate("/company/coupons")})
+    //         .catch(err => errorHandler.showError(err))
     // }
     
-    function  getBase64(file: any){
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            console.log(reader.result);
+    function sendCoupon(coupon:Coupon){
+        if (coupon.image){
+            const imageFile = (coupon.image as FileList)[0];
+            let reader = new FileReader();
+            // reader.readAsDataURL(coupon.image);
             
-        };
-        reader.onerror = function (error) {
-            errorHandler.showError(error);
-        };
+            reader.onload = function (){
+                const base64String = reader.result as string;
+                coupon.image = base64String;
+                console.log(base64String);
+                companyService.addCoupon(coupon)
+                    .then(t => {toast.success("Coupon added! ");navigate("/company/coupons");
+                        console.log(coupon)})
+                    .catch(err => errorHandler.showError(err))
+            };
+            // reader.onerror = function (error){
+            //     console.log("Error:", error);
+            reader.readAsDataURL(imageFile);
+            
+        }
     }
     
-    function sendCoupon(coupon:Coupon) {
-        getBase64(coupon.imageUrl);
-        
-        companyService.addCoupon(coupon)
-            .then(t => {
-                toast.success("Coupon added! ");navigate("/company/coupons")})
-            .catch(err => errorHandler.showError(err))
-    }
-
     return (
         <div className="AddCoupon">
             <FormControl>
@@ -69,6 +97,7 @@ function AddCoupon(): JSX.Element {
                                      minLength: 2, 
                                      maxLength: 100 })}
                 />
+                 {/*add select for a dropdown menu from existing categories*/}
                 <TextField
                     variant="outlined"
                     label="Category"
@@ -114,24 +143,24 @@ function AddCoupon(): JSX.Element {
                     {...register('price', 
                             { required: true})}
                 />
-                <TextField
-                    variant="outlined"
-                    label={company?.name}
-                    id="company"
-                    // type={}
-                    defaultValue={company}
-                    InputProps={ {readOnly: true}}
-                    {...register('company')}
-                />
+                {/*<TextField*/}
+                {/*    variant="outlined"*/}
+                {/*    label={company?.name}*/}
+                {/*    id="company"*/}
+                {/*    // type={}*/}
+                {/*    defaultValue={company}*/}
+                {/*    InputProps={ {readOnly: true}}*/}
+                {/*    {...register('company')}*/}
+                {/*/>*/}
                 <TextField
                     variant="outlined"
                     label="Image"
-                    id="imageUrl"
+                    id="image"
                     type={"file"}
-                    {...register('imageUrl',
+                    {...register('image',
                         { required: true,
                                  minLength: 2,
-                                 maxLength: 15 })}
+                                 maxLength: 1000 })}
                 />
                 
                 <Button variant="outlined" onClick={handleSubmit(sendCoupon)}>Add</Button>

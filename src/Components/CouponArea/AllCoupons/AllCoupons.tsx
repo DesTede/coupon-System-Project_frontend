@@ -29,7 +29,7 @@ function AllCoupons(): JSX.Element {
             .catch(err => errorHandler.showError(err));
         
         
-        companyService.getCategories()
+        publicService.getCategories()
             .then(cats => setCategories(cats))
             .catch(err => errorHandler.showError(err));
         
@@ -49,11 +49,8 @@ function AllCoupons(): JSX.Element {
         setPrice(event.target.value as number | "");
     };
 
-    // const filteredCoupons = 
-    //     coupons?.filter(c => !category || c.category.toString() === category) &&
-    //     coupons?.filter(c => !price || c.price <= price);
-
-
+    
+    
     const filteredCoupons = coupons?.filter(c =>
         (!category || c.category.toString() === category) &&
         (!price || c.price <= (price as number))

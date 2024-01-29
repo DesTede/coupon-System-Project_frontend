@@ -1,7 +1,7 @@
 import Coupon from "../Models/Coupon";
 import appConfig from "../Utils/AppConfig";
 import axios from "axios";
-import {publicStore} from "../Redux/OurStore";
+import {Category} from "../Models/Category";
 
 class PublicService{
     
@@ -9,11 +9,12 @@ class PublicService{
         return (await axios.get<Coupon[]>(appConfig.url + "/public/coupons")).data;
     }
     
-    
+    public async getCategories(){
+        return(await axios.get<Category[]>(appConfig.url +"/public/categories")).data;
+    }
     
     public async getByPrice(price:number){
         return (await axios.get<Coupon[]>(appConfig.url + "/public/coupons/price/" + price)).data;
-        
     }
     
     public async getByCategory(category:string){

@@ -16,7 +16,7 @@ import {useNavigate} from "react-router-dom";
 import errorHandler from "../../../Services/ErrorHandler";
 import authService from "../../../Services/AuthenticationService";
 
-const pages = [ 'My details','', 'My CompanyCoupons','', 'Logout'];
+const pages = [ 'My details','', 'My Coupons','', 'Logout'];
 
 const settings = ['Profile', 'Logout'];
 
@@ -136,7 +136,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
-                                href ={ page === 'My details' ? '/customer/details' : page === 'My CompanyCoupons' ? '/customer/purchasedcoupons' : page === 'Logout' ? '/login' : '/home'}
+                                href ={ page === 'My details' ? '/customer/details' : page === 'My Coupons' ? '/customer/purchasedcoupons' : page === 'Logout' ? '/login' : '/home'}
                             >
                                 {page}
                             </Button>

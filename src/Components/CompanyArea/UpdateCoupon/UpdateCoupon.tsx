@@ -23,18 +23,34 @@ function UpdateCoupon(): JSX.Element {
                 setValue("amount", coup.amount);
                 setValue("startDate", coup.startDate);
                 setValue("endDate", coup.endDate);
-                setValue("imageUrl", coup.imageUrl);
+                setValue("image", coup.image);
                 
             })
             .catch(err=> {errorHandler.showError(err); navigate("/company/coupons")});
     }, []);
 
     function sendForm(coup: Coupon){
-        coup.id = id;
-        companyService.updateCoupon(coup)
-            .then(c=> {toast.success("Coupon updated!"); navigate("/company/coupons")})
-            .catch(err=> errorHandler.showError(err));
+        if (coup.image) {
+            const imageFile = (coup.image as FileList)[0];
+            let reader = new FileReader();
+            // reader.readAsDataURL(coupon.image);
+
+            reader.onload = function () {
+                const base64String = reader.result as string;
+                coup.image = base64String;
+                console.log(base64String);
+                coup.id = id;
+                companyService.updateCoupon(coup)
+                    .then(c => {
+                        toast.success("Coupon updated!");
+                        navigate("/company/coupons")
+                    })
+                    .catch(err => errorHandler.showError(err));
+            };
+            reader.readAsDataURL(imageFile);
+        }
     }
+    
 
     return (
         <div className="UpdateCompany">
@@ -107,9 +123,9 @@ function UpdateCoupon(): JSX.Element {
                 <TextField
                     variant="outlined"
                     label="Image"
-                    id="imageUrl"
+                    id="image"
                     type={"file"}
-                    {...register('imageUrl',
+                    {...register('image',
                         { required: false,
                                  minLength: 2,
                                  maxLength: 15 })}
