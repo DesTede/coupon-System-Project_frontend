@@ -21,6 +21,8 @@ import PurchaseCoupon from "../../CustomerArea/PurchaseCoupon/PurchaseCoupon";
 // import CouponbyPrice from "../../CouponArea/CouponbyPrice/CouponbyPrice";
 import PurchasedCoupons from "../../CustomerArea/PurchasedCoupons/PurchasedCoupons";
 import AllCoupons from "../../CouponArea/AllCoupons/AllCoupons";
+import SuccessStories from "../../FooterArea/SuccessStories/SuccessStories";
+import ContactUs from "../../FooterArea/ContactUs/ContactUs";
 
 function Routing(): JSX.Element {
     return (
@@ -29,6 +31,7 @@ function Routing(): JSX.Element {
                 
                 <Route path={"home"} element={<HomePage/>} />
                 <Route path={"/public/coupons"} element={<AllCoupons/>}/>
+                <Route path={"/public/coupon/:id"} element={<CouponDetails/>}/>
                 <Route path={"login"} element={<Login/>}/>
                 
                                     {/* Administrator*/}
@@ -59,9 +62,11 @@ function Routing(): JSX.Element {
                 {/*<Route path={"customer/purchasedcouponsbyprice/:price"} element={<AllCoupons/>}/>*/}
                 <Route path={"customer/purchaseCoupon"} element={<PurchaseCoupon/>}/>
                 
+                                        {/* Footer */}
+                <Route path={"/aboutemporium"} element={<AboutUs/>}/>
+                <Route path={"successstories" } element={<SuccessStories/>}/>
+                <Route path={"/contactus" } element={<ContactUs/>}/>
                 
-                <Route path={"aboutUs"} element={<AboutUs/>}/>
-                <Route path={"successStories" } element={<AboutUs/>}/>
                 
                 <Route path={"/"} element={<Navigate to={"home"}/> }/>
                 

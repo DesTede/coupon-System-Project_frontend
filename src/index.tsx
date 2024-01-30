@@ -4,7 +4,6 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import clientInterceptors from "./Utils/interceptors";
 import Layout from "./Components/LayoutArea/Layout/Layout";
-import {ToastContainer} from "react-toastify";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

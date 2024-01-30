@@ -55,7 +55,7 @@ function UpdateCoupon(): JSX.Element {
     return (
         <div className="UpdateCompany">
             <FormControl>
-                <FormLabel>Update Company</FormLabel>
+                <FormLabel>Update Coupon</FormLabel>
                 <TextField
                     variant="outlined"
                     label="Title"

@@ -9,11 +9,12 @@ import Select, {SelectChangeEvent} from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import CouponCard from "../CouponCard/CouponCard";
 import customerService from "../../../Services/CustomerService";
 import publicService from "../../../Services/PublicService";
 import {Input} from "@mui/material";
+import authService from "../../../Services/AuthService";
 
 function AllCoupons(): JSX.Element {
     const [coupons, setCoupons] = useState<Coupon[]>();
@@ -38,7 +39,8 @@ function AllCoupons(): JSX.Element {
         
     }, []);
 
-
+    const navigate = useNavigate();
+    
     
     const handleChange = (event: SelectChangeEvent) => {
         // publicService.getByCategory(event.target.value as string)
@@ -93,6 +95,7 @@ function AllCoupons(): JSX.Element {
                 />
             </FormControl>
 
+            
             <div className="container">
                 {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
             </div>

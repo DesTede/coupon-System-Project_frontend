@@ -14,7 +14,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {useNavigate} from "react-router-dom";
 import errorHandler from "../../../Services/ErrorHandler";
-import authService from "../../../Services/AuthenticationService";
+import authService from "../../../Services/AuthService";
+import {toast} from "react-toastify";
 
 const pages = [ 'Company details','', 'Company Coupons','', 'Logout'];
 
@@ -43,7 +44,7 @@ function ResponsiveAppBar() {
     function handleCloseNav(page: string){
         if (page === 'Logout') {
             authService.logout()
-                .then(() => navigate("/login"))
+                .then(() => {toast.success("Logged out successfully");navigate("/login")})
                 .catch(err => errorHandler.showError(err));
         }
     }
@@ -52,6 +53,7 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+                    <Button onClick={() => handleCloseNav('Logout')}>Logout</Button>
                     {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
                     <img src={"the-coupon-emporium-favicon-white.png"} alt={"Store logo"}/>
                     <Typography

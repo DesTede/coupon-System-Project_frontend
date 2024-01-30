@@ -1,7 +1,7 @@
 import "./AddCompany.css";
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
 import {useForm} from "react-hook-form";
-import authService from "../../../Services/AuthenticationService";
+import authService from "../../../Services/AuthService";
 import {toast} from "react-toastify";
 import {authStore} from "../../../Redux/OurStore";
 import errorHandler from "../../../Services/ErrorHandler";

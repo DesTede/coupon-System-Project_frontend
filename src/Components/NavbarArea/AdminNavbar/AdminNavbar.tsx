@@ -14,11 +14,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {useNavigate} from "react-router-dom";
 import errorHandler from "../../../Services/ErrorHandler";
-import authService from "../../../Services/AuthenticationService";
+import authService from "../../../Services/AuthService";
+import {toast} from "react-toastify";
 
-const pages = ['Companies', 'Customers', 'Logout'];
+const pages = [ 'Companies', 'Customers', 'Logout'];
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -43,7 +44,7 @@ function ResponsiveAppBar() {
     function handleCloseNav(page: string){
         if (page === 'Logout') {
             authService.logout()
-                .then(() => navigate("/login"))
+                .then(() => {toast.success("Logged out successfully");navigate("/login")})
                 .catch(err => errorHandler.showError(err));
         }
     }
@@ -52,6 +53,7 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+                    <Button onClick={() => handleCloseNav('Logout')}>Logout</Button>
                     {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
                     <img src={"the-coupon-emporium-favicon-white.png"} alt={"Store logo"}/>
                     <Typography
@@ -101,6 +103,7 @@ function ResponsiveAppBar() {
                             sx={{
                                 display: {xs: 'block', md: 'none'},
                             }}
+
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -135,7 +138,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
-                                href={page ==='Companies' ? "/admin/getcompanies" : page === 'Customers' ? "/admin/getcustomers" : "/login"}
+                                href={page ==='Companies' ? "/admin/getcompanies" : page === 'Customers' ? "/admin/getcustomers" :  "/login"}
                             >
                                 {page}
                             </Button>

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import errorHandler from "../../../Services/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 import {useNavigate} from "react-router-dom";
-import authService from "../../../Services/AuthenticationService";
+import authService from "../../../Services/AuthService";
 
 function Login(): JSX.Element {
     const navigate = useNavigate();

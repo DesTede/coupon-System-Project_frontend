@@ -10,6 +10,7 @@ class AuthService {
     public async login(email: string, password: string, clientType: ClientType) {
         const response = await axios.post<string>(appConfig.url + "/auth/login", null, { params: { "email": email, "password": password, "clientType": ClientType[clientType] } });
         authStore.dispatch(login(response.data));
+        
         return response.data;
     }
     

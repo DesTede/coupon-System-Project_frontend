@@ -78,7 +78,7 @@ function AddCoupon(): JSX.Element {
     return (
         <div className="AddCoupon">
             <FormControl>
-                <FormLabel>New Company</FormLabel>
+                <FormLabel>New Coupon</FormLabel>
                 <TextField
                     variant="outlined"
                     label="Title"

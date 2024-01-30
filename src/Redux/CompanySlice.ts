@@ -5,13 +5,13 @@ import {Category} from "../Models/Category";
 export interface CompanyState{
     couponValue:Coupon[];
     categoryValue:Category[];
-    lastUpdated: Date
+    // lastUpdated: Date
 }
 
 export const initState:CompanyState={
     couponValue:[],
-    categoryValue:[],
-    lastUpdated: new Date()
+    categoryValue:[]
+    // lastUpdated: new Date()
 }
 export const companySlice= createSlice({
     name:"coupons",
@@ -19,11 +19,11 @@ export const companySlice= createSlice({
     reducers:{
         fetchCoupons:(state, action: PayloadAction<Coupon[]>)=> {
             state.couponValue = action.payload;
-            state.lastUpdated = new Date();
+            // state.lastUpdated = new Date();
         },
         fetchCategories:(state, action: PayloadAction<Category[]>)=> {
             state.categoryValue = action.payload;
-            state.lastUpdated = new Date();
+            // state.lastUpdated = new Date();
         },
         add:(state, action: PayloadAction<Coupon>)=>{
             state.couponValue.push(action.payload);

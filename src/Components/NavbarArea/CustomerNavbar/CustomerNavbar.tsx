@@ -14,9 +14,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {useNavigate} from "react-router-dom";
 import errorHandler from "../../../Services/ErrorHandler";
-import authService from "../../../Services/AuthenticationService";
+import authService from "../../../Services/AuthService";
+import {toast} from "react-toastify";
 
-const pages = [ 'My details','', 'My Coupons','', 'Logout'];
+const pages = [ 'My details','', 'My Coupons','Coupons', 'Logout'];
 
 const settings = ['Profile', 'Logout'];
 
@@ -43,7 +44,7 @@ function ResponsiveAppBar() {
     function handleCloseNav(page: string){
         if (page === 'Logout') {
             authService.logout()
-                .then(() => navigate("/login"))
+                .then(() => {toast.success("Logged out successfully");navigate("/login")})
                 .catch(err => errorHandler.showError(err));
         }
     }
@@ -53,6 +54,7 @@ function ResponsiveAppBar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
+                    <Button onClick={() => handleCloseNav('Logout')}>Logout</Button>
                     <img src={"the-coupon-emporium-favicon-white.png"} alt={"Store logo"}/>
                     <Typography
                         variant="h6"
@@ -136,7 +138,7 @@ function ResponsiveAppBar() {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
-                                href ={ page === 'My details' ? '/customer/details' : page === 'My Coupons' ? '/customer/purchasedcoupons' : page === 'Logout' ? '/login' : '/home'}
+                                href ={ page === 'My details' ? '/customer/details' : page === 'My Coupons' ? '/customer/purchasedcoupons' :page === 'Coupons'? '/public/coupons' :  '/home'}
                             >
                                 {page}
                             </Button>

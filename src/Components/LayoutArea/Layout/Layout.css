@@ -6,10 +6,19 @@
 
 .Layout>main{
     padding: 20px;
+    margin-top: 15px;
     overflow: auto;
-    margin-top: 80px;
+}
+.Layout header{
+    /*margin-bottom: 10px;*/
 }
 
+.Layout footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:transparent ;
+}
 
 
 .Toastify__toast-theme--light.Toastify__toast--success {

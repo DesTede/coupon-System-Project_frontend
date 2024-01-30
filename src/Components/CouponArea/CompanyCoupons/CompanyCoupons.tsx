@@ -1,7 +1,7 @@
 import "./CompanyCoupons.css";
 import React, {useEffect, useState} from "react";
-import {companyStore} from "../../../Redux/OurStore";
-import {NavLink} from "react-router-dom";
+import {authStore, companyStore} from "../../../Redux/OurStore";
+import {NavLink, useNavigate} from "react-router-dom";
 import Coupon from "../../../Models/Coupon";
 import companyService from "../../../Services/CompanyService";
 import CouponCard from "../CouponCard/CouponCard";
@@ -12,6 +12,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {Category} from "../../../Models/Category";
 import errorHandler from "../../../Services/ErrorHandler";
 import {Input} from "@mui/material";
+import authService from "../../../Services/AuthService";
 
 
  
@@ -56,6 +57,15 @@ function CompanyCoupons(): JSX.Element {
         setPrice(event.target.value as number | "");
     };
 
+    
+    const navigate = useNavigate();
+    function handleLogout(){
+        // setNav(<PublicNavbar/>)
+        authService.logout()
+            .then(() => { navigate("/")})
+            .catch(err => errorHandler.showError(err));
+
+    }
 
 
     const filteredCoupons = coupons?.filter(c =>
@@ -69,6 +79,7 @@ function CompanyCoupons(): JSX.Element {
         <div className="CompanyCoupons">
 
             <div>
+                <button onClick={handleLogout}>logout</button>
                 <span>Filter by category: </span>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="demo-simple-select-autowidth-label">Category</InputLabel>

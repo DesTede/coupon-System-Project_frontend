@@ -13,6 +13,10 @@ class PublicService{
         return(await axios.get<Category[]>(appConfig.url +"/public/categories")).data;
     }
     
+    public async getCoupon(id:number){
+        return (await axios.get<Coupon>(appConfig.url + "/public/coupon/" + id)).data;
+    }
+    
     public async getByPrice(price:number){
         return (await axios.get<Coupon[]>(appConfig.url + "/public/coupons/price/" + price)).data;
     }
