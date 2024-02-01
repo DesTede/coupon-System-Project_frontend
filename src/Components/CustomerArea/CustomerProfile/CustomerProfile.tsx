@@ -1,4 +1,4 @@
-import "./CustomerDetails.css";
+import "./CustomerProfile.css";
 import {useEffect, useState} from "react";
 import companyService from "../../../Services/CompanyService";
 import errorHandler from "../../../Services/ErrorHandler";
@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 import Customer from "../../../Models/Customer";
 import customerService from "../../../Services/CustomerService";
 
-function CustomerDetails(): JSX.Element {
+function CustomerProfile(): JSX.Element {
     const [customer, setCustomer] = useState<Customer>();
 
     useEffect(()=>{
@@ -18,7 +18,7 @@ function CustomerDetails(): JSX.Element {
 
 
     return (
-        <div className="CustomerDetails">
+        <div className="CustomerProfile">
             <Card>
                 <CardContent>
                     {customer && <>
@@ -28,7 +28,7 @@ function CustomerDetails(): JSX.Element {
                         <h4>{customer.password}</h4>
                         <h5>Coupons Purchased: </h5>
                         {/*{customer.coupons.values()}*/}
-                        <NavLink to={"/home"}><button>Back</button></NavLink>
+                        <NavLink to={"/discovery"}><button>Back</button></NavLink>
                     </>
                     }
                 </CardContent>
@@ -37,4 +37,4 @@ function CustomerDetails(): JSX.Element {
     );
 }
 
-export default CustomerDetails;
+export default CustomerProfile;

@@ -4,7 +4,7 @@ import Customer from "../../../Models/Customer";
 import adminService from "../../../Services/AdminService";
 import {adminStore} from "../../../Redux/OurStore";
 import {NavLink} from "react-router-dom";
-import CustomerCard from "../CustomerCard/CustomerCard";
+import CustomerCard from "../../CustomerArea/CustomerCard/CustomerCard";
 
 function Customers(): JSX.Element {
     

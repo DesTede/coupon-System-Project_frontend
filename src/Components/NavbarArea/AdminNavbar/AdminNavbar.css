@@ -1,3 +1,26 @@
-.AdminNavbar {
-	
+.AppBar{
+    height: 50px;
+    margin-top: 5px;
+}
+
+/*.AppBar img{*/
+/*    width: 50px;*/
+/*    height: auto;*/
+/*    margin-right: 10px;*/
+/*    padding-bottom: 5px;*/
+/*}*/
+
+.logoImage{
+    width: 75px;
+    height: 60px;
+    /*overflow: hidden;*/
+}
+.AppBar .Typography a{
+    height: 68px;
+}
+
+.AdminNavbar{
+    height: 10px;
+    background-color: #ec9f73;
+    
 }

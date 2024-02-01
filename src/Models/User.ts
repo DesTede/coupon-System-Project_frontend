@@ -7,6 +7,7 @@ export class User{
     public lastName:string;
     public email:string;
     public clientType:string;
+    
 
     constructor(id:number, name:string, firstName:string,lastname:string, email:string, clientType:string){
         this.id = id;

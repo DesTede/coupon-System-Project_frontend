@@ -15,7 +15,7 @@ function AddCustomer(): JSX.Element {
     function sendForm(cus:Customer) {
         adminService.addCustomer(cus)
             .then(c => {
-                toast.success("Customer added! ");navigate("/company/getcustomers")})
+                toast.success("Customer added! ");navigate("/")})
             .catch(err => errorHandler.showError(err))
     }
 

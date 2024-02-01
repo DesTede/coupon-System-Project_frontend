@@ -22,7 +22,7 @@ function AddCompany(): JSX.Element {
         // const clienttype = getValues("clienttype");
         adminService.addCompany(comp)
             .then(t => {
-                toast.success("Company added! ");navigate("/company/coupons")})
+                toast.success("Company added! ");navigate("/")})
             .catch(err => errorHandler.showError(err))
     }
     

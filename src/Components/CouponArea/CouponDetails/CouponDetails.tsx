@@ -8,6 +8,8 @@ import {authStore} from "../../../Redux/OurStore";
 import {Button, Card} from "@mui/material";
 import customerService from "../../../Services/CustomerService";
 import {toast} from "react-toastify";
+import Company from "../../../Models/Company";
+import companyService from "../../../Services/CompanyService";
 
 
 function CouponDetails(): JSX.Element {
@@ -15,16 +17,20 @@ function CouponDetails(): JSX.Element {
     const navigate = useNavigate();
     const client = authStore.getState().user?.clientType;
     const [coupon, setCoupon] = useState<Coupon>();
+    // const [company, setCompany] = useState<Company>();
     const id = +(useParams().id!);
+    // let company:Company;
 
     useEffect(()=>{
         publicService.getCoupon(id)
-            .then( c=> setCoupon(c) )
+            .then( c=> {setCoupon(c);})
             .catch(err=>errorHandler.showError(err));
+        
+       
     }, []);
     
     function handlePurchase(){
-        customerService.purchaseCoupon(coupon)
+        customerService.purchaseCoupon(coupon.id)
             .then(()=>{toast.success("Coupon purchased"); navigate("/public/coupons")})
             .catch(err=>{errorHandler.showError(err);});
     }

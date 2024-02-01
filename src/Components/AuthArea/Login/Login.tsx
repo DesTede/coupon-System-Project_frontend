@@ -12,13 +12,13 @@ function Login(): JSX.Element {
 
     const {register, handleSubmit, formState, getValues} = useForm();
 
-    // getValues("email") - get the value of the input with the id. using getValues to get the value of the input
+    
     function sendForm(){
         const email = getValues("email");
         const password = getValues("password");
         const clienttype = getValues("clienttype");
         authService.login(email, password, clienttype)
-            .then(t=> {toast.success("Welcome back " + authStore.getState().user.name); navigate("/home") })
+            .then(t=> {toast.success("Welcom Back " + authStore.getState().user.name); navigate("/discovery")})
             .catch(err => errorHandler.showError(err))
         
     }

@@ -1,4 +1,4 @@
-import "./CompanyDetails.css";
+import "./CompanyProfile.css";
 import {useEffect, useState} from "react";
 import Company from "../../../Models/Company";
 import {NavLink} from "react-router-dom";
@@ -7,7 +7,7 @@ import {Card, CardContent} from "@mui/material";
 import companyService from "../../../Services/CompanyService";
 
 
-function CompanyDetails(): JSX.Element {
+function CompanyProfile(): JSX.Element {
     
     const [company, setCompany] = useState<Company>();
 
@@ -19,7 +19,7 @@ function CompanyDetails(): JSX.Element {
 
     
     return (
-        <div className="CompanyDetails">
+        <div className="CompanyProfile">
             <Card>
                 <CardContent>
                     {company && <>
@@ -28,7 +28,7 @@ function CompanyDetails(): JSX.Element {
                     <h4>{company.email}</h4>
                     <h4>{company.password}</h4>
                     {/*<img src={company.imageUrl} alt="company image" />*/}
-                    <NavLink to={"/home"}><button>Back</button></NavLink>
+                    <NavLink to={"/discovery"}><button>Back</button></NavLink>
                     </>
                     }
                 </CardContent>
@@ -38,4 +38,4 @@ function CompanyDetails(): JSX.Element {
 }
 
 
-export default CompanyDetails;
+export default CompanyProfile;
