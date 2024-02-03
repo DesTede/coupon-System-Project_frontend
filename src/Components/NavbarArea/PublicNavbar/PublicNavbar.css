@@ -1,6 +1,7 @@
 .appBar{
-    height: 60px;
+    height: 100px;
     margin-top: 5px;
+    padding-bottom: inherit;
 }
 
 .appBar img {
@@ -9,6 +10,6 @@
     margin-right: 10px;
 }
 
-.PublicNavar{
-    height: 10px;
-}
+/*.PublicNavar{*/
+/*    height: 10px;*/
+/*}*/

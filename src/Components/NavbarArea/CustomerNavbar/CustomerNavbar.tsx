@@ -12,19 +12,22 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import {useNavigate} from "react-router-dom";
-import errorHandler from "../../../Services/ErrorHandler";
+import AdbIcon from '@mui/icons-material/Adb';
+import {NavLink, useNavigate} from "react-router-dom";
 import authService from "../../../Services/AuthService";
 import {toast} from "react-toastify";
+import errorHandler from "../../../Services/ErrorHandler";
+import {authStore} from "../../../Redux/OurStore";
 
-const pages = [ 'My details','', 'My Coupons','Coupons', 'Logout'];
-
-const settings = ['Profile', 'Logout'];
+const pages: any[] = [/*'The Coupon Emporium','Customers', 'Companies'*/];
+const settings = ['Profile','My Coupons', 'Available coupons', 'Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+    const userName = authStore.getState().user.name;
+    const navigate = useNavigate();
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -32,47 +35,58 @@ function ResponsiveAppBar() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (/*page:string */) => {
         setAnchorElNav(null);
+        //    
+        //     if (page === 'Companies')
+        //         navigate("admin/getcompanies");
+        //     else if (page === 'Customers')
+        //         navigate("/admin/getcustomers");
+        //     else 
+        //         navigate("/discovery");
+        //    
     };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (setting:string) => {
         setAnchorElUser(null);
-    };
-
-    const navigate = useNavigate();
-    function handleCloseNav(page: string){
-        if (page === 'Logout') {
+        if (setting === 'Profile')
+            navigate("admin/profile");
+        else if (setting === 'My Coupons')
+            navigate("/customer/purchasedcoupons");
+        else if (setting === 'Available coupons')
+            navigate("customer/availablecoupons");
+        else if (setting === 'Logout')
             authService.logout()
-                .then(() => {toast.success("Logged out successfully");navigate("/login")})
-                .catch(err => errorHandler.showError(err));
-        }
-    }
+                .then(()=>{toast.success("Logged out successfully");navigate("/login")})
+                .catch(e=>errorHandler.showError(e));
+    };
 
     return (
-        <AppBar position="static">
+        <AppBar className={"appBar"} position="static" sx={{backgroundColor: "#e8a885"} }>
             <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
-                    <Button onClick={() => handleCloseNav('Logout')}>Logout</Button>
-                    <img src={"the-coupon-emporium-favicon-white.png"} alt={"Store logo"}/>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="home"
-                        sx={{
-                            mr: 2,
-                            display: {xs: 'none', md: 'flex'},
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        {/*<img src={"\"the-coupon-emporium-favicon-white.png"}/>*/}
-                    </Typography>
+                <Toolbar className={"toolBar"} disableGutters>
+                    {/*<AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>*/}
+                    {/*</NavLink>*/}
+                    <NavLink to={"/discovery"}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/> </NavLink>
+                    {/*<Typography className={"logoImage"}*/}
+                    {/*            variant="h6"*/}
+                    {/*            noWrap*/}
+                    {/*            component="a"*/}
+                    {/*            href="/discovery"*/}
+                    {/*            sx={{*/}
+                    {/*                mr: 2,*/}
+                    {/*                display: {xs: 'none', md: 'flex'},*/}
+                    {/*                fontFamily: 'monospace',*/}
+                    {/*                fontWeight: 700,*/}
+                    {/*                letterSpacing: '.3rem',*/}
+                    {/*                color: 'inherit',*/}
+                    {/*                textDecoration: 'none',*/}
+                    {/*                paddingBottom: '.5rem',*/}
+                    {/*                marginBottom: '.1.2rem'*/}
+                    {/*            }}*/}
+                    {/*>*/}
+                    {/*    /!*<img src={"/2the-coupon-emporium-favicon-black2.png"} alt={"Logo"}/>*!/*/}
+                    {/*</Typography>*/}
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
@@ -82,7 +96,6 @@ function ResponsiveAppBar() {
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
                             color="inherit"
-                            href={"home"}
                         >
                             <MenuIcon/>
                         </IconButton>
@@ -103,7 +116,6 @@ function ResponsiveAppBar() {
                             sx={{
                                 display: {xs: 'block', md: 'none'},
                             }}
-
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -112,8 +124,7 @@ function ResponsiveAppBar() {
                             ))}
                         </Menu>
                     </Box>
-                    {/*<AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />*/}
-                    {/*<img src={"the-coupon-emporium-favicon-white.png"}/>*/}
+                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                     <Typography
                         variant="h5"
                         noWrap
@@ -130,15 +141,14 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        The Coupon Emporium
+                        LOGO
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{my: 2, color: 'white', display: 'block'}}
-                                href ={ page === 'My details' ? '/customer/details' : page === 'My Coupons' ? '/customer/purchasedcoupons' :page === 'Coupons'? '/public/coupons' :  '/home'}
+                                sx={{my: 2, color: 'black', display: 'block'}}
                             >
                                 {page}
                             </Button>
@@ -148,7 +158,10 @@ function ResponsiveAppBar() {
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
+                                    {userName ? userName[0].toUpperCase() : ''}
+                                </Avatar>
+
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -168,7 +181,7 @@ function ResponsiveAppBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={()=>handleCloseUserMenu(setting)}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}

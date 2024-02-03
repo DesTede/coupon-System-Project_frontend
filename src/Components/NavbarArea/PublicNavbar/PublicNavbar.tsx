@@ -35,10 +35,10 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar className={"appBar"} position="static" sx={{backgroundColor: "#ec9f73"} }>
+        <AppBar className={"appBar"} position="static" sx={{backgroundColor: "#e8a885"} }>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <NavLink to={"home"}><img src={"the-coupon-emporium-favicon-white.png"} alt={"Logo"}/></NavLink>
+                    <NavLink to={"discovery"}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/></NavLink>
                     
                     {/*<img src={"the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/>*/}
                     <Typography
@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
                         to="/login"
                         sx={{
                             mr: 2,
-                            display: {xs: 'none', md: 'flex'},
+                            display: {xs: 'none'},
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
@@ -122,8 +122,8 @@ function ResponsiveAppBar() {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{my: 2, color: 'white', display: 'block'}}
-                                href={page ==='Login' ? "/login" : "/public/coupons"}
+                                sx={{my: 2, color: 'black', display: 'block'}}
+                                href={page ==='Login' ? "/login" : "/discovery/coupons"}
                                 
                             >
                                 {page}

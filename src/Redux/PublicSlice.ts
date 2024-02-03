@@ -5,13 +5,13 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export interface PublicState{
     couponValue:Coupon[];
     categoryValue:Category[];
-    lastUpdated: Date
+    // lastUpdated: Date
 }
 
 export const initState:PublicState={
     couponValue:[],
     categoryValue:[],
-    lastUpdated: new Date()
+    // lastUpdated: new Date()
 }
 export const publicSlice= createSlice({
     name:"coupons",
@@ -19,11 +19,11 @@ export const publicSlice= createSlice({
     reducers:{
         fetchCoupons:(state, action: PayloadAction<Coupon[]>)=> {
             state.couponValue = action.payload;
-            state.lastUpdated = new Date();
+            // state.lastUpdated = new Date();
         },
         fetchCategories:(state, action: PayloadAction<Category[]>)=> {
             state.categoryValue = action.payload;
-            state.lastUpdated = new Date();
+            // state.lastUpdated = new Date();
         }
     }
 

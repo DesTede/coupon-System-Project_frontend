@@ -15,12 +15,12 @@ function Layout(): JSX.Element{
     return (
         <div className="Layout">
             <BrowserRouter>
-                <header>
-                    <Header />
-                </header>
-                <nav>
+                {/*<header>*/}
+                {/*    <Header />*/}
+                {/*</header>*/}
+                {/*<nav>*/}
                     <Navbar/>
-                </nav>
+                {/*</nav>*/}
                 <main>
                     <Routing/>
                 </main>
