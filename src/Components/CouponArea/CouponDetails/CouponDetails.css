@@ -1,3 +1,23 @@
 .CouponDetails {
-	
+    text-align: center;
+    /*width: 900px;*/
+    display: flex;
+    justify-content: center;
+}
+
+.CouponDetails .CouponCard{
+    /*padding: 5px;*/
+    justify-content: center;
+    max-width: 300px;
+    background-image: linear-gradient(#fac09e, white);
+    border: black 1px solid;
+}
+
+/*.CouponDetails img{*/
+/*    width: 350px;*/
+/*    height: 200px;*/
+/*}*/
+
+span{
+    font-weight: bold;
 }

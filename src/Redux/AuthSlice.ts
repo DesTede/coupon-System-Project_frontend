@@ -34,6 +34,7 @@ export const authSlice = createSlice({
             state.user = null;
             sessionStorage.removeItem("token")
             
+            
         }
     }
 });

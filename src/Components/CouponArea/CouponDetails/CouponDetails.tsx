@@ -38,14 +38,16 @@ function CouponDetails(): JSX.Element {
     
     return (
         <div className="CouponDetails">
-            <Card>
+            <Card className={"CouponCard"}>
                 {coupon && <>
                     <img src={coupon.image as string} alt=""/><br/>
                     <h3>{coupon.title}</h3>
                     <h4>Id: {coupon.id}</h4>
                     {/*<h4>Company: {coupon.company?.name}</h4>*/}
                     $ {coupon.price}
-                    <p>Description: {coupon.description}</p>
+                    {/*<h4>Description:</h4>*/}
+                    <p><span className={"descSpan"}>Description:</span><br/>
+                        {coupon.description}</p>
                     <h5>Category: {coupon.category}</h5>
                     <h5>Amount: {coupon.amount}</h5>
                     <h5>{coupon.startDate.toString()}</h5>
@@ -55,6 +57,11 @@ function CouponDetails(): JSX.Element {
                 {client === "Customer" &&(
                     <>
                       <Button onClick={handlePurchase}>Purchase coupon</Button>
+                    </>
+                )}
+                {client !== "Customer" && client !== "Company" &&(
+                    <>
+                        <NavLink to={"/login"}>Purchase coupon</NavLink>
                     </>
                 )}
             </Card>

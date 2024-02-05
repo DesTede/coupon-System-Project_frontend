@@ -88,6 +88,7 @@ function UpdateCoupon(): JSX.Element {
                     label="Start Date"
                     id="startDate"
                     type={"date"}
+                    InputLabelProps={{ shrink: true }}
                     InputProps={{ inputProps: { min: "2024-01-01", max: "2025-01-01" } }}
                     {...register('startDate',
                         { required: false })}
@@ -97,6 +98,7 @@ function UpdateCoupon(): JSX.Element {
                     label="End Date"
                     id="endDate"
                     type={"date"}
+                    InputLabelProps={{ shrink: true }}
                     InputProps={{ inputProps: { min: "2024-01-01", max: "2027-12-31" } }}
                     {...register('endDate',
                         { required: false})}
@@ -125,6 +127,7 @@ function UpdateCoupon(): JSX.Element {
                     label="Image"
                     id="image"
                     type={"file"}
+                    InputLabelProps={{ shrink: true }}
                     {...register('image',
                         { required: false,
                                  minLength: 2,

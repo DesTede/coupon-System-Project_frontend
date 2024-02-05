@@ -44,12 +44,12 @@ export const adminSlice = createSlice({
         },
         removeCompany:(state, action:PayloadAction<number>)=>{
             const deleteIndex = state.companies.findIndex(c=>c.id === action.payload);
-            if (deleteIndex>= 0)
+            if (deleteIndex >= 0)
                 state.companies.splice(deleteIndex,1);
         },
         removeCustomer:(state, action:PayloadAction<number>)=>{
             const deleteIndex = state.customers.findIndex(c=>c.id === action.payload);
-            if (deleteIndex > 0)
+            if (deleteIndex >= 0)
                 state.customers.splice(deleteIndex,1);
         }
     }

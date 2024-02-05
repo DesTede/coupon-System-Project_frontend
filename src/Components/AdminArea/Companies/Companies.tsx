@@ -15,7 +15,7 @@ function Companies(): JSX.Element {
             .then(comps => setCompanies(comps))
             .catch(err => alert(err.message))
         
-        const unsubscribe =  adminStore.subscribe(() => {
+        const unsubscribe = adminStore.subscribe(() => {
             adminService.getCompanies()
                 .then(comps => setCompanies(comps))
                 .catch(err => alert(err.message))

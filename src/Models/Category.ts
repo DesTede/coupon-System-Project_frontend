@@ -17,7 +17,9 @@
 // }
 
 export enum Category{
-     Travel, Entertainment, Education, Finance, Insurance, Pets, Sports, Beauty, Fashion, Baby, Books, Music, Culinary, Games, Other
+     Others,Travel, Entertainment, Education, Finance, Insurance, Pets, 
+     Sports, Beauty, Fashion, Baby, Books, Music, Culinary,
+     Games
 }
 
 // export default Category;

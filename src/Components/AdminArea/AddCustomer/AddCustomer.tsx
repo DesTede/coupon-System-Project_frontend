@@ -15,14 +15,14 @@ function AddCustomer(): JSX.Element {
     function sendForm(cus:Customer) {
         adminService.addCustomer(cus)
             .then(c => {
-                toast.success("Customer added! ");navigate("/")})
+                toast.success("Customer added! ");navigate("/admin/getcustomers")})
             .catch(err => errorHandler.showError(err))
     }
 
     return (
-        <div className="AddCompany">
+        <div className="AddCustomer">
             <FormControl>
-                <FormLabel>New Company</FormLabel>
+                <FormLabel>New Customer</FormLabel>
                 <TextField variant="outlined" 
                            label="First Name"
                            id="firstName" 

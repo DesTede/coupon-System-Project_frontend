@@ -1,7 +1,7 @@
 import "./Routing.css";
 import {Navigate, Route, Routes} from "react-router-dom";
 import HomePage from "../../MainArea/HomePage/HomePage";
-import CompanyCoupons from "../../CouponArea/CompanyCoupons/CompanyCoupons";
+import CompanyCoupons from "../../CompanyArea/CompanyCoupons/CompanyCoupons";
 import Login from "../../AuthArea/Login/Login";
 import NotFound from "../NotFound/NotFound";
 import Companies from "../../AdminArea/Companies/Companies";
@@ -24,6 +24,8 @@ import AllCoupons from "../../CouponArea/AllCoupons/AllCoupons";
 import SuccessStories from "../../FooterArea/SuccessStories/SuccessStories";
 import ContactUs from "../../FooterArea/ContactUs/ContactUs";
 import AdminProfile from "../../AdminArea/AdminProfile/AdminProfile";
+import React from "react";
+import TableCustomers from "../../AdminArea/TableCustomers/TableCustomers";
 
 function Routing(): JSX.Element {
     return (
@@ -39,9 +41,13 @@ function Routing(): JSX.Element {
                 <Route path={"/admin/profile"} element={<AdminProfile/>}/>
                 <Route path={"/admin/getcompanies"} element={<Companies/>}/>
                 <Route path={"/admin/getCompany/:id"} element={<CompanyProfile/>}/>
+                <Route path={"/admin/getCompany/:id"} element={<CompanyProfile/>}/>
                 <Route path={"/admin/addcompany"} element={<AddCompany/>}/>
                 <Route path={"/admin/updatecompany/:id"} element={<UpdateCompany/>}/>
-                <Route path={"admin/getcustomers"} element={<Customers/>}/>
+                <Route path={"admin/getcustomers"} element={<Customers/>}/> 
+                
+                <Route path={"admin/gettablecustomers"} element={<TableCustomers/>}/> 
+                
                 <Route path={"admin/getcustomer/:id"} element={<CustomerProfile/>}/>
                 <Route path={"admin/addcustomer"} element={<AddCustomer/>}/>
                 <Route path={"admin/updatecustomer/:id"} element={<UpdateCustomer/>}/>

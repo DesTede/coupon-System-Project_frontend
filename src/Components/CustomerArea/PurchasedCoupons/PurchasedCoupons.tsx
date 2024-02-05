@@ -27,7 +27,7 @@ function PurchasedCoupons(): JSX.Element {
             .catch(err => errorHandler.showError(err));
 
 
-        companyService.getCategories()
+        publicService.getCategories()
             .then(cats => setCategories(cats))
             .catch(err => errorHandler.showError(err));
 
@@ -73,7 +73,9 @@ function PurchasedCoupons(): JSX.Element {
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
-                        {Object.values(Category).map(cat => (
+                        {Object.values(Category)
+                            .filter(cat => typeof cat === "string")
+                            .map(cat => (
                             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
                         ))}
                     </Select>

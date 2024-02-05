@@ -2,9 +2,10 @@ import "./Customers.css";
 import {useEffect, useState} from "react";
 import Customer from "../../../Models/Customer";
 import adminService from "../../../Services/AdminService";
-import {adminStore} from "../../../Redux/OurStore";
+import {adminStore, authStore} from "../../../Redux/OurStore";
 import {NavLink} from "react-router-dom";
 import CustomerCard from "../../CustomerArea/CustomerCard/CustomerCard";
+import errorHandler from "../../../Services/ErrorHandler";
 
 function Customers(): JSX.Element {
     
@@ -12,13 +13,14 @@ function Customers(): JSX.Element {
 
     useEffect(() => {
         adminService.getCustomers()
-            .then(cus => setCustomers(cus))
-            .catch(err => alert(err.message))
+            .then(cous => setCustomers(cous))
+            .catch(err => errorHandler.showError(err));
 
+        
         const unsubscribe =  adminStore.subscribe(() => {
             adminService.getCustomers()
-                .then(cus => setCustomers(cus))
-                .catch(err => alert(err.message))
+                .then(cous => setCustomers(cous))
+                .catch(err => errorHandler.showError(err));
         })
 
         return () => {
@@ -32,7 +34,7 @@ function Customers(): JSX.Element {
         <div className="Customers">
             <NavLink to={"/admin/addcustomer"}> <button>Add Customer</button></NavLink>
             <div className="container">
-                {customers?.map(c => <CustomerCard key={c.id} customer={c} />)}
+                {customers?.map(custom => <CustomerCard key={custom.id} customer={custom} />)}
             </div>
         </div>
     );

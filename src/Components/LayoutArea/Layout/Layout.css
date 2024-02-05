@@ -27,6 +27,6 @@
 }
 
 .Toastify__toast-theme--light.Toastify__toast--error {
-    background-color: red;
+    background-color: #ce5252;
     color: white;
 }

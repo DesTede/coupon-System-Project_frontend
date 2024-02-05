@@ -2,7 +2,6 @@ import "./AllCoupons.css";
 import React, {useEffect, useState} from "react";
 import Coupon from "../../../Models/Coupon";
 import {Category} from "../../../Models/Category";
-import companyService from "../../../Services/CompanyService";
 import errorHandler from "../../../Services/ErrorHandler";
 import {companyStore} from "../../../Redux/OurStore";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
@@ -74,10 +73,12 @@ function AllCoupons(): JSX.Element {
                         autoWidth
                         label="Category"
                     >
-                        <MenuItem value="">
-                            <em>None</em>
+                        <MenuItem value="Other">
+                            <em>Other</em>
                         </MenuItem>
-                        {Object.values(Category).map(cat => (
+                        {Object.values(Category)
+                            .filter(cat => typeof cat === "string")
+                            .map(cat => (
                             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
                         ))}
                     </Select>

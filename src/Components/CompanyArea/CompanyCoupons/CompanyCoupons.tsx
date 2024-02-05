@@ -1,10 +1,10 @@
 import "./CompanyCoupons.css";
 import React, {useEffect, useState} from "react";
-import {authStore, companyStore} from "../../../Redux/OurStore";
+import {authStore, companyStore, publicStore} from "../../../Redux/OurStore";
 import {NavLink, useNavigate} from "react-router-dom";
 import Coupon from "../../../Models/Coupon";
 import companyService from "../../../Services/CompanyService";
-import CouponCard from "../CouponCard/CouponCard";
+import CouponCard from "../../CouponArea/CouponCard/CouponCard";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -13,6 +13,7 @@ import {Category} from "../../../Models/Category";
 import errorHandler from "../../../Services/ErrorHandler";
 import {Input} from "@mui/material";
 import authService from "../../../Services/AuthService";
+import publicService from "../../../Services/PublicService";
 
 
  
@@ -28,13 +29,17 @@ function CompanyCoupons(): JSX.Element {
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
         
-        companyService.getCategories()
+        publicService.getCategories()
             .then(cats => setCategories(cats))
             .catch(err => errorHandler.showError(err));
         
+        // companyService.getCategories()
+        //     .then(cats => setCategories(cats))
+        //     .catch(err => errorHandler.showError(err));
+        
         const unsubscribe =  companyStore.subscribe(() => {
             companyService.getCoupons()
-                .then(cups => setCoupons(cups))
+                .then(coup => setCoupons(coup))
                 .catch(err => errorHandler.showError(err));
         })
 
@@ -58,15 +63,6 @@ function CompanyCoupons(): JSX.Element {
     };
 
     
-    const navigate = useNavigate();
-    function handleLogout(){
-        // setNav(<PublicNavbar/>)
-        authService.logout()
-            .then(() => { navigate("/")})
-            .catch(err => errorHandler.showError(err));
-
-    }
-
 
     const filteredCoupons = coupons?.filter(c =>
         (!category || c.category.toString() === category) &&
@@ -79,7 +75,6 @@ function CompanyCoupons(): JSX.Element {
         <div className="CompanyCoupons">
 
             <div>
-                <button onClick={handleLogout}>logout</button>
                 <span>Filter by category: </span>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="demo-simple-select-autowidth-label">Category</InputLabel>
@@ -94,7 +89,9 @@ function CompanyCoupons(): JSX.Element {
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
-                        {Object.values(Category).map(cat => (
+                        {Object.values(Category)
+                            .filter(cat => typeof cat === "string")
+                            .map(cat => (
                             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
                         ))}
                     </Select>
@@ -112,7 +109,7 @@ function CompanyCoupons(): JSX.Element {
                 />
             </FormControl>
 
-
+            <br/>
             <NavLink to={"/company/addcoupon"}>
 
                 <button>Add new coupon</button>

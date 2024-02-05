@@ -57,6 +57,8 @@ function ResponsiveAppBar() {
             authService.logout()
                 .then(()=>{toast.success("Logged out successfully");navigate("/login")})
                 .catch(e=>errorHandler.showError(e));
+        else 
+            navigate("/discovery");
     };
 
     return (
@@ -66,25 +68,25 @@ function ResponsiveAppBar() {
                     {/*<AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>*/}
                     {/*</NavLink>*/}
                     <NavLink to={"/discovery"}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/> </NavLink>
-                    {/*<Typography className={"logoImage"}*/}
-                    {/*            variant="h6"*/}
-                    {/*            noWrap*/}
-                    {/*            component="a"*/}
-                    {/*            href="/discovery"*/}
-                    {/*            sx={{*/}
-                    {/*                mr: 2,*/}
-                    {/*                display: {xs: 'none', md: 'flex'},*/}
-                    {/*                fontFamily: 'monospace',*/}
-                    {/*                fontWeight: 700,*/}
-                    {/*                letterSpacing: '.3rem',*/}
-                    {/*                color: 'inherit',*/}
-                    {/*                textDecoration: 'none',*/}
-                    {/*                paddingBottom: '.5rem',*/}
-                    {/*                marginBottom: '.1.2rem'*/}
-                    {/*            }}*/}
-                    {/*>*/}
-                    {/*    /!*<img src={"/2the-coupon-emporium-favicon-black2.png"} alt={"Logo"}/>*!/*/}
-                    {/*</Typography>*/}
+                    <Typography className={"logoImage"}
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href="/discovery"
+                                sx={{
+                                    mr: 2,
+                                    display: {xs: 'none', md: 'flex'},
+                                    fontFamily: 'monospace',
+                                    fontWeight: 700,
+                                    letterSpacing: '.3rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
+                                    paddingBottom: '.5rem',
+                                    marginBottom: '.1.2rem'
+                                }}
+                    >
+                        {/*<img src={"/2the-coupon-emporium-favicon-black2.png"} alt={"Logo"}/>*/}
+                    </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
@@ -156,7 +158,12 @@ function ResponsiveAppBar() {
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
+                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" 
+                                        sx={{
+                                            backgroundColor: '#e5c8b9',
+                                            color: 'black',
+                                            fontWeight: 'bold',
+                                }}>
                                     {userName ? userName[0].toUpperCase() : ''}
                                 </Avatar>
 

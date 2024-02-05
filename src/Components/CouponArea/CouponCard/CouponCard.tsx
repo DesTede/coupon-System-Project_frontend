@@ -25,7 +25,7 @@ function CouponCard(props:CouponProps): JSX.Element{
     return (
         <div className="CouponCard">
 			<Card>
-                <CardContent>
+                <CardContent className={"cardCo"}>
                     {client === "Company" &&(
                         <>
                         <NavLink to={"/company/coupon/" + props.coupon.id}><h3>{props.coupon.title}</h3></NavLink><br/>
@@ -33,7 +33,7 @@ function CouponCard(props:CouponProps): JSX.Element{
                         )}
                     {client !== "Company" &&(
                         <>
-                        <NavLink to={"/public/coupon/" + props.coupon.id}><h3>{props.coupon.title}</h3></NavLink><br/>
+                        <NavLink to={"/discovery/coupon/" + props.coupon.id}><h3>{props.coupon.title}</h3></NavLink><br/>
                         </>
                     )}
                     {/*<h4>Id: {props.coupon.id}</h4>*/}

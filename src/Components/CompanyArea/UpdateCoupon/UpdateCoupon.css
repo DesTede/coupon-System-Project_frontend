@@ -1,3 +1,4 @@
 .UpdateCoupon {
-	
+    display: flex;
+    justify-content: center;
 }

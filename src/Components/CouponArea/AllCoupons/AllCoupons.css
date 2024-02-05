@@ -1,3 +1,23 @@
 .AllCoupons {
-	
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap based on your preference */
+}
+
+.container img{
+    width: 200px;
+    height: 90px;
+}
+
+.CouponCard {
+    flex: 1; /* This will make each card take equal space in the container */
+    max-width: 250px; /* Set the maximum width for each card */
+    margin: 8px; /* Adjust the margin based on your preference */
+    text-align: center;
 }
