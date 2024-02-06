@@ -18,6 +18,39 @@
 /*    height: 200px;*/
 /*}*/
 
-span{
+.descSpan{
     font-weight: bold;
+}
+.CardBtn {
+    position: absolute;
+    left: 200px;
+    top: 150px;
+    padding: 8px 16px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #fac09e;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.CardBtn:hover {
+    background-color: #494747;
+    color: #fff;
+}
+.CouponCard .loginBtn {
+    
+    padding: 8px 16px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #fac09e;
+    color: #1e1d1d;
+    text-decoration: none;
+    /*font-size: smaller;*/
+    transition: all 0.3s ease;
+}
+
+.CouponCard .loginBtn:hover {
+    background-color: black;
+    color: white;
 }

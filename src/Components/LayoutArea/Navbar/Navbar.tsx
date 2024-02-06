@@ -4,7 +4,7 @@ import {authStore} from "../../../Redux/OurStore";
 import AdminNavbar from "../../NavbarArea/AdminNavbar/AdminNavbar";
 import CompanyNavbar from "../../NavbarArea/CompanyNavbar/CompanyNavbar";
 import CustomerNavbar from "../../NavbarArea/CustomerNavbar/CustomerNavbar";
-import PublicNavbar from "../../NavbarArea/PublicNavbar/PublicNavbar";
+import DiscoveryNavbar from "../../NavbarArea/DiscoveryNavbar/DiscoveryNavbar";
 
 function Navbar(): JSX.Element {
 
@@ -22,7 +22,7 @@ function Navbar(): JSX.Element {
                 setNav(<CustomerNavbar/>);
                 break;
             default:
-                setNav(<PublicNavbar/>);
+                setNav(<DiscoveryNavbar/>);
                 break;
         }
         const unsubscribe = authStore.subscribe(() => {
@@ -37,7 +37,7 @@ function Navbar(): JSX.Element {
                     setNav(<CustomerNavbar/>);
                     break;
                 default:
-                    setNav(<PublicNavbar/>);
+                    setNav(<DiscoveryNavbar/>);
                     break;
             }});
 

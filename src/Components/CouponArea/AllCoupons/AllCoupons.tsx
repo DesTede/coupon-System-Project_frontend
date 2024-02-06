@@ -2,47 +2,41 @@ import "./AllCoupons.css";
 import React, {useEffect, useState} from "react";
 import Coupon from "../../../Models/Coupon";
 import {Category} from "../../../Models/Category";
-import errorHandler from "../../../Services/ErrorHandler";
-import {companyStore} from "../../../Redux/OurStore";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import {NavLink, useNavigate, useParams} from "react-router-dom";
 import CouponCard from "../CouponCard/CouponCard";
-import customerService from "../../../Services/CustomerService";
-import publicService from "../../../Services/PublicService";
 import {Input} from "@mui/material";
-import authService from "../../../Services/AuthService";
+import Loading from "../../LayoutArea/Loading/Loading";
+import discoveryService from "../../../Services/DiscoveryService";
+import errorHandler from "../../../Services/ErrorHandler";
 
 function AllCoupons(): JSX.Element {
-    const [coupons, setCoupons] = useState<Coupon[]>();
-    const [categories, setCategories] = useState<Category[]>();
+    const [coupons, setCoupons] = useState<Coupon[] | null>(null);
+    const [categories, setCategories] = useState<Category[]>([]);
     const [category, setCategory] = useState<string>("");
     // const cat = useParams().category!;
     const [price, setPrice] = useState<number | "">("");
     
 
     useEffect(() => {
-        publicService.getAllCoupons()
-            .then(coup => setCoupons(coup))
+        console.log("AllCoupons useEffect");
+        discoveryService.getAllCoupons()
+            .then(coup => {setCoupons(coup);console.log("Coupons:", coup)})
             .catch(err => errorHandler.showError(err));
-        
-        
-        publicService.getCategories()
-            .then(cats => setCategories(cats))
+
+
+        discoveryService.getCategories()
+            .then(cats => {setCategories(cats);console.log("Categories:", cats)})
             .catch(err => errorHandler.showError(err));
-        
-        
-        
-        
     }, []);
 
-    const navigate = useNavigate();
+    
     
     
     const handleChange = (event: SelectChangeEvent) => {
-        // publicService.getByCategory(event.target.value as string)
+        // discoveryService.getByCategory(event.target.value as string)
         setCategory(event.target.value as string);
     };
 
@@ -54,7 +48,7 @@ function AllCoupons(): JSX.Element {
     
     const filteredCoupons = coupons?.filter(c =>
         (!category || c.category.toString() === category) &&
-        (!price || c.price <= (price as number))
+        (!price || c.price <= (price as number)) 
     );
 
 
@@ -73,14 +67,14 @@ function AllCoupons(): JSX.Element {
                         autoWidth
                         label="Category"
                     >
-                        <MenuItem value="Other">
-                            <em>Other</em>
+                        <MenuItem value="None">
+                            <em>None</em>
                         </MenuItem>
                         {Object.values(Category)
                             .filter(cat => typeof cat === "string")
                             .map(cat => (
-                            <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-                        ))}
+                                <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+                            ))}
                     </Select>
                 </FormControl>
             </div>
@@ -96,10 +90,21 @@ function AllCoupons(): JSX.Element {
                 />
             </FormControl>
 
-            
-            <div className="container">
-                {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
-            </div>
+
+            {coupons === null && categories.length === 0 ? (
+                    <Loading/>
+                )
+                : (
+                    <>
+                        
+                        <div className="container">
+                            {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
+                        </div>
+
+                    </>
+
+                )}
+
         </div>
     );
 }

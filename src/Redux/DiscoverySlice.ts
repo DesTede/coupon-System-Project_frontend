@@ -13,7 +13,7 @@ export const initState:PublicState={
     categoryValue:[],
     // lastUpdated: new Date()
 }
-export const publicSlice= createSlice({
+export const discoverySlice= createSlice({
     name:"coupons",
     initialState:initState,
     reducers:{
@@ -29,5 +29,5 @@ export const publicSlice= createSlice({
 
 });
 
-export const {fetchCoupons, fetchCategories} = publicSlice.actions;
-export default publicSlice.reducer;
+export const {fetchCoupons, fetchCategories} = discoverySlice.actions;
+export default discoverySlice.reducer;

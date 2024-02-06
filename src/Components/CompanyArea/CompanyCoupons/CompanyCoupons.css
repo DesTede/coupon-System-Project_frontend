@@ -1,3 +1,17 @@
-.Coupons {
-	
+.CompanyCoupons .addBtn{
+    cursor: pointer;
+    margin-top: 5px;
+    padding: 8px 16px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #fac09e;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
+.CompanyCoupons .addBtn:hover {
+    background-color: #494747;
+    color: #fff;
+}
+	
+

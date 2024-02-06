@@ -1,15 +1,13 @@
 import "./CouponDetails.css";
 import Coupon from "../../../Models/Coupon";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import errorHandler from "../../../Services/ErrorHandler";
 import {NavLink, useNavigate, useParams} from "react-router-dom";
-import publicService from "../../../Services/PublicService";
+import discoveryService from "../../../Services/DiscoveryService";
 import {authStore} from "../../../Redux/OurStore";
 import {Button, Card} from "@mui/material";
 import customerService from "../../../Services/CustomerService";
 import {toast} from "react-toastify";
-import Company from "../../../Models/Company";
-import companyService from "../../../Services/CompanyService";
 
 
 function CouponDetails(): JSX.Element {
@@ -22,7 +20,7 @@ function CouponDetails(): JSX.Element {
     // let company:Company;
 
     useEffect(()=>{
-        publicService.getCoupon(id)
+        discoveryService.getCoupon(id)
             .then( c=> {setCoupon(c);})
             .catch(err=>errorHandler.showError(err));
         
@@ -31,7 +29,7 @@ function CouponDetails(): JSX.Element {
     
     function handlePurchase(){
         customerService.purchaseCoupon(coupon.id)
-            .then(()=>{toast.success("Coupon purchased"); navigate("/public/coupons")})
+            .then(()=>{toast.success("Coupon purchased"); navigate("/discovery/coupons")})
             .catch(err=>{errorHandler.showError(err);});
     }
     
@@ -56,15 +54,25 @@ function CouponDetails(): JSX.Element {
                 }
                 {client === "Customer" &&(
                     <>
-                      <Button onClick={handlePurchase}>Purchase coupon</Button>
+                      <Button className={"loginBtn"} onClick={handlePurchase}>Purchase coupon</Button>
                     </>
                 )}
                 {client !== "Customer" && client !== "Company" &&(
                     <>
-                        <NavLink to={"/login"}>Purchase coupon</NavLink>
+                    <Button  className={"loginBtn"} ><NavLink to={"/login"}>Purchase coupon</NavLink></Button>
                     </>
                 )}
             </Card>
+            {client === "Company" ?(
+                <>
+            <NavLink className={"CardBtn"} to= {"/company/coupons"}>Back to Coupons</NavLink>
+                </>
+            ):(
+                <>
+            <NavLink className={"CardBtn"} to= {"/discovery/coupons"}>Back to Coupons</NavLink>
+                </>
+            )}
+            
         </div>
     );
 }

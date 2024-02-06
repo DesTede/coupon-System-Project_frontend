@@ -1,6 +1,6 @@
 import "./CompanyCoupons.css";
 import React, {useEffect, useState} from "react";
-import {authStore, companyStore, publicStore} from "../../../Redux/OurStore";
+import {authStore, companyStore, discoveryStore} from "../../../Redux/OurStore";
 import {NavLink, useNavigate} from "react-router-dom";
 import Coupon from "../../../Models/Coupon";
 import companyService from "../../../Services/CompanyService";
@@ -11,9 +11,9 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {Category} from "../../../Models/Category";
 import errorHandler from "../../../Services/ErrorHandler";
-import {Input} from "@mui/material";
+import {Button, Input} from "@mui/material";
 import authService from "../../../Services/AuthService";
-import publicService from "../../../Services/PublicService";
+import discoveryService from "../../../Services/DiscoveryService";
 
 
  
@@ -29,7 +29,7 @@ function CompanyCoupons(): JSX.Element {
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
         
-        publicService.getCategories()
+        discoveryService.getCategories()
             .then(cats => setCategories(cats))
             .catch(err => errorHandler.showError(err));
         
@@ -54,7 +54,7 @@ function CompanyCoupons(): JSX.Element {
 
 
     const handleChange = (event: SelectChangeEvent) => {
-        // publicService.getByCategory(event.target.value as string)
+        // discoveryService.getByCategory(event.target.value as string)
         setCategory(event.target.value as string);
     };
 
@@ -86,8 +86,8 @@ function CompanyCoupons(): JSX.Element {
                         autoWidth
                         label="Category"
                     >
-                        <MenuItem value="">
-                            <em>None</em>
+                        <MenuItem value="Others">
+                            <em></em>
                         </MenuItem>
                         {Object.values(Category)
                             .filter(cat => typeof cat === "string")
@@ -110,13 +110,14 @@ function CompanyCoupons(): JSX.Element {
             </FormControl>
 
             <br/>
-            <NavLink to={"/company/addcoupon"}>
+            <NavLink  to={"/company/addcoupon"}>
 
-                <button>Add new coupon</button>
+                <button className={"addBtn"}>Add new coupon</button>
             </NavLink>
             <div className="container">
                 {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
             </div>
+            
         </div>
     );
 }

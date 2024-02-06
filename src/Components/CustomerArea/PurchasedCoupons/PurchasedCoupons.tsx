@@ -2,7 +2,7 @@ import "./PurchasedCoupons.css";
 import React, {useEffect, useState} from "react";
 import Coupon from "../../../Models/Coupon";
 import {Category} from "../../../Models/Category";
-import publicService from "../../../Services/PublicService";
+import discoveryService from "../../../Services/DiscoveryService";
 import errorHandler from "../../../Services/ErrorHandler";
 import companyService from "../../../Services/CompanyService";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
@@ -27,7 +27,7 @@ function PurchasedCoupons(): JSX.Element {
             .catch(err => errorHandler.showError(err));
 
 
-        publicService.getCategories()
+        discoveryService.getCategories()
             .then(cats => setCategories(cats))
             .catch(err => errorHandler.showError(err));
 
@@ -39,7 +39,7 @@ function PurchasedCoupons(): JSX.Element {
 
 
     const handleChange = (event: SelectChangeEvent) => {
-        // publicService.getByCategory(event.target.value as string)
+        // discoveryService.getByCategory(event.target.value as string)
         setCategory(event.target.value as string);
     };
 

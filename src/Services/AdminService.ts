@@ -10,16 +10,16 @@ import Customer from "../Models/Customer";
 class AdminService{
 
     public async getCompanies(){
-        const responseData =  (await axios.get<Company[]>(appConfig.url + "/admin/getcompanies")).data;
-        adminStore.dispatch(fetchCompanies(responseData));
-        return responseData;
+        // const responseData =  (await axios.get<Company[]>(appConfig.url + "/admin/getcompanies")).data;
+        // adminStore.dispatch(fetchCompanies(responseData));
+        // return responseData;
         
-        // if (adminStore.getState().companies.length === 0){
-        //     const responseData = (await axios.get<Company[]>(appConfig.url + "/admin/getcompanies")).data;
-        //     adminStore.dispatch(fetchCompanies(responseData));
-        //     return responseData;
-        // }else
-        //     return adminStore.getState().companies;
+        if (adminStore.getState().companies.length === 0){
+            const responseData = (await axios.get<Company[]>(appConfig.url + "/admin/getcompanies")).data;
+            adminStore.dispatch(fetchCompanies(responseData));
+            return responseData;
+        }else
+            return adminStore.getState().companies;
     }
 
     public async getCompany(id:number){
@@ -31,16 +31,16 @@ class AdminService{
 
 
     public async getCustomers(){
-        const responseData =  (await axios.get<Customer[]>(appConfig.url + "/admin/getcustomers")).data
-        adminStore.dispatch(fetchCustomers(responseData));
-        return responseData;
+        // const responseData =  (await axios.get<Customer[]>(appConfig.url + "/admin/getcustomers")).data
+        // adminStore.dispatch(fetchCustomers(responseData));
+        // return responseData;
         
-        // if (adminStore.getState().customers.length === 0){
-        //     const responseData = (await axios.get<Customer[]>(appConfig.url + "/admin/getcustomers")).data;
-        //     adminStore.dispatch(fetchCustomers(responseData));
-        //     return responseData;
-        // }else
-        //     return adminStore.getState().customers
+        if (adminStore.getState().customers.length === 0){
+            const responseData = (await axios.get<Customer[]>(appConfig.url + "/admin/getcustomers")).data;
+            adminStore.dispatch(fetchCustomers(responseData));
+            return responseData;
+        }else
+            return adminStore.getState().customers
     }
 
     public async getCustomer(id:number){

@@ -10,7 +10,7 @@ import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Te
 
 
 function UpdateCompany(): JSX.Element {
-    const {register, handleSubmit, formState, setValue } = useForm<Company>({mode:'onBlur'});
+    const {register, handleSubmit, setError, formState:{errors}, setValue } = useForm<Company>({mode:"onChange"});
     const navigate = useNavigate();
     const id:number = +(useParams().id!);
 
@@ -30,6 +30,11 @@ function UpdateCompany(): JSX.Element {
             .then(c=> {toast.success("Company updated!"); navigate("/admin/getcompanies")})
             .catch(err=> errorHandler.showError(err));
     }
+    const handleBlur = (field: keyof Company) => (e: React.FocusEvent<HTMLInputElement>) => {
+        if (!e.target.value) {
+            setError(field, { type: 'manual' });
+        }
+    };
     
     return (
         <div className="UpdateCompany">
@@ -43,6 +48,9 @@ function UpdateCompany(): JSX.Element {
                         { required: true, 
                                  minLength: 2, 
                                  maxLength: 15 })}
+                    onBlur={handleBlur('name')}
+                    error={!!errors.name}
+                    helperText={errors.name ? "Name must be at least 2 characters long" : ""}
                 />
                 <TextField 
                         variant="outlined"
@@ -52,6 +60,9 @@ function UpdateCompany(): JSX.Element {
                         { required: true, 
                                  minLength: 2, 
                                  maxLength: 100 })}
+                    onBlur={handleBlur('email')}
+                    error={!!errors.email}
+                    helperText={errors.email ? "Email must be at least 2 characters long" : ""}
                 />
                 <TextField 
                         variant="outlined" 
@@ -62,6 +73,10 @@ function UpdateCompany(): JSX.Element {
                             { required: true,
                                      minLength: 2,
                                      maxLength: 15 })}
+                    onBlur={handleBlur('password')}
+                    error={!!errors.password}
+                    helperText={errors.password ? "Password must be at least 2 characters long" : ""}
+                        
                 />
                     {/*<Button variant="outlined" onClick={sendForm}>Update</Button>*/}
                 <Button variant="outlined" onClick={handleSubmit(sendForm)}>Update</Button>

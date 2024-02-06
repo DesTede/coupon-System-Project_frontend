@@ -11,12 +11,12 @@ import {Category} from "../../../Models/Category";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-function AddCoupon(): JSX.Element {
+function AddCoupon(this: any): JSX.Element {
     
     const navigate = useNavigate();
-    const {register, handleSubmit} = useForm<Coupon>();
+    const {register, handleSubmit, setError, formState:{errors}} = useForm<Coupon>({mode:"onChange"});
 
-    
+    const currentDate = new Date().toISOString().split('T')[0];
     function sendCoupon(coupon:Coupon){
         if (coupon.image){
             const imageFile = (coupon.image as FileList)[0];
@@ -38,6 +38,11 @@ function AddCoupon(): JSX.Element {
             
         }
     }
+    const handleBlur = (field: keyof Coupon) => (e: React.FocusEvent<HTMLInputElement>) => {
+        if (!e.target.value) {
+            setError(field, { type: 'manual' });
+        }
+    };
     
     return (
         <div className="AddCoupon">
@@ -52,6 +57,10 @@ function AddCoupon(): JSX.Element {
                             { required: true,
                                      minLength: 2, 
                                      maxLength: 100 })}
+                    onBlur={handleBlur('title')}
+                    error={!!errors.title}
+                    helperText={errors.title ? "Title must be between 2 and 100 characters" : ""}
+
                 />
                 <TextField
                     className="TextField"
@@ -63,6 +72,9 @@ function AddCoupon(): JSX.Element {
                             { required: true,
                                      minLength: 2, 
                                      maxLength: 100 })}
+                    onBlur={handleBlur('title')}
+                    error={!!errors.description}
+                    helperText={errors.description ? "Description must be between 2 and 100 characters" : ""}
                 />
                 <Select
                     variant="outlined"
@@ -90,6 +102,10 @@ function AddCoupon(): JSX.Element {
                     InputProps={{ inputProps: { min: "2024-01-01", max: "2025-01-01" } }}
                     {...register('startDate', 
                             { required: true })}
+                    onBlur={handleBlur('startDate')}
+                    error={!!errors.startDate}
+                    helperText={errors.startDate ? "Start Date must be entered" : ""}
+                    
                 />
                 <TextField
                     className="TextField"
@@ -98,9 +114,13 @@ function AddCoupon(): JSX.Element {
                     id="endDate"
                     type={"date"}
                     InputLabelProps={{ shrink: true }}
-                    InputProps={{ inputProps: { min: "2024-01-01", max: "2027-12-31" } }}
+                    /* add here current date so it will be impossible to add date in the past*/
+                    InputProps={{ inputProps: { min: currentDate, max: "2027-12-31" } }}
                     {...register('endDate', 
                             { required: true})}
+                    onBlur={handleBlur('endDate')}
+                    error={!!errors.endDate}
+                    helperText={errors.endDate ? "End Date must be entered" : ""}
                 />
                 
                 <TextField
@@ -112,6 +132,9 @@ function AddCoupon(): JSX.Element {
                     InputProps={{ inputProps: { min: 1, max: 300 } }}
                     {...register('amount', 
                             { required: true })}
+                    onBlur={handleBlur('amount')}
+                    error={!!errors.amount}
+                    helperText={errors.amount ? "Amount must be between 1 and 300" : ""}
                 />
                 <TextField
                     className="TextField"
@@ -122,6 +145,9 @@ function AddCoupon(): JSX.Element {
                     InputProps={{ inputProps: { min: 1, max: 1000 } }}
                     {...register('price', 
                             { required: true})}
+                    onBlur={handleBlur('price')}
+                    error={!!errors.price}
+                    helperText={errors.price ? "Price must be between 1 and 1000" : ""}
                 />
                 <TextField
                     className="TextField"
@@ -134,6 +160,9 @@ function AddCoupon(): JSX.Element {
                         { required: true,
                                  minLength: 2,
                                  maxLength: 1000 })}
+                    onBlur={handleBlur('image')}
+                    error={!!errors.image}
+                    helperText={errors.image ? "Image must be uploaded" : ""}
                 />
                 
                 <Button variant="outlined" onClick={handleSubmit(sendCoupon)}>Add</Button>
