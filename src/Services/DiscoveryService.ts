@@ -8,14 +8,7 @@ import errorHandler from "./ErrorHandler";
 
 class DiscoveryService{
     
-    // public async getAllCoupons(){
-    //     if (discoveryStore.getState().couponValue.length === 0) {
-    //         const response = await axios.get<Coupon[]>(appConfig.url + "/discovery/coupons");
-    //         const responseData = response.data;
-    //         discoveryStore.dispatch(fetchCoupons(responseData));
-    //     }else 
-    //         return discoveryStore.getState().couponValue;
-    // }
+    
     public async getAllCoupons(): Promise<Coupon[]> {
         // Check if coupons are already fetched in the store
         if (discoveryStore.getState().couponValue.length === 0) {
@@ -24,7 +17,6 @@ class DiscoveryService{
             return responseData; 
         } else 
             return discoveryStore.getState().couponValue;
-        
     }
     
     public async getCategories(){

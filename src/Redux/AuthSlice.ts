@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {jwtDecode} from "jwt-decode";
 import User from "../Models/User";
-import {companyStore} from "./OurStore";
 
 
 // do switch-case on the ClientType type just like in the sever side.
@@ -11,14 +10,14 @@ export interface AuthState{
     user:User;
 }
 
-const initState:AuthState = {
+const initialState:AuthState = {
     user: sessionStorage.getItem("token") ? jwtDecode(sessionStorage.getItem("token")) : null,
     token: sessionStorage.getItem("token") ? sessionStorage.getItem("token") : ""
 }
 
 export const authSlice = createSlice({
     name:"authentication",
-    initialState:initState,
+    initialState:initialState,
     reducers:{
         login: (state, action: PayloadAction<string>) => {
             // save token to RAM, redux. gets deleted when the browser is closed or refreshed
@@ -33,6 +32,7 @@ export const authSlice = createSlice({
             state.token = "";
             state.user = null;
             sessionStorage.removeItem("token")
+            sessionStorage.clear()
             
             
         }

@@ -27,34 +27,38 @@ import AdminProfile from "../../AdminArea/AdminProfile/AdminProfile";
 import React from "react";
 import TableCustomers from "../../AdminArea/TableCustomers/TableCustomers";
 import Loading from "../Loading/Loading";
+import TableCompanies from "../../AdminArea/TableCompanies/TableCompanies";
+import IndexPAge from "../../MainArea/IndexPAge/IndexPAge";
 
 function Routing(): JSX.Element {
     return (
         <div className="Routing">
 			<Routes>
                                     {/* Discovery */}
-                <Route path={"/discovery"} element={<HomePage/>} />
+                <Route path={"/discovery"} element={<IndexPAge/>} />
                 <Route path={"/discovery/coupons"} element={<AllCoupons/>}/>
                 <Route path={"/discovery/coupon/:id"} element={<CouponDetails/>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 
                                     {/* Administrator*/}
-                <Route path={"/admin/profile"} element={<AdminProfile/>}/>
+                <Route path={"/homepage"} element={<HomePage/>}/>
+                <Route path={"/admin/details"} element={<AdminProfile/>}/>
+                
                 <Route path={"/admin/getcompanies"} element={<Companies/>}/>
-                <Route path={"/admin/getCompany/:id"} element={<CompanyProfile/>}/>
-                {/*<Route path={"/admin/getCompany/:id"} element={<CompanyProfile/>}/>*/}
+                {/*<Route path={"/admin/gettablecompanies"} element={<TableCompanies/>}/>*/}
+                <Route path={"/admin/getcompany/:id"} element={<CompanyProfile/>}/>
                 <Route path={"/admin/addcompany"} element={<AddCompany/>}/>
                 <Route path={"/admin/updatecompany/:id"} element={<UpdateCompany/>}/>
-                <Route path={"/admin/getcustomers"} element={<Customers/>}/> 
                 
-                <Route path={"/admin/gettablecustomers"} element={<TableCustomers/>}/> 
-                
+                <Route path={"/admin/getcustomers"} element={<Customers/>}/>
+                {/*<Route path={"/admin/gettablecustomers"} element={<TableCustomers/>}/>*/}
                 <Route path={"/admin/getcustomer/:id"} element={<CustomerProfile/>}/>
                 <Route path={"/admin/addcustomer"} element={<AddCustomer/>}/>
                 <Route path={"/admin/updatecustomer/:id"} element={<UpdateCustomer/>}/>
                 
                     
                                        {/* Company*/}
+                <Route path={"/homepage"} element={<HomePage/>}/>
                 <Route path={"/company/details"} element={<CompanyProfile/>}/>
                 <Route path={"/company/coupons"} element={<CompanyCoupons/>}/>
                 <Route path={"/company/coupon/:id"} element={<CouponDetails/>}/>
@@ -64,6 +68,7 @@ function Routing(): JSX.Element {
                 <Route path={"/company/updatecoupon/:id"} element={<UpdateCoupon/>}/>
                 
                                         {/*Customer*/}
+                <Route path={"/homepage"} element={<HomePage/>}/>
                 <Route path={"/customer/details"} element={<CustomerProfile/>}/>
                 <Route path={"/customer/purchasedcoupons"} element={<PurchasedCoupons/>}/>
                 <Route path={"/customer/availablecoupons"} element={<AllCoupons/>}/>

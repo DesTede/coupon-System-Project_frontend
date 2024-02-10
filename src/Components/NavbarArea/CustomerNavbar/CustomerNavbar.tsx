@@ -50,7 +50,7 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = (setting:string) => {
         setAnchorElUser(null);
         if (setting === 'Profile')
-            navigate("admin/profile");
+            navigate("/customer/details");
         else if (setting === 'My Coupons')
             navigate("/customer/purchasedcoupons");
         else if (setting === 'Available coupons')
@@ -67,7 +67,7 @@ function ResponsiveAppBar() {
                 <Toolbar className={"toolBar"} disableGutters>
                     {/*<AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>*/}
                     {/*</NavLink>*/}
-                    <NavLink to={"/discovery"}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/> </NavLink>
+                    <NavLink to={"/homepage"}><img src={"/the-coupon-emporium-high-resolution-logo2.png"} alt={"Logo"}/> </NavLink>
                     {/*<Typography className={"logoImage"}*/}
                     {/*            variant="h6"*/}
                     {/*            noWrap*/}

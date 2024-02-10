@@ -1,7 +1,6 @@
 import "./CompanyCoupons.css";
 import React, {useEffect, useState} from "react";
-import {authStore, companyStore, discoveryStore} from "../../../Redux/OurStore";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Coupon from "../../../Models/Coupon";
 import companyService from "../../../Services/CompanyService";
 import CouponCard from "../../CouponArea/CouponCard/CouponCard";
@@ -11,44 +10,22 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {Category} from "../../../Models/Category";
 import errorHandler from "../../../Services/ErrorHandler";
-import {Button, Input} from "@mui/material";
-import authService from "../../../Services/AuthService";
-import discoveryService from "../../../Services/DiscoveryService";
+import {Input} from "@mui/material";
 
 
  
 function CompanyCoupons(): JSX.Element {
      
     const [coupons, setCoupons] = useState<Coupon[]>();
-    const [categories, setCategories] = useState<Category[]>();
+    // const [categories, setCategories] = useState<Category[]>();
     const [category, setCategory] = useState<string>("");
     const [price, setPrice] = useState<number | "">("");
 
     useEffect(() => {
-        companyService.getCoupons()
+        companyService.getCompanyCoupons()
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
         
-        discoveryService.getCategories()
-            .then(cats => setCategories(cats))
-            .catch(err => errorHandler.showError(err));
-        
-        // companyService.getCategories()
-        //     .then(cats => setCategories(cats))
-        //     .catch(err => errorHandler.showError(err));
-        
-        const unsubscribe =  companyStore.subscribe(() => {
-            companyService.getCoupons()
-                .then(coup => setCoupons(coup))
-                .catch(err => errorHandler.showError(err));
-        })
-
-        return () => {
-            unsubscribe();
-        }
-        
-        
-
     }, []);
 
 
@@ -86,8 +63,8 @@ function CompanyCoupons(): JSX.Element {
                         autoWidth
                         label="Category"
                     >
-                        <MenuItem value="Others">
-                            <em></em>
+                        <MenuItem value="None">
+                            <em>None</em>
                         </MenuItem>
                         {Object.values(Category)
                             .filter(cat => typeof cat === "string")
@@ -111,7 +88,6 @@ function CompanyCoupons(): JSX.Element {
 
             <br/>
             <NavLink  to={"/company/addcoupon"}>
-
                 <button className={"addBtn"}>Add new coupon</button>
             </NavLink>
             <div className="container">

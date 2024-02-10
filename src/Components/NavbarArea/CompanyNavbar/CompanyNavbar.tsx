@@ -67,12 +67,12 @@ function ResponsiveAppBar() {
                 <Toolbar className={"toolBar"} disableGutters>
                     {/*<AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>*/}
                     {/*</NavLink>*/}
-                    <NavLink to={"/discovery"}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/> </NavLink>
+                    <NavLink to={"/homepage"}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/> </NavLink>
                     <Typography className={"logoImage"}
                                 variant="h6"
                                 noWrap
                                 component="a"
-                                href="/discovery"
+                                // href="/discovery"
                                 sx={{
                                     mr: 2,
                                     display: {xs: 'none', md: 'flex'},

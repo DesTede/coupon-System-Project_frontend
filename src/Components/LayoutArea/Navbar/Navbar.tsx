@@ -11,21 +11,7 @@ function Navbar(): JSX.Element {
     const [nav, setNav] = useState<any>(); // need to update this type
 
     useEffect(() => {
-        switch (authStore.getState().user?.clientType) {
-            case "Administrator":
-                setNav(<AdminNavbar/>);
-                break;
-            case "Company":
-                setNav(<CompanyNavbar/>);
-                break;
-            case "Customer":
-                setNav(<CustomerNavbar/>);
-                break;
-            default:
-                setNav(<DiscoveryNavbar/>);
-                break;
-        }
-        const unsubscribe = authStore.subscribe(() => {
+        const updateNavbar = () => {
             switch (authStore.getState().user?.clientType) {
                 case "Administrator":
                     setNav(<AdminNavbar/>);
@@ -39,11 +25,15 @@ function Navbar(): JSX.Element {
                 default:
                     setNav(<DiscoveryNavbar/>);
                     break;
-            }});
-
+            }
+        };
+        
+        const unsubscribe = authStore.subscribe(updateNavbar);
+        updateNavbar();
+        
         return ()=> {
             unsubscribe();
-        }
+        };
 
     }, []);
     return (

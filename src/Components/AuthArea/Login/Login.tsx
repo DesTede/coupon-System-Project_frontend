@@ -6,23 +6,26 @@ import errorHandler from "../../../Services/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 import {useNavigate} from "react-router-dom";
 import authService from "../../../Services/AuthService";
+import React, {useEffect, useState} from "react";
+import AdminNavbar from "../../NavbarArea/AdminNavbar/AdminNavbar";
+import CompanyNavbar from "../../NavbarArea/CompanyNavbar/CompanyNavbar";
+import CustomerNavbar from "../../NavbarArea/CustomerNavbar/CustomerNavbar";
+import DiscoveryNavbar from "../../NavbarArea/DiscoveryNavbar/DiscoveryNavbar";
 
 function Login(): JSX.Element {
     const navigate = useNavigate();
 
-    const {register, handleSubmit, formState, getValues} = useForm();
-
+    const {register, getValues} = useForm();
     
     function sendForm(){
         const email = getValues("email");
         const password = getValues("password");
         const clienttype = getValues("clienttype");
         authService.login(email, password, clienttype)
-            .then(t=> {toast.success("Welcom Back " + authStore.getState().user.name); navigate("/discovery")})
+            .then(t=> {toast.success("Welcome Back " + authStore.getState().user.name); navigate("/homepage")})
             .catch(err => errorHandler.showError(err))
         
     }
-    // mui form
     return (
         <div className="Login">
 			<FormControl>

@@ -1,3 +1,12 @@
-.HomePage {
-	
+.HomePage h1,h3{
+	text-align: center;
+	justify-content: center;
+}
+
+
+.HomePage .homeCard{
+	/*display: flex;*/
+	flex-direction: column;
+	align-items: center;
+	/*justify-content: space-around;*/
 }

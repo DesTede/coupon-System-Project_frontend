@@ -1,7 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {authSlice} from "./AuthSlice";
 import {adminSlice} from "./adminSlice";
-import {companySlice} from "./CompanySlice";
 import {discoverySlice} from "./DiscoverySlice";
 
 export const authStore = configureStore({
@@ -12,9 +11,9 @@ export const adminStore = configureStore({
     reducer: adminSlice.reducer
 });
 
-export const companyStore = configureStore({
-    reducer:companySlice.reducer
-});
+// export const companyStore = configureStore({
+//     reducer:companySlice.reducer
+// });
 
 export const discoveryStore = configureStore({
     reducer:discoverySlice.reducer

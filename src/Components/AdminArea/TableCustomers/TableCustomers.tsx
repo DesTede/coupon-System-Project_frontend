@@ -12,23 +12,40 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import {useEffect, useState} from "react";
+import Coupon from "../../../Models/Coupon";
+import companyService from "../../../Services/CompanyService";
+import errorHandler from "../../../Services/ErrorHandler";
+import adminService from "../../../Services/AdminService";
+import Customer from "../../../Models/Customer";
+
+
+// function FetchCustomers(){
+//     const [customers, setCustomers] = useState<Customer[]>();
+//
+//     useEffect(() => {
+//         adminService.getCustomers()
+//             .then(coup => setCustomers(coup))
+//             .catch(err => errorHandler.showError(err));
+//
+//     }, []);
+// }
 
 function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-    price: number,
+    id:number,
+    First_name:string,
+    Last_name: string,
+    email:string,
+    password:string,
 ) {
     return {
-        name,
-        calories,
-        fat,
-        carbs,
-        protein,
-        price,
-        history: [
+         id,
+        First_name,
+        Last_name,
+        email,
+        password,
+        
+        details: [
             {
                 date: '2020-01-05',
                 customerId: '11091700',
@@ -60,39 +77,39 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                     </IconButton>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.id}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">{row.password}</TableCell>
+                <TableCell align="right">{row.First_name}</TableCell>
+                <TableCell align="right">{row.Last_name}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">
-                                History
+                                Details
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Date</TableCell>
-                                        <TableCell>Customer</TableCell>
-                                        <TableCell align="right">Amount</TableCell>
-                                        <TableCell align="right">Total price ($)</TableCell>
+                                        <TableCell>Id</TableCell>
+                                        <TableCell>Email</TableCell>
+                                        <TableCell align="right">First name</TableCell>
+                                        <TableCell align="right">Last name</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row.history.map((historyRow) => (
-                                        <TableRow key={historyRow.date}>
+                                    {row.details.map((detailsRow) => (
+                                        <TableRow key={detailsRow.date}>
                                             <TableCell component="th" scope="row">
-                                                {historyRow.date}
+                                                {detailsRow.date}
                                             </TableCell>
-                                            <TableCell>{historyRow.customerId}</TableCell>
-                                            <TableCell align="right">{historyRow.amount}</TableCell>
+                                            <TableCell>{detailsRow.customerId}</TableCell>
+                                            <TableCell align="right">{detailsRow.amount}</TableCell>
                                             <TableCell align="right">
-                                                {Math.round(historyRow.amount * row.price * 100) / 100}
+                                                {detailsRow.amount}
                                             </TableCell>
                                         </TableRow>
                                     ))}
@@ -106,31 +123,51 @@ function Row(props: { row: ReturnType<typeof createData> }) {
     );
 }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-];
+
+
 
 export default function CollapsibleTable() {
+    const [rows, setRows] = React.useState<ReturnType<typeof createData>[]>([]);
+
+    // Fetch customers and companies on component mount
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const customers = await adminService.getCustomers();
+
+                // Combine customers and companies into a single array of rows
+                const mergedRows = [
+                    ...customers.map((customer) =>
+                        createData( customer.id, customer.firstName, customer.lastName, customer.email, customer.password)
+                    ),
+                ];
+
+                setRows(mergedRows);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData(); // Invoke the fetchData function on component mount
+    }, []);
+
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
+                {/* Table header */}
                 <TableHead>
                     <TableRow>
                         <TableCell />
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell align="right">ID</TableCell>
+                        <TableCell align="right">Type</TableCell>
+                        {/* Add more header cells as needed */}
                     </TableRow>
                 </TableHead>
+                {/* Table body */}
                 <TableBody>
                     {rows.map((row) => (
-                        <Row key={row.name} row={row} />
+                        <Row key={row.id} row={row} />
                     ))}
                 </TableBody>
             </Table>

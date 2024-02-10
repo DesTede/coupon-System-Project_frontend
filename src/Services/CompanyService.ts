@@ -2,49 +2,55 @@ import axios from "axios";
 import Coupon from "../Models/Coupon";
 import appConfig from "../Utils/AppConfig";
 import Company from "../Models/Company";
-import {Category} from "../Models/Category";
-import {companyStore} from "../Redux/OurStore";
-import { fetch, add, update, remove } from "../Redux/CompanySlice";
 
 class CompanyService{
     
     public async getDetails(){
         return (await axios.get<Company>(appConfig.url + "/company/details")).data;
     }
-    
-    public async getCoupons(){
-        //  const responseData = (await axios.get<Coupon[]>(appConfig.url + "/company/coupons")).data;
-        //     companyStore.dispatch(fetch(responseData))
-        // return responseData;
-            
-        if (companyStore.getState().value.length === 0) {
-            const responseData = (await axios.get<Coupon[]>(appConfig.url + "/company/coupons")).data;
-            companyStore.dispatch(fetch(responseData))
-            return responseData;
-        }else 
-            return companyStore.getState().value;
-    }
-    
-    public async getCoupon(id:number){
-        if (companyStore.getState().value.length === 0) {
-            return (await axios.get<Coupon>(appConfig.url + "/company/coupon/" + id)).data;
-        }
-        return companyStore.getState().value.find(e=>e.id === id);
-    }
-    
-    public async getCouponByCategory(category:string){
-        if (companyStore.getState().value.length === 0) {
-            return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;
-        }
-        return companyStore.getState().value.filter(e=>e.category.toString() === category);
-    }
 
-    public async getCouponByPrice(price:number){
-        if (companyStore.getState().value.length === 0) {
-            return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByPrice/" + price)).data;
-        }
-        return companyStore.getState().value.filter(e=>e.price <= price);
+    
+    public async getCompanyCoupons(): Promise<Coupon[]> {
+        return (await axios.get<Coupon[]>(appConfig.url + "/company/coupons")).data;
     }
+            // if (companyStore.getState().value.length === 0) {
+            // const responseData = (await axios.get<Coupon[]>(appConfig.url + "/company/coupons")).data;
+            // companyStore.dispatch(fetch(responseData));
+            // return responseData;
+        // } else
+        // return companyStore.getState().value;
+    // }
+    
+    public async getCoupon(id:number) {
+        return (await axios.get<Coupon>(appConfig.url + "/company/coupon/" + id)).data;
+    }
+        
+    //     if (companyStore.getState().value.length === 0) {
+    //         return (await axios.get<Coupon>(appConfig.url + "/company/coupon/" + id)).data;
+    //     }
+    //     return companyStore.getState().value.find(e=>e.id === id);
+    // }
+    
+    public async getCouponByCategory(category:string) {
+        return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;
+    }
+        // if (companyStore.getState().value.length === 0) {
+        //     return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;
+        // }
+        // return companyStore.getState().value.filter(e=>e.category.toString() === category);
+    // }
+
+    
+    public async getCouponByPrice(price:number) {
+        return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByPrice/" + price)).data;
+    }
+        
+        // if (companyStore.getState().value.length === 0) {
+        //     return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByPrice/" + price)).data;
+        // }
+        // return companyStore.getState().value.filter(e=>e.price <= price);
+    // }
+    
     
     // public async getCategories(){
     //     if (companyStore.getState().categoryValue.length === 0) {
@@ -57,21 +63,18 @@ class CompanyService{
     // }
     
     public async addCoupon(coupon:Coupon){
-        const responseData = (await axios.post<Coupon>(appConfig.url+ "/company/addCoupon", coupon)).data;
-        companyStore.dispatch(add(responseData));
-        return responseData;
+        // companyStore.dispatch(add(responseData));
+        return (await axios.post<Coupon>(appConfig.url + "/company/addCoupon", coupon)).data;
     }
     
     public async updateCoupon(coupon:Coupon){
-        const responseData = (await axios.put<Coupon>(appConfig.url+ "/company/updateCoupon", coupon)).data;
-        companyStore.dispatch(update(coupon));
-        return responseData;
+        // companyStore.dispatch(update(coupon));
+        return (await axios.put<Coupon>(appConfig.url + "/company/updateCoupon", coupon)).data;
     }
     
     public async deleteCoupon(id:number){
-        const responseData = (await axios.delete( appConfig.url + "/company/deleteCoupon/" + id)).data;
-        companyStore.dispatch(remove(id));
-        return responseData;
+        // companyStore.dispatch(remove(id));
+        return (await axios.delete(appConfig.url + "/company/deleteCoupon/" + id)).data;
         
     }
     

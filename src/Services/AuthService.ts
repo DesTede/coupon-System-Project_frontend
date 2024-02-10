@@ -1,7 +1,7 @@
 import appConfig from "../Utils/AppConfig";
 import axios from "axios";
 import {ClientType} from "../Models/ClientType";
-import {authStore, companyStore} from "../Redux/OurStore";
+import {authStore} from "../Redux/OurStore";
 import {login, logout} from "../Redux/AuthSlice";
 
 class AuthService {
@@ -17,7 +17,6 @@ class AuthService {
     public async logout(){
         const response = await axios.post<string>(appConfig.url + "/auth/logout");
         authStore.dispatch(logout());
-        // companyStore.dispatch(fetchCoupons([]))
         return response.data;
     }   
 }

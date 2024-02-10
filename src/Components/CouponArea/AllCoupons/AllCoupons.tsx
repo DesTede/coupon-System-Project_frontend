@@ -21,7 +21,6 @@ function AllCoupons(): JSX.Element {
     
 
     useEffect(() => {
-        console.log("AllCoupons useEffect");
         discoveryService.getAllCoupons()
             .then(coup => {setCoupons(coup);console.log("Coupons:", coup)})
             .catch(err => errorHandler.showError(err));

@@ -1,0 +1,11 @@
+.IndexPAge {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+	
+}
+.indCard {
+    width:100%;
+    height: 100%;
+}

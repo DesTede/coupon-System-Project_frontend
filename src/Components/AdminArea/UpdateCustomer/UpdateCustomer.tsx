@@ -23,7 +23,7 @@ function UpdateCustomer(): JSX.Element {
                 setValue("password", cus.password);
                 
             })
-            .catch(err=> {errorHandler.showError(err); navigate("/company/getcustomers")});
+            .catch(err=> {errorHandler.showError(err); navigate("/admin/getcustomers")});
     }, []);
 
     function sendForm(cus: Customer){

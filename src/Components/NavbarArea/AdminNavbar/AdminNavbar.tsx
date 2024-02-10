@@ -50,7 +50,7 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = (setting:string) => {
         setAnchorElUser(null);
         if (setting === 'Profile')
-            navigate("admin/profile");
+            navigate("/admin/details");
         else if (setting === 'Companies')
                     navigate("admin/getcompanies");
         else if (setting === 'Customers')
@@ -65,12 +65,12 @@ function ResponsiveAppBar() {
         <AppBar className={"appBar"} position="static" sx={{backgroundColor: "#e8a885"} }>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <NavLink to={"discovery"} style={{ display: 'flex', alignItems: 'center' }}><img src={"/the-coupon-emporium-high-resolution-logo.png"} alt={"Logo"}/></NavLink>
+                    <NavLink to={"/homepage"} style={{ display: 'flex', alignItems: 'center' }}><img src={"/the-coupon-emporium-high-resolution-logo2.png"} alt={"Logo"}/></NavLink>
                         <Typography className={"logoImage"}
                                     variant="h6"
                                     noWrap
                                     component="a"
-                                    href="/discovery"
+                                    // href="/admin/homepage"
                                     sx={{
                                         mr: 2,
                                         display: {xs: 'none', md: 'flex'},
@@ -83,7 +83,6 @@ function ResponsiveAppBar() {
                                         marginBottom: '.1.2rem'
                                     }}
                         >
-                            {/*<img src={"/2the-coupon-emporium-favicon-black2.png"} alt={"Logo"}/>*/}
                         </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>

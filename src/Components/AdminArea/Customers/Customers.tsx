@@ -12,38 +12,36 @@ function Customers(): JSX.Element {
     const [customers, setCustomers ] = useState<Customer[]>();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const cou = await adminService.getCustomers();
-                console.log(cou);
-                // const filteredCustomers = cou.filter(item => typeof item === 'object');
-                // setCustomers(filteredCustomers);
-                setCustomers(cou);
-            } catch (error) {
-                errorHandler.showError(error);
-            }
-        };
-        fetchData();
-        return () => {
-
-        };
-    },[]);
-    //     adminService.getCustomers()
-    //         .then(cous => setCustomers(cous))
-    //         .catch(err => errorHandler.showError(err));
-    //
-    //    
-    //     const unsubscribe =  adminStore.subscribe(() => {
-    //         adminService.getCustomers()
-    //             .then(cous => setCustomers(cous))
-    //             .catch(err => errorHandler.showError(err));
-    //     })
-    //
+    //     const fetchData = async () => {
+    //         try {
+    //             const cou = await adminService.getCustomers();
+    //             setCustomers(cou);
+    //         } catch (error) {
+    //             errorHandler.showError(error);
+    //         }
+    //     };
+    //     fetchData();
     //     return () => {
-    //         unsubscribe();
-    //     }
+    //
+    //     };
+    // },[]);
+        adminService.getCustomers()
+            .then(cous => setCustomers(cous))
+            .catch(err => errorHandler.showError(err));
+            
+        
+        const unsubscribe =  adminStore.subscribe(
+            () => {
+            adminService.getCustomers()
+                .then(cous => setCustomers(cous))
+                .catch(err => errorHandler.showError(err));
+        })
+
+        return () => {
+            unsubscribe();
+        }
     
-    // }, []);
+    }, []);
 
     
 
