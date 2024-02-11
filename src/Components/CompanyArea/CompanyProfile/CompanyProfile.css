@@ -1,3 +1,22 @@
-.CompanyProfile {
-	
+.CustomerProfile {
+        /*flex: 1;*/
+        /*max-width: 250px;*/
+        /*margin: 8px;*/
+        /*text-align: center;*/
+        /*border-radius: 5px;*/
+        /*padding: 5px;*/
+        /*justify-content: center;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 18px;
+        
+}
+
+.CustomerProfile .companyC{
+    border-radius: 5px;
+    border: black 1px solid;
+    background-image: linear-gradient(#fac09e, white);
+        /*display: flex;*/
 }

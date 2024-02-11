@@ -1,5 +1,13 @@
 .Footer {
     text-align: center;
     align-content: center;
+    font-size: large;
 	
+}
+.Footer img{
+    width:20px;
+    height:20px;
+    margin-right:3px;
+    margin-left:3px;
+    
 }

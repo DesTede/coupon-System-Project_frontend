@@ -88,8 +88,7 @@ function AllCoupons(): JSX.Element {
                     onChange={handleChangePrice}
                 />
             </FormControl>
-
-
+            
             {coupons === null && categories.length === 0 ? (
                     <Loading/>
                 )

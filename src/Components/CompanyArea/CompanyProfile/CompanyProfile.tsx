@@ -19,16 +19,16 @@ function CompanyProfile(): JSX.Element {
 
     
     return (
-        <div className="CompanyProfile">
+        <div className="CustomerProfile">
             <Card>
-                <CardContent>
+                <CardContent className={"companyC"}>
                     {company && <>
                     <h3>{company.name}</h3>
                     <h4>Id: {company.id}</h4>
                     <h4>{company.email}</h4>
                     <h4>{company.password}</h4>
                     {/*<img src={company.imageUrl} alt="company image" />*/}
-                    <NavLink to={"/discovery"}><button>Back</button></NavLink>
+                    <NavLink to={"/homepage"}><button>Back</button></NavLink>
                     </>
                     }
                 </CardContent>

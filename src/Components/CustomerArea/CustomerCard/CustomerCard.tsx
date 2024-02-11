@@ -23,8 +23,9 @@ function CustomerCard(props:CustomerProps): JSX.Element {
             <Card>
                 <CardContent>
                     <h3>{props.customer.firstName + " " + props.customer.lastName} </h3>
+                    <h4>id: { props.customer.id}</h4>
                     <h4>{props.customer.email}</h4>
-                    {/*<h4>{props.customer.password}</h4>*/}
+                    <h4>password: { props.customer.password}</h4>
                     <button onClick={deleteMe}>Delete</button>
                     <button><NavLink to={"/admin/updatecustomer/" + props.customer.id}>Update</NavLink></button>
                 </CardContent>

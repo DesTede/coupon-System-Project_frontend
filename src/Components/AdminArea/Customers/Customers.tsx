@@ -2,10 +2,11 @@ import "./Customers.css";
 import {useEffect, useState} from "react";
 import Customer from "../../../Models/Customer";
 import adminService from "../../../Services/AdminService";
-import {adminStore, authStore} from "../../../Redux/OurStore";
+import {adminStore} from "../../../Redux/OurStore";
 import {NavLink} from "react-router-dom";
 import CustomerCard from "../../CustomerArea/CustomerCard/CustomerCard";
 import errorHandler from "../../../Services/ErrorHandler";
+import Loading from "../../LayoutArea/Loading/Loading";
 
 function Customers(): JSX.Element {
     
@@ -48,9 +49,25 @@ function Customers(): JSX.Element {
     return (
         <div className="Customers">
             <NavLink to={"/admin/addcustomer"}> <button>Add Customer</button></NavLink>
-            <div className="container">
-                {customers?.map(custom => <CustomerCard key={custom.id} customer={custom} />)}
-            </div>
+
+            {customers === null ? (
+                    <Loading/>
+                )
+                : (
+                    <>
+                        <div className="container">
+                                {customers?.map(custom => <CustomerCard key={custom.id} customer={custom} />)}
+
+                        </div>
+
+                    </>
+
+                )}
+            
+            
+            {/*<div className="container">*/}
+            {/*    {customers?.map(custom => <CustomerCard key={custom.id} customer={custom} />)}*/}
+            {/*</div>*/}
         </div>
     );
 }

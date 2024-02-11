@@ -17,17 +17,11 @@ import AddCoupon from "../../CompanyArea/AddCoupon/AddCoupon";
 import UpdateCoupon from "../../CompanyArea/UpdateCoupon/UpdateCoupon";
 import AboutUs from "../../FooterArea/AboutUs/AboutUs";
 import PurchaseCoupon from "../../CustomerArea/PurchaseCoupon/PurchaseCoupon";
-// import CouponbyCategory from "../../CouponArea/CouponbyCategoryPrice/CouponbyCategory";
-// import CouponbyPrice from "../../CouponArea/CouponbyPrice/CouponbyPrice";
 import PurchasedCoupons from "../../CustomerArea/PurchasedCoupons/PurchasedCoupons";
 import AllCoupons from "../../CouponArea/AllCoupons/AllCoupons";
-import SuccessStories from "../../FooterArea/SuccessStories/SuccessStories";
-import ContactUs from "../../FooterArea/ContactUs/ContactUs";
 import AdminProfile from "../../AdminArea/AdminProfile/AdminProfile";
 import React from "react";
-import TableCustomers from "../../AdminArea/TableCustomers/TableCustomers";
 import Loading from "../Loading/Loading";
-import TableCompanies from "../../AdminArea/TableCompanies/TableCompanies";
 import IndexPAge from "../../MainArea/IndexPAge/IndexPAge";
 
 function Routing(): JSX.Element {
@@ -78,8 +72,8 @@ function Routing(): JSX.Element {
                 
                                         {/* Footer */}
                 <Route path={"/aboutemporium"} element={<AboutUs/>}/>
-                <Route path={"successstories" } element={<SuccessStories/>}/>
-                <Route path={"/contactus" } element={<ContactUs/>}/>
+                {/*<Route path={"successstories" } element={<SuccessStories/>}/>*/}
+                {/*<Route path={"/contactus" } element={<ContactUs/>}/>*/}
                 
                 
                 <Route path={"/"} element={<Navigate to={"/discovery"}/> }/>

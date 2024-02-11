@@ -20,7 +20,7 @@ function CustomerProfile(): JSX.Element {
     return (
         <div className="CustomerProfile">
             <Card>
-                <CardContent>
+                <CardContent className={"customerC"}>
                     {customer && <>
                         <h3>{customer.firstName} {customer.lastName}</h3>
                         <h4>Id: {customer.id}</h4>
@@ -28,7 +28,7 @@ function CustomerProfile(): JSX.Element {
                         <h4>{customer.password}</h4>
                         <h5>Coupons Purchased: </h5>
                         {/*{customer.coupons.values()}*/}
-                        <NavLink to={"/discovery"}><button>Back</button></NavLink>
+                        <NavLink to={"/homepage"}><button>Back</button></NavLink>
                     </>
                     }
                 </CardContent>

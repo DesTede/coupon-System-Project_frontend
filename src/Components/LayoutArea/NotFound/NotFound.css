@@ -1,11 +1,68 @@
-.NotFound img{
-    width: 90%;
-    height: 400px;
-    flex-wrap: wrap;
-    align-content: space-evenly;
-    text-align: right;
-    /*object-fit: cover;*/
-    object-position: center;
-    /*position: absolute;*/
+.errorContainer {
+	background-size: cover; /* This ensures the image covers the entire container */
+	background-position: center; /* Center the background image */
+	background-repeat: no-repeat;
 	
 }
+
+.not-found {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px; 
+	box-sizing: border-box; 
+}
+
+. container {
+	max-width: 100%;
+	text-align: center;
+}
+
+.error-code {
+	font-size: 4rem;
+	font-weight: bold;
+}
+
+.error-message {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.info-message {
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+
+.back-link {
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px 16px;
+	border: 2px solid #333;
+	border-radius: 4px;
+	margin-right:2px;
+	margin-left: 2px;
+	background-color: #fac09e;
+	color: #333;
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+.back-link:visited{
+	color: #75675f;
+}
+
+.back-link:hover {
+	background-color: #494747;
+	color: #fff;
+}
+.links {
+	/*margin-top: 1rem;*/
+	margin-right: 1%
+	/*font-size: 1rem;*/
+}
+
+
+

@@ -1,12 +1,16 @@
-.HomePage h1,h3{
-	text-align: center;
-	justify-content: center;
-}
+/*.HomePage h1,h2{*/
+/*	text-align: center;*/
+/*	justify-content: center;*/
+/*}*/
 
 
-.HomePage .homeCard{
-	/*display: flex;*/
-	flex-direction: column;
-	align-items: center;
-	/*justify-content: space-around;*/
+/*.HomePage .homeCard{*/
+/*	!*display: flex;*!*/
+/*	flex-direction: column;*/
+/*	align-items: center;*/
+/*	!*justify-content: space-around;*!*/
+/*}*/
+
+.content h4{
+    line-height: 1.5;
 }
