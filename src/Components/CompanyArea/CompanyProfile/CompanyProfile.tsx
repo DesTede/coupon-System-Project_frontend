@@ -2,7 +2,7 @@ import "./CompanyProfile.css";
 import {useEffect, useState} from "react";
 import Company from "../../../Models/Company";
 import {NavLink} from "react-router-dom";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {Card, CardContent} from "@mui/material";
 import companyService from "../../../Services/CompanyService";
 

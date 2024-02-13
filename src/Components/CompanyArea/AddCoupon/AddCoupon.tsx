@@ -2,7 +2,7 @@ import "./AddCoupon.css";
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 import Coupon from "../../../Models/Coupon";
 import companyService from "../../../Services/CompanyService";
@@ -131,7 +131,7 @@ function AddCoupon(this: any): JSX.Element {
                     type={"number"}
                     InputProps={{ inputProps: { min: 1, max: 300 } }}
                     {...register('amount', 
-                            { required: true })}
+                            { required: true, min:1 })}
                     onBlur={handleBlur('amount')}
                     error={!!errors.amount}
                     helperText={errors.amount ? "Amount must be between 1 and 300" : ""}

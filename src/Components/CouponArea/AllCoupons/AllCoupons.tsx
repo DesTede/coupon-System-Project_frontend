@@ -10,7 +10,7 @@ import CouponCard from "../CouponCard/CouponCard";
 import {Input} from "@mui/material";
 import Loading from "../../LayoutArea/Loading/Loading";
 import discoveryService from "../../../Services/DiscoveryService";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 
 function AllCoupons(): JSX.Element {
     const [coupons, setCoupons] = useState<Coupon[] | null>(null);
@@ -34,11 +34,13 @@ function AllCoupons(): JSX.Element {
     
     
     
-    const handleChange = (event: SelectChangeEvent) => {
-        // discoveryService.getByCategory(event.target.value as string)
-        setCategory(event.target.value as string);
-    };
+    // const handleChange = (event: SelectChangeEvent) => {
+    //     setCategory(event.target.value as string);
+    // };
 
+    const handleChange = (event: SelectChangeEvent) => {
+        setCategory(event.target.value === "None" ? "" : event.target.value as string);
+    };
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(event.target.value as number | "");
     };

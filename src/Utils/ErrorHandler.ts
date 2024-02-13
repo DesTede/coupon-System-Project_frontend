@@ -12,7 +12,7 @@ class ErrorHandler{
             console.log(err)
         }else if(err.message){
             toast.error(err.message);
-            alert(err.message);
+            // alert(err.message);
             console.log(err.message);
             
         } else {

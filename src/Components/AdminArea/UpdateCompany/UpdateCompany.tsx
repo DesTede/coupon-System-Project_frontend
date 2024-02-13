@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import Company from "../../../Models/Company";
 import {useNavigate, useParams} from "react-router-dom";
 import adminService from "../../../Services/AdminService";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {toast} from "react-toastify";
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
 
@@ -17,7 +17,7 @@ function UpdateCompany(): JSX.Element {
     useEffect(() => {
         adminService.getCompany(id)
             .then(comp => {
-                setValue("name", comp.name);
+                // setValue("name", comp.name);
                 setValue("email", comp.email);
                 setValue("password", comp.password);
             })
@@ -42,20 +42,9 @@ function UpdateCompany(): JSX.Element {
                 <FormLabel>Update Company</FormLabel>
                 <TextField 
                         variant="outlined"
-                        label="Name" 
-                        id="name"
-                    {...register('name', 
-                        { required: true, 
-                                 minLength: 2, 
-                                 maxLength: 15 })}
-                    onBlur={handleBlur('name')}
-                    error={!!errors.name}
-                    helperText={errors.name ? "Name must be at least 2 characters long" : ""}
-                />
-                <TextField 
-                        variant="outlined"
                         label="Email"
                         id="email"
+                        InputLabelProps={{ shrink: true }}
                     {...register('email', 
                         { required: true, 
                                  minLength: 2, 
@@ -69,6 +58,7 @@ function UpdateCompany(): JSX.Element {
                         type="password" 
                         label="Password" 
                         id="password"
+                        InputLabelProps={{ shrink: true }}
                         {...register('password', 
                             { required: true,
                                      minLength: 2,

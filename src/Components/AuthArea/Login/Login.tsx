@@ -2,7 +2,7 @@ import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Te
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 import {useNavigate} from "react-router-dom";
 import authService from "../../../Services/AuthService";

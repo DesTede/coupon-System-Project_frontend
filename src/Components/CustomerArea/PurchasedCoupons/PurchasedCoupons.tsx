@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Coupon from "../../../Models/Coupon";
 import {Category} from "../../../Models/Category";
 import discoveryService from "../../../Services/DiscoveryService";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import companyService from "../../../Services/CompanyService";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
@@ -38,11 +38,13 @@ function PurchasedCoupons(): JSX.Element {
 
 
 
-    const handleChange = (event: SelectChangeEvent) => {
-        // discoveryService.getByCategory(event.target.value as string)
-        setCategory(event.target.value as string);
-    };
+    // const handleChange = (event: SelectChangeEvent) => {
+    //     setCategory(event.target.value as string);
+    // };
 
+    const handleChange = (event: SelectChangeEvent) => {
+        setCategory(event.target.value === "None" ? "" : event.target.value as string);
+    };
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(event.target.value as number | "");
     };

@@ -16,7 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import {NavLink, useNavigate} from "react-router-dom";
 import authService from "../../../Services/AuthService";
 import {toast} from "react-toastify";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 
 const pages:string[] = [/*'The Coupon Emporium','Customers', 'Companies'*/];

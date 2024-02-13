@@ -2,7 +2,7 @@ import "./UpdateCoupon.css";
 import {useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {toast} from "react-toastify";
 import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 import companyService from "../../../Services/CompanyService";
@@ -39,9 +39,8 @@ function UpdateCoupon(): JSX.Element {
             // reader.readAsDataURL(coupon.image);
 
             reader.onload = function () {
-                const base64String = reader.result as string;
-                coup.image = base64String;
-                console.log(base64String);
+                coup.image = reader.result as string;
+                // console.log(base64String);
                 coup.id = id;
                 companyService.updateCoupon(coup)
                     .then(c => {
@@ -69,6 +68,7 @@ function UpdateCoupon(): JSX.Element {
                     variant="outlined"
                     label="Title"
                     id="title"
+                    InputLabelProps={{ shrink: true }}
                     {...register('title',
                         { required: false,
                                  minLength: 2,
@@ -81,6 +81,7 @@ function UpdateCoupon(): JSX.Element {
                     variant="outlined"
                     label="Description"
                     id="description"
+                    InputLabelProps={{ shrink: true }}
                     {...register('description',
                         { required: false,
                                  minLength: 2,
@@ -93,6 +94,7 @@ function UpdateCoupon(): JSX.Element {
                     variant="outlined"
                     label="Category"
                     id="category"
+                    InputLabelProps={{ shrink: true }}
                     {...register('category',
                         { required: false,
                                   minLength: 2,
@@ -130,8 +132,9 @@ function UpdateCoupon(): JSX.Element {
                     id="amount"
                     type={"number"}
                     InputProps={{ inputProps: { min: 1, max: 300 } }}
+                    InputLabelProps={{ shrink: true }}
                     {...register('amount',
-                          { required: false })}
+                          { required: false, min:1 })}
                     onBlur={handleBlur('amount')}
                     error={!!errors.amount}
                     helperText={errors.amount ? "Amount must be between 1 and 300" : ""}
@@ -141,6 +144,7 @@ function UpdateCoupon(): JSX.Element {
                     label="Price"
                     id="price"
                     type={"number"}
+                    InputLabelProps={{ shrink: true }}
                     InputProps={{ inputProps: { min: 1, max: 1000 } }}
                     {...register('price',
                           { required: false})}

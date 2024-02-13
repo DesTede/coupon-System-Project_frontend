@@ -16,9 +16,7 @@ clientInterceptors.tokenInterceptors();
 
 
 root.render(
-  // <React.StrictMode>
       <Layout/>
-  // </React.StrictMode>
 );
 
 reportWebVitals();

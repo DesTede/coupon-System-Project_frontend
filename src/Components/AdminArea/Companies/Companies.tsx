@@ -48,12 +48,6 @@ function Companies(): JSX.Element {
                     </>
 
                 )}
-            
-            
-            {/*<div className="container">*/}
-            {/*    */}
-            {/*    {companies?.map(c => <CompanyCard key={c.id} company={c} />)} */}
-            {/*</div>*/}
         </div>
     );
 }

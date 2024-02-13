@@ -4,7 +4,7 @@ import Company from "../../../Models/Company";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import adminService from "../../../Services/AdminService";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {toast} from "react-toastify";
 import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 import Customer from "../../../Models/Customer";
@@ -47,6 +47,7 @@ function UpdateCustomer(): JSX.Element {
                     variant="outlined"
                     label="First Name"
                     id="firstName"
+                    InputLabelProps={{ shrink: true }}
                     {...register('firstName',
                         { required: true,
                             minLength: 2,
@@ -59,6 +60,7 @@ function UpdateCustomer(): JSX.Element {
                     variant="outlined"
                     label="Last Name"
                     id="lastName"
+                    InputLabelProps={{ shrink: true }}
                     {...register('lastName',
                         { required: true,
                             minLength: 2,
@@ -71,6 +73,7 @@ function UpdateCustomer(): JSX.Element {
                     variant="outlined"
                     label="Email"
                     id="email"
+                    InputLabelProps={{ shrink: true }}
                     {...register('email',
                         { required: true,
                             minLength: 2,
@@ -84,6 +87,7 @@ function UpdateCustomer(): JSX.Element {
                     type="password"
                     label="Password"
                     id="password"
+                    InputLabelProps={{ shrink: true }}
                     {...register('password',
                         { required: true,
                             minLength: 4,

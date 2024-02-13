@@ -23,10 +23,10 @@
 
 
 .Toastify__toast-theme--light.Toastify__toast--success {
-    background-color: lightgreen;
+    background-color: #90e790; /* #97e197;, #fac09e; */
 }
 
 .Toastify__toast-theme--light.Toastify__toast--error {
-    background-color: #ce5252;
+    background-color: #e14f4f;
     color: white;
 }

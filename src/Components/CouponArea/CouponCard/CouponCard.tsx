@@ -1,9 +1,9 @@
 import "./CouponCard.css";
 import {Card, CardContent} from "@mui/material";
 import Coupon from "../../../Models/Coupon";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import companyService from "../../../Services/CompanyService";
 import {authStore} from "../../../Redux/OurStore";
 import React from "react";
@@ -13,11 +13,12 @@ interface CouponProps{
     coupon: Coupon;
 }
 function CouponCard(props:CouponProps): JSX.Element{
+    const navigate = useNavigate();
 
     const client = authStore.getState().user?.clientType;
     function deleteMe(){
         companyService.deleteCoupon(props.coupon.id)
-            .then(()=> toast.success("Company deleted"))
+            .then(()=> {toast.success("Company deleted");navigate("/company/coupons")})
             .catch(err=>errorHandler.showError(err));
 
     }

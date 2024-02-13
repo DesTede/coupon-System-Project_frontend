@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import authService from "../../../Services/AuthService";
 import {toast} from "react-toastify";
 import {authStore} from "../../../Redux/OurStore";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {useNavigate} from "react-router-dom";
 import adminService from "../../../Services/AdminService";
 import Company from "../../../Models/Company";

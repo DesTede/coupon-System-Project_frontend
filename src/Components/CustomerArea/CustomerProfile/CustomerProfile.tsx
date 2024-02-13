@@ -1,7 +1,7 @@
 import "./CustomerProfile.css";
 import {useEffect, useState} from "react";
 import companyService from "../../../Services/CompanyService";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {Card, CardContent} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import Customer from "../../../Models/Customer";

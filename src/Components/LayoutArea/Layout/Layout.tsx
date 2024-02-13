@@ -14,12 +14,7 @@ function Layout(): JSX.Element{
     return (
         <div className="Layout">
             <BrowserRouter>
-                {/*<header>*/}
-                {/*    <Header />*/}
-                {/*</header>*/}
-                {/*<nav>*/}
                     <Navbar/>
-                {/*</nav>*/}
                 <main>
                     <Routing/>
                 </main>

@@ -1,3 +1,20 @@
 .Companies {
 	
 }
+.Companies button:hover {
+    background-color: #494747;
+    color: #fff;
+}
+
+button {
+    margin-right: 2px;
+    margin-left: 2px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #fac09e;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}

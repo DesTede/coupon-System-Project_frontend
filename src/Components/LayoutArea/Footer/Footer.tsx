@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 function Footer(): JSX.Element {
     return (
         <div className="Footer">
-			<NavLink to={"/aboutemporium"}>About Us</NavLink>
+			<NavLink className={"aboutBtn"} to={"/aboutemporium"}>About Us</NavLink>
             &nbsp;|&nbsp;
             <a href={"https://github.com/DesTede?tab=repositories"} target={"_blank"}>
                 <img src={"/GitHub-Mark-ea2971cee799.png"} alt={"github link"}/>

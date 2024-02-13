@@ -4,7 +4,7 @@ import axios from "axios";
 import {Category} from "../Models/Category";
 import {discoveryStore} from "../Redux/OurStore";
 import {fetchCategories, fetchCoupons} from "../Redux/DiscoverySlice";
-import errorHandler from "./ErrorHandler";
+import errorHandler from "../Utils/ErrorHandler";
 
 class DiscoveryService{
     

@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import adminService from "../../../Services/AdminService";
 import {toast} from "react-toastify";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 import Customer from "../../../Models/Customer";
 import React from "react";

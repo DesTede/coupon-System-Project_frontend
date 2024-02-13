@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {Category} from "../../../Models/Category";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {Input} from "@mui/material";
 
 
@@ -26,13 +26,19 @@ function CompanyCoupons(): JSX.Element {
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
         
+        
+        
     }, []);
 
 
 
+    // const handleChange = (event: SelectChangeEvent) => {
+         /*discoveryService.getByCategory(event.target.value as string)*/
+        // setCategory(event.target.value as string);
+    // };
+
     const handleChange = (event: SelectChangeEvent) => {
-        // discoveryService.getByCategory(event.target.value as string)
-        setCategory(event.target.value as string);
+        setCategory(event.target.value === "None" ? "" : event.target.value as string);
     };
 
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {

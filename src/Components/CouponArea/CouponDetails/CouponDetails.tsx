@@ -1,7 +1,7 @@
 import "./CouponDetails.css";
 import Coupon from "../../../Models/Coupon";
 import React, {useEffect, useState} from "react";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import discoveryService from "../../../Services/DiscoveryService";
 import {authStore} from "../../../Redux/OurStore";

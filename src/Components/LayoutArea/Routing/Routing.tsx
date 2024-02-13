@@ -19,7 +19,6 @@ import AboutUs from "../../FooterArea/AboutUs/AboutUs";
 import PurchaseCoupon from "../../CustomerArea/PurchaseCoupon/PurchaseCoupon";
 import PurchasedCoupons from "../../CustomerArea/PurchasedCoupons/PurchasedCoupons";
 import AllCoupons from "../../CouponArea/AllCoupons/AllCoupons";
-import AdminProfile from "../../AdminArea/AdminProfile/AdminProfile";
 import React from "react";
 import Loading from "../Loading/Loading";
 import IndexPAge from "../../MainArea/IndexPAge/IndexPAge";
@@ -36,16 +35,14 @@ function Routing(): JSX.Element {
                 
                                     {/* Administrator*/}
                 <Route path={"/homepage"} element={<HomePage/>}/>
-                <Route path={"/admin/details"} element={<AdminProfile/>}/>
+                <Route path={"/admin/details"} element={<HomePage/>}/>
                 
                 <Route path={"/admin/getcompanies"} element={<Companies/>}/>
-                {/*<Route path={"/admin/gettablecompanies"} element={<TableCompanies/>}/>*/}
                 <Route path={"/admin/getcompany/:id"} element={<CompanyProfile/>}/>
                 <Route path={"/admin/addcompany"} element={<AddCompany/>}/>
                 <Route path={"/admin/updatecompany/:id"} element={<UpdateCompany/>}/>
                 
                 <Route path={"/admin/getcustomers"} element={<Customers/>}/>
-                {/*<Route path={"/admin/gettablecustomers"} element={<TableCustomers/>}/>*/}
                 <Route path={"/admin/getcustomer/:id"} element={<CustomerProfile/>}/>
                 <Route path={"/admin/addcustomer"} element={<AddCustomer/>}/>
                 <Route path={"/admin/updatecustomer/:id"} element={<UpdateCustomer/>}/>
@@ -72,8 +69,6 @@ function Routing(): JSX.Element {
                 
                                         {/* Footer */}
                 <Route path={"/aboutemporium"} element={<AboutUs/>}/>
-                {/*<Route path={"successstories" } element={<SuccessStories/>}/>*/}
-                {/*<Route path={"/contactus" } element={<ContactUs/>}/>*/}
                 
                 
                 <Route path={"/"} element={<Navigate to={"/discovery"}/> }/>

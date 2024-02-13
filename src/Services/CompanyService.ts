@@ -13,23 +13,11 @@ class CompanyService{
     public async getCompanyCoupons(): Promise<Coupon[]> {
         return (await axios.get<Coupon[]>(appConfig.url + "/company/coupons")).data;
     }
-            // if (companyStore.getState().value.length === 0) {
-            // const responseData = (await axios.get<Coupon[]>(appConfig.url + "/company/coupons")).data;
-            // companyStore.dispatch(fetch(responseData));
-            // return responseData;
-        // } else
-        // return companyStore.getState().value;
-    // }
     
     public async getCoupon(id:number) {
         return (await axios.get<Coupon>(appConfig.url + "/company/coupon/" + id)).data;
     }
         
-    //     if (companyStore.getState().value.length === 0) {
-    //         return (await axios.get<Coupon>(appConfig.url + "/company/coupon/" + id)).data;
-    //     }
-    //     return companyStore.getState().value.find(e=>e.id === id);
-    // }
     
     public async getCouponByCategory(category:string) {
         return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;

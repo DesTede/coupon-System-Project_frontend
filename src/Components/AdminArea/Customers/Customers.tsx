@@ -5,7 +5,7 @@ import adminService from "../../../Services/AdminService";
 import {adminStore} from "../../../Redux/OurStore";
 import {NavLink} from "react-router-dom";
 import CustomerCard from "../../CustomerArea/CustomerCard/CustomerCard";
-import errorHandler from "../../../Services/ErrorHandler";
+import errorHandler from "../../../Utils/ErrorHandler";
 import Loading from "../../LayoutArea/Loading/Loading";
 
 function Customers(): JSX.Element {
@@ -64,10 +64,6 @@ function Customers(): JSX.Element {
 
                 )}
             
-            
-            {/*<div className="container">*/}
-            {/*    {customers?.map(custom => <CustomerCard key={custom.id} customer={custom} />)}*/}
-            {/*</div>*/}
         </div>
     );
 }
