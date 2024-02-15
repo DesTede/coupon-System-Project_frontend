@@ -13,10 +13,9 @@
     border: black 1px solid;
 }
 
-/*.CouponDetails img{*/
-/*    width: 350px;*/
-/*    height: 200px;*/
-/*}*/
+.CouponDetails img{
+    border-radius: 10px;
+}
 
 .descSpan{
     font-weight: bold;

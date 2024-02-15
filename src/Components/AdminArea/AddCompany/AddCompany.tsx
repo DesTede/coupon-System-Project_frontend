@@ -1,9 +1,7 @@
 import "./AddCompany.css";
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
+import { Button, FormControl, FormLabel, TextField } from "@mui/material";
 import {useForm} from "react-hook-form";
-import authService from "../../../Services/AuthService";
 import {toast} from "react-toastify";
-import {authStore} from "../../../Redux/OurStore";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {useNavigate} from "react-router-dom";
 import adminService from "../../../Services/AdminService";
@@ -16,10 +14,6 @@ function AddCompany(): JSX.Element {
     const {register, handleSubmit, setError, formState:{errors} } = useForm<Company>({mode:"onChange"});
 
     function sendForm(comp:Company) {
-        // const name = getValues("name");
-        // const email = getValues("email");
-        // const password = getValues("password");
-        // const clienttype = getValues("clienttype");
         adminService.addCompany(comp)
             .then(t => {
                 toast.success("Company added! ");navigate("/admin/getcompanies")})

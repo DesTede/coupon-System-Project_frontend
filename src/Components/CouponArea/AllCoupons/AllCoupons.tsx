@@ -14,30 +14,26 @@ import errorHandler from "../../../Utils/ErrorHandler";
 
 function AllCoupons(): JSX.Element {
     const [coupons, setCoupons] = useState<Coupon[] | null>(null);
-    const [categories, setCategories] = useState<Category[]>([]);
+    // const [categories, setCategories] = useState<Category[]>([]);
     const [category, setCategory] = useState<string>("");
     // const cat = useParams().category!;
     const [price, setPrice] = useState<number | "">("");
     
 
+
     useEffect(() => {
-        discoveryService.getAllCoupons()
-            .then(coup => {setCoupons(coup);console.log("Coupons:", coup)})
-            .catch(err => errorHandler.showError(err));
-
-
-        discoveryService.getCategories()
-            .then(cats => {setCategories(cats);console.log("Categories:", cats)})
-            .catch(err => errorHandler.showError(err));
+        loadCouponList();
     }, []);
-
     
+    function loadCouponList() {
+        discoveryService.getAllCoupons()
+            .then(coup => setCoupons(coup))
+            .catch(err => errorHandler.showError(err));
+    }
+    const reloadCoupons = () => {
+        loadCouponList();
+    }
     
-    
-    // const handleChange = (event: SelectChangeEvent) => {
-    //     setCategory(event.target.value as string);
-    // };
-
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value === "None" ? "" : event.target.value as string);
     };
@@ -91,14 +87,14 @@ function AllCoupons(): JSX.Element {
                 />
             </FormControl>
             
-            {coupons === null && categories.length === 0 ? (
+            {coupons === null ? (
                     <Loading/>
                 )
                 : (
                     <>
                         
                         <div className="container">
-                            {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
+                            {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c} reloadCoupons={reloadCoupons} />)}
                         </div>
 
                     </>

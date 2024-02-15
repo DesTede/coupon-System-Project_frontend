@@ -11,14 +11,16 @@ import React from "react";
 
 interface CouponProps{
     coupon: Coupon;
+    reloadCoupons: () => void;
 }
 function CouponCard(props:CouponProps): JSX.Element{
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const client = authStore.getState().user?.clientType;
     function deleteMe(){
         companyService.deleteCoupon(props.coupon.id)
-            .then(()=> {toast.success("Company deleted");navigate("/company/coupons")})
+            .then(()=> {toast.success("Company deleted");
+                              props.reloadCoupons()})
             .catch(err=>errorHandler.showError(err));
 
     }
@@ -38,7 +40,6 @@ function CouponCard(props:CouponProps): JSX.Element{
                         <NavLink to={"/discovery/coupon/" + props.coupon.id}><h3>{props.coupon.title}</h3></NavLink><br/>
                         </>
                     )}
-                    {/*<h4>Id: {props.coupon.id}</h4>*/}
                     <img src={props.coupon.image as string} alt="coupon image"/> <br/>
                     <br/>
                     <span className={"priceSpan"}>$ {props.coupon.price}</span>

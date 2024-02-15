@@ -19,7 +19,7 @@ import {toast} from "react-toastify";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 
-const pages: any[] = [/*'The Coupon Emporium','Customers', 'Companies'*/];
+const pages: any[] = [];
 const settings = ['Profile','Coupons', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -37,14 +37,6 @@ function ResponsiveAppBar() {
 
     const handleCloseNavMenu = (/*page:string */) => {
         setAnchorElNav(null);
-        //    
-        //     if (page === 'Companies')
-        //         navigate("admin/getcompanies");
-        //     else if (page === 'Customers')
-        //         navigate("/admin/getcustomers");
-        //     else 
-        //         navigate("/discovery");
-        //    
     };
 
     const handleCloseUserMenu = (setting:string) => {
@@ -85,7 +77,6 @@ function ResponsiveAppBar() {
                                     marginBottom: '.1.2rem'
                                 }}
                     >
-                        {/*<img src={"/2the-coupon-emporium-favicon-black2.png"} alt={"Logo"}/>*/}
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>

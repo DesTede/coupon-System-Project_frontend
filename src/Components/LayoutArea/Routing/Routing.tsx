@@ -16,7 +16,6 @@ import CouponDetails from "../../CouponArea/CouponDetails/CouponDetails";
 import AddCoupon from "../../CompanyArea/AddCoupon/AddCoupon";
 import UpdateCoupon from "../../CompanyArea/UpdateCoupon/UpdateCoupon";
 import AboutUs from "../../FooterArea/AboutUs/AboutUs";
-import PurchaseCoupon from "../../CustomerArea/PurchaseCoupon/PurchaseCoupon";
 import PurchasedCoupons from "../../CustomerArea/PurchasedCoupons/PurchasedCoupons";
 import AllCoupons from "../../CouponArea/AllCoupons/AllCoupons";
 import React from "react";
@@ -65,7 +64,6 @@ function Routing(): JSX.Element {
                 <Route path={"/customer/availablecoupons"} element={<AllCoupons/>}/>
                 {/*<Route path={"customer/purchasedcouponsbycategory/:category"} element={<AllCoupons/>}/>*/}
                 {/*<Route path={"customer/purchasedcouponsbyprice/:price"} element={<AllCoupons/>}/>*/}
-                <Route path={"/customer/purchaseCoupon"} element={<PurchaseCoupon/>}/>
                 
                                         {/* Footer */}
                 <Route path={"/aboutemporium"} element={<AboutUs/>}/>

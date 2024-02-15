@@ -12,31 +12,15 @@ function Customers(): JSX.Element {
     
     const [customers, setCustomers ] = useState<Customer[]>();
 
-    useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const cou = await adminService.getCustomers();
-    //             setCustomers(cou);
-    //         } catch (error) {
-    //             errorHandler.showError(error);
-    //         }
-    //     };
-    //     fetchData();
-    //     return () => {
-    //
-    //     };
-    // },[]);
+    const fetchCustomers = () => {
         adminService.getCustomers()
             .then(cous => setCustomers(cous))
             .catch(err => errorHandler.showError(err));
-            
+    };
+    useEffect(() => {
+            fetchCustomers();
         
-        const unsubscribe =  adminStore.subscribe(
-            () => {
-            adminService.getCustomers()
-                .then(cous => setCustomers(cous))
-                .catch(err => errorHandler.showError(err));
-        })
+        const unsubscribe =  adminStore.subscribe(fetchCustomers);
 
         return () => {
             unsubscribe();

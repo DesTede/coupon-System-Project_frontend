@@ -32,8 +32,6 @@ function AddCoupon(this: any): JSX.Element {
                         console.log(coupon)})
                     .catch(err => errorHandler.showError(err))
             };
-            // reader.onerror = function (error){
-            //     console.log("Error:", error);
             reader.readAsDataURL(imageFile);
             
         }
@@ -71,10 +69,10 @@ function AddCoupon(this: any): JSX.Element {
                     {...register('description',
                             { required: true,
                                      minLength: 2, 
-                                     maxLength: 100 })}
+                                     maxLength: 5000 })}
                     onBlur={handleBlur('title')}
                     error={!!errors.description}
-                    helperText={errors.description ? "Description must be between 2 and 100 characters" : ""}
+                    helperText={errors.description ? "Description must be between 2 and 5000 characters" : ""}
                 />
                 <Select
                     variant="outlined"

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./NotFound.css"; // Import your external CSS file
+import "./NotFound.css"; 
 
 function NotFound(): JSX.Element {
     return (
@@ -13,9 +13,6 @@ function NotFound(): JSX.Element {
                         homepage.</p>
                     <div className="links">
                     <NavLink to="/discovery" className="back-link">Home page</NavLink>
-                    {/*&nbsp;|&nbsp;*/}
-                    {/*<span className={"separator"}>&nbsp;|&nbsp;</span>*/}
-                    {/*<NavLink to={"/"} className="back-link">Contact us</NavLink>*/}
                     </div>
                 </div>
             </div>

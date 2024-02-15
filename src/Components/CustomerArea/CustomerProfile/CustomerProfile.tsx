@@ -1,6 +1,5 @@
 import "./CustomerProfile.css";
 import {useEffect, useState} from "react";
-import companyService from "../../../Services/CompanyService";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {Card, CardContent} from "@mui/material";
 import {NavLink} from "react-router-dom";
@@ -25,10 +24,8 @@ function CustomerProfile(): JSX.Element {
                         <h3>{customer.firstName} {customer.lastName}</h3>
                         <h4>Id: {customer.id}</h4>
                         <h4>{customer.email}</h4>
-                        <h4>{customer.password}</h4>
-                        <h5>Coupons Purchased: </h5>
-                        {/*{customer.coupons.values()}*/}
-                        <NavLink to={"/homepage"}><button>Back</button></NavLink>
+                        <h4>Password: {customer.password}</h4>
+                        <NavLink to={"/homepage"}><button>Home</button></NavLink>
                     </>
                     }
                 </CardContent>

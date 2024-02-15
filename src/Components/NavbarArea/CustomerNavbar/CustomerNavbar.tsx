@@ -19,7 +19,7 @@ import {toast} from "react-toastify";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 
-const pages: any[] = [/*'The Coupon Emporium','Customers', 'Companies'*/];
+const pages: any[] = [];
 const settings = ['Profile','My Coupons', 'Available coupons', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -37,14 +37,6 @@ function ResponsiveAppBar() {
 
     const handleCloseNavMenu = (/*page:string */) => {
         setAnchorElNav(null);
-        //    
-        //     if (page === 'Companies')
-        //         navigate("admin/getcompanies");
-        //     else if (page === 'Customers')
-        //         navigate("/admin/getcustomers");
-        //     else 
-        //         navigate("/discovery");
-        //    
     };
 
     const handleCloseUserMenu = (setting:string) => {
@@ -68,25 +60,6 @@ function ResponsiveAppBar() {
                     {/*<AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>*/}
                     {/*</NavLink>*/}
                     <NavLink to={"/homepage"}><img src={"/the-coupon-emporium-high-resolution-logo2.png"} alt={"Logo"}/> </NavLink>
-                    {/*<Typography className={"logoImage"}*/}
-                    {/*            variant="h6"*/}
-                    {/*            noWrap*/}
-                    {/*            component="a"*/}
-                    {/*            href="/discovery"*/}
-                    {/*            sx={{*/}
-                    {/*                mr: 2,*/}
-                    {/*                display: {xs: 'none', md: 'flex'},*/}
-                    {/*                fontFamily: 'monospace',*/}
-                    {/*                fontWeight: 700,*/}
-                    {/*                letterSpacing: '.3rem',*/}
-                    {/*                color: 'inherit',*/}
-                    {/*                textDecoration: 'none',*/}
-                    {/*                paddingBottom: '.5rem',*/}
-                    {/*                marginBottom: '.1.2rem'*/}
-                    {/*            }}*/}
-                    {/*>*/}
-                    {/*    /!*<img src={"/2the-coupon-emporium-favicon-black2.png"} alt={"Logo"}/>*!/*/}
-                    {/*</Typography>*/}
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton

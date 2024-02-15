@@ -6,11 +6,7 @@ import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 import {useNavigate} from "react-router-dom";
 import authService from "../../../Services/AuthService";
-import React, {useEffect, useState} from "react";
-import AdminNavbar from "../../NavbarArea/AdminNavbar/AdminNavbar";
-import CompanyNavbar from "../../NavbarArea/CompanyNavbar/CompanyNavbar";
-import CustomerNavbar from "../../NavbarArea/CustomerNavbar/CustomerNavbar";
-import DiscoveryNavbar from "../../NavbarArea/DiscoveryNavbar/DiscoveryNavbar";
+import React from "react";
 
 function Login(): JSX.Element {
     const navigate = useNavigate();

@@ -15,17 +15,21 @@ function CouponDetails(): JSX.Element {
     const navigate = useNavigate();
     const client = authStore.getState().user?.clientType;
     const [coupon, setCoupon] = useState<Coupon>();
-    // const [company, setCompany] = useState<Company>();
     const id = +(useParams().id!);
-    // let company:Company;
 
     useEffect(()=>{
-        discoveryService.getCoupon(id)
-            .then( c=> {setCoupon(c);})
-            .catch(err=>errorHandler.showError(err));
-        
+        function fetchCoupon() {
+            discoveryService.getCoupon(id)
+                .then(c => {
+                    setCoupon(c);
+                })
+                .catch(err => errorHandler.showError(err));
+        }
+        fetchCoupon();
+        return () => {
+        }
        
-    }, []);
+    }, [id]);
     
     function handlePurchase(){
         customerService.purchaseCoupon(coupon.id)
@@ -41,9 +45,7 @@ function CouponDetails(): JSX.Element {
                     <img src={coupon.image as string} alt=""/><br/>
                     <h3>{coupon.title}</h3>
                     <h4>Id: {coupon.id}</h4>
-                    {/*<h4>Company: {coupon.company?.name}</h4>*/}
                     $ {coupon.price}
-                    {/*<h4>Description:</h4>*/}
                     <p><span className={"descSpan"}>Description:</span><br/>
                         {coupon.description}</p>
                     <h5>Category: {coupon.category}</h5>

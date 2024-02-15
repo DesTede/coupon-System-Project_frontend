@@ -1,6 +1,5 @@
 import "./UpdateCustomer.css";
 import {useForm} from "react-hook-form";
-import Company from "../../../Models/Company";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import adminService from "../../../Services/AdminService";
@@ -96,7 +95,6 @@ function UpdateCustomer(): JSX.Element {
                     error= {!!errors.password}
                     helperText={errors.password? "Password must be at least 4 characters long" : ""}
                 />
-                {/*<Button variant="outlined" onClick={sendForm}>Update</Button>*/}
                 <Button variant="outlined" onClick={handleSubmit(sendForm)}>Update</Button>
             </FormControl>
 

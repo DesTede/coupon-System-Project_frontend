@@ -6,22 +6,22 @@ import adminService from "../../../Services/AdminService";
 import {adminStore} from "../../../Redux/OurStore";
 import CompanyCard from "../../CompanyArea/CompanyCard/CompanyCard";
 import Loading from "../../LayoutArea/Loading/Loading";
-import CouponCard from "../../CouponArea/CouponCard/CouponCard";
 
 function Companies(): JSX.Element {
     
     const [companies, setCompanies] = useState<Company[]>();
     
-    useEffect(() => {
+    function fetchCompanies() {
         adminService.getCompanies()
             .then(comps => setCompanies(comps))
             .catch(err => alert(err.message))
+    }
+    
+    useEffect(() => {
+        fetchCompanies();
         
-        const unsubscribe = adminStore.subscribe(() => {
-            adminService.getCompanies()
-                .then(comps => setCompanies(comps))
-                .catch(err => alert(err.message))
-        })
+        
+        const unsubscribe = adminStore.subscribe(fetchCompanies);
         
         return () => {
             unsubscribe();

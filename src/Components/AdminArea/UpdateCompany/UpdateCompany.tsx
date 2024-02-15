@@ -1,12 +1,12 @@
 import "./UpdateCompany.css";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import Company from "../../../Models/Company";
 import {useNavigate, useParams} from "react-router-dom";
 import adminService from "../../../Services/AdminService";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {toast} from "react-toastify";
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
+import { Button, FormControl, FormLabel, TextField } from "@mui/material";
 
 
 function UpdateCompany(): JSX.Element {
@@ -17,7 +17,7 @@ function UpdateCompany(): JSX.Element {
     useEffect(() => {
         adminService.getCompany(id)
             .then(comp => {
-                // setValue("name", comp.name);
+                setValue("name", comp.name);
                 setValue("email", comp.email);
                 setValue("password", comp.password);
             })
@@ -40,6 +40,12 @@ function UpdateCompany(): JSX.Element {
         <div className="UpdateCompany">
             <FormControl>
                 <FormLabel>Update Company</FormLabel>
+                <TextField
+                    variant="outlined"
+                    label="Name"
+                    id="name"
+                    disabled={true}
+                />
                 <TextField 
                         variant="outlined"
                         label="Email"
@@ -68,7 +74,6 @@ function UpdateCompany(): JSX.Element {
                     helperText={errors.password ? "Password must be at least 2 characters long" : ""}
                         
                 />
-                    {/*<Button variant="outlined" onClick={sendForm}>Update</Button>*/}
                 <Button variant="outlined" onClick={handleSubmit(sendForm)}>Update</Button>
             </FormControl>
             

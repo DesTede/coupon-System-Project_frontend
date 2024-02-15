@@ -17,25 +17,24 @@ import {Input} from "@mui/material";
 function CompanyCoupons(): JSX.Element {
      
     const [coupons, setCoupons] = useState<Coupon[]>();
-    // const [categories, setCategories] = useState<Category[]>();
     const [category, setCategory] = useState<string>("");
     const [price, setPrice] = useState<number | "">("");
 
     useEffect(() => {
+        fetchCompanyCoupons();
+    }, []);
+    
+    const fetchCompanyCoupons = () => {
         companyService.getCompanyCoupons()
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
-        
-        
-        
-    }, []);
+    };
+    
+    const reloadCoupons = () => {
+        fetchCompanyCoupons();
+    }
 
 
-
-    // const handleChange = (event: SelectChangeEvent) => {
-         /*discoveryService.getByCategory(event.target.value as string)*/
-        // setCategory(event.target.value as string);
-    // };
 
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value === "None" ? "" : event.target.value as string);
@@ -97,7 +96,7 @@ function CompanyCoupons(): JSX.Element {
                 <button className={"addBtn"}>Add new coupon</button>
             </NavLink>
             <div className="container">
-                {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
+                {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c} reloadCoupons={reloadCoupons}/>)}
             </div>
             
         </div>

@@ -2,9 +2,7 @@ import "./PurchasedCoupons.css";
 import React, {useEffect, useState} from "react";
 import Coupon from "../../../Models/Coupon";
 import {Category} from "../../../Models/Category";
-import discoveryService from "../../../Services/DiscoveryService";
 import errorHandler from "../../../Utils/ErrorHandler";
-import companyService from "../../../Services/CompanyService";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -15,9 +13,8 @@ import customerService from "../../../Services/CustomerService";
 
 function PurchasedCoupons(): JSX.Element {
     const [coupons, setCoupons] = useState<Coupon[]>();
-    const [categories, setCategories] = useState<Category[]>();
+    // const [categories, setCategories] = useState<Category[]>();
     const [category, setCategory] = useState<string>("");
-    // const cat = useParams().category!;
     const [price, setPrice] = useState<number | "">("");
 
 
@@ -27,20 +24,10 @@ function PurchasedCoupons(): JSX.Element {
             .catch(err => errorHandler.showError(err));
 
 
-        discoveryService.getCategories()
-            .then(cats => setCategories(cats))
-            .catch(err => errorHandler.showError(err));
-
-
-
+        
 
     }, []);
 
-
-
-    // const handleChange = (event: SelectChangeEvent) => {
-    //     setCategory(event.target.value as string);
-    // };
 
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value === "None" ? "" : event.target.value as string);
@@ -96,7 +83,7 @@ function PurchasedCoupons(): JSX.Element {
             </FormControl>
 
             <div className="container">
-                {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c}/>)}
+                {filteredCoupons?.map(c => <CouponCard key={c.id} coupon={c} reloadCoupons={() => {}}/>)}
             </div>
         </div>
     );

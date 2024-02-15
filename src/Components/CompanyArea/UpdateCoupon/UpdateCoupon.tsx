@@ -85,10 +85,10 @@ function UpdateCoupon(): JSX.Element {
                     {...register('description',
                         { required: false,
                                  minLength: 2,
-                                 maxLength: 100 })}
+                                 maxLength: 5000 })}
                     onBlur={handleBlur('description')}
                     error={!!errors.description}
-                    helperText={errors.description ? "Description must be between 2 and 100 characters" : ""}
+                    helperText={errors.description ? "Description must be between 2 and 5000 characters" : ""}
                 />
                 <TextField
                     variant="outlined"
@@ -167,7 +167,6 @@ function UpdateCoupon(): JSX.Element {
                     error={!!errors.image}
                     helperText={errors.image ? "Image must be uploaded" : ""}
                 />
-                {/*<Button variant="outlined" onClick={sendForm}>Update</Button>*/}
                 <Button variant="outlined" onClick={handleSubmit(sendForm)}>Update</Button>
             </FormControl>
 
