@@ -19,8 +19,7 @@ function AllCoupons(): JSX.Element {
     // const cat = useParams().category!;
     const [price, setPrice] = useState<number | "">("");
     
-
-
+    
     useEffect(() => {
         loadCouponList();
     }, []);

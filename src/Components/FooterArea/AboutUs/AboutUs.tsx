@@ -12,7 +12,7 @@ function AboutUs(): JSX.Element {
                 </Typography>
                 <Typography variant="h5" paragraph>
                     
-                    Welcome to our coupon management system and website!
+                    Welcome to the Coupon Emporium!
                     
                     
                 </Typography>

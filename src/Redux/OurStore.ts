@@ -10,13 +10,6 @@ export const adminStore = configureStore({
     reducer: adminSlice.reducer
 });
 
-// export const companyStore = configureStore({
-//     reducer:companySlice.reducer
-// });
-
-// export const discoveryStore = configureStore({
-//     reducer:discoverySlice.reducer
-// });
 
 
 export type RootState = ReturnType<typeof authStore.getState>

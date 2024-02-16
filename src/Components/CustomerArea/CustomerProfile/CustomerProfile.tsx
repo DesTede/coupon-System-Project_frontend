@@ -5,8 +5,10 @@ import {Card, CardContent} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import Customer from "../../../Models/Customer";
 import customerService from "../../../Services/CustomerService";
+import {authStore} from "../../../Redux/OurStore";
 
 function CustomerProfile(): JSX.Element {
+    const client = authStore.getState().user?.clientType;
     const [customer, setCustomer] = useState<Customer>();
 
     useEffect(()=>{
@@ -22,7 +24,9 @@ function CustomerProfile(): JSX.Element {
                 <CardContent className={"customerC"}>
                     {customer && <>
                         <h3>{customer.firstName} {customer.lastName}</h3>
+                        {client === "Administrator" && (
                         <h4>Id: {customer.id}</h4>
+                            )}
                         <h4>{customer.email}</h4>
                         <h4>Password: {customer.password}</h4>
                         <NavLink to={"/homepage"}><button>Home</button></NavLink>

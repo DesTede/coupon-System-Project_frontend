@@ -14,7 +14,6 @@ interface CouponProps{
     reloadCoupons: () => void;
 }
 function CouponCard(props:CouponProps): JSX.Element{
-    // const navigate = useNavigate();
 
     const client = authStore.getState().user?.clientType;
     function deleteMe(){
@@ -24,11 +23,14 @@ function CouponCard(props:CouponProps): JSX.Element{
             .catch(err=>errorHandler.showError(err));
 
     }
+    const couponStyle: React.CSSProperties = {
+        filter: props.coupon.amount === 0 ? "grayscale(100%)" : "none",
+    };
     
     
     return (
         <div className="CouponCard">
-			<Card>
+			<Card style={couponStyle}>
                 <CardContent className={"cardCo"}>
                     {client === "Company" &&(
                         <>

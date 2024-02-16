@@ -10,9 +10,6 @@ import Customer from "../Models/Customer";
 class AdminService{
 
     public async getCompanies(){
-        // const responseData =  (await axios.get<Company[]>(appConfig.url + "/admin/getcompanies")).data;
-        // adminStore.dispatch(fetchCompanies(responseData));
-        // return responseData;
         
         if (adminStore.getState().companies.length === 0){
             const responseData = (await axios.get<Company[]>(appConfig.url + "/admin/getcompanies")).data;
@@ -31,9 +28,6 @@ class AdminService{
 
 
     public async getCustomers(){
-        // const responseData =  (await axios.get<Customer[]>(appConfig.url + "/admin/getcustomers")).data
-        // adminStore.dispatch(fetchCustomers(responseData));
-        // return responseData;
         
         if (adminStore.getState().customers.length === 0){
             const responseData = (await axios.get<Customer[]>(appConfig.url + "/admin/getcustomers")).data;

@@ -5,13 +5,11 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export interface AdminStore{
     companies: Company[];
     customers: Customer[];
-    // lastUpdated: Date;
 }
 
 const initState:AdminStore={
     companies: [],
     customers: [],
-    // lastUpdated: new Date() // new date - now
 }
 
 export const adminSlice = createSlice({
@@ -20,11 +18,9 @@ export const adminSlice = createSlice({
     reducers:{
         fetchCompanies:(state, action:PayloadAction<Company[]>)=>{
             state.companies = action.payload;
-            // state.lastUpdated = new Date();
         },
         fetchCustomers:(state, action:PayloadAction<Customer[]>)=>{
             state.customers = action.payload;
-            // state.lastUpdated = new Date();
         },
         addCompany:(state, action:PayloadAction<Company>)=>{
             state.companies.push(action.payload);

@@ -52,8 +52,6 @@ function Routing(): JSX.Element {
                 <Route path={"/company/details"} element={<CompanyProfile/>}/>
                 <Route path={"/company/coupons"} element={<CompanyCoupons/>}/>
                 <Route path={"/company/coupon/:id"} element={<CouponDetails/>}/>
-                {/*<Route path={"company/couponsbycategory/:category"} element={<CouponbyCategory/>}/>*/}
-                {/*<Route path={"company/couponsbyprice/:price"} element={<CouponbyPrice/>}/>*/}
                 <Route path={"/company/addcoupon"} element={<AddCoupon/>}/>
                 <Route path={"/company/updatecoupon/:id"} element={<UpdateCoupon/>}/>
                 
@@ -62,8 +60,6 @@ function Routing(): JSX.Element {
                 <Route path={"/customer/details"} element={<CustomerProfile/>}/>
                 <Route path={"/customer/purchasedcoupons"} element={<PurchasedCoupons/>}/>
                 <Route path={"/customer/availablecoupons"} element={<AllCoupons/>}/>
-                {/*<Route path={"customer/purchasedcouponsbycategory/:category"} element={<AllCoupons/>}/>*/}
-                {/*<Route path={"customer/purchasedcouponsbyprice/:price"} element={<AllCoupons/>}/>*/}
                 
                                         {/* Footer */}
                 <Route path={"/aboutemporium"} element={<AboutUs/>}/>

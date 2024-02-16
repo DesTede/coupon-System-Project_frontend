@@ -12,6 +12,7 @@ import {toast} from "react-toastify";
 
 function CouponDetails(): JSX.Element {
 
+    
     const navigate = useNavigate();
     const client = authStore.getState().user?.clientType;
     const [coupon, setCoupon] = useState<Coupon>();
@@ -44,7 +45,10 @@ function CouponDetails(): JSX.Element {
                 {coupon && <>
                     <img src={coupon.image as string} alt=""/><br/>
                     <h3>{coupon.title}</h3>
+                    
+                    {client === "Company" &&(
                     <h4>Id: {coupon.id}</h4>
+                    )}
                     $ {coupon.price}
                     <p><span className={"descSpan"}>Description:</span><br/>
                         {coupon.description}</p>

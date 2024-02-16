@@ -26,9 +26,6 @@ class CustomerService{
         return (await axios.get<Coupon[]>(appConfig.url + "/customer/couponsByPrice/" + maximumPrice)).data;
     }
     
-    // public async purchaseCoupon(coupon:Coupon){
-    //     return (await axios.post<Coupon>(appConfig.url + "/customer/purchaseCoupon", coupon)).data;
-    // }
 
     public async purchaseCoupon(couponId:number){
         return (await axios.post<Coupon>(appConfig.url + "/customer/purchaseCoupon/" + couponId )).data;

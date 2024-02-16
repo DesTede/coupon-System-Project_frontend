@@ -22,33 +22,12 @@ class CompanyService{
     public async getCouponByCategory(category:string) {
         return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;
     }
-        // if (companyStore.getState().value.length === 0) {
-        //     return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByCategory/" + category)).data;
-        // }
-        // return companyStore.getState().value.filter(e=>e.category.toString() === category);
-    // }
 
     
     public async getCouponByPrice(price:number) {
         return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByPrice/" + price)).data;
     }
         
-        // if (companyStore.getState().value.length === 0) {
-        //     return (await axios.get<Coupon[]>(appConfig.url + "/company/couponsByPrice/" + price)).data;
-        // }
-        // return companyStore.getState().value.filter(e=>e.price <= price);
-    // }
-    
-    
-    // public async getCategories(){
-    //     if (companyStore.getState().categoryValue.length === 0) {
-    //         const responseData = (await axios.get<Category[]>(appConfig.url + "/company/categories")).data;
-    //         companyStore.dispatch(fetchCategories(responseData))
-    //         return responseData;
-    //     }else
-    //         return companyStore.getState().categoryValue;
-    //
-    // }
     
     public async addCoupon(coupon:Coupon){
         // companyStore.dispatch(add(responseData));
