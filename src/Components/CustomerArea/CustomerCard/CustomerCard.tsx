@@ -6,12 +6,29 @@ import errorHandler from "../../../Utils/ErrorHandler";
 import {Card, CardContent} from "@mui/material";
 import {NavLink, useNavigate} from "react-router-dom";
 
+
+/**
+ * CustomerProps - The properties passed to the component.
+ * @param customer - The customer to display.
+ */
 interface CustomerProps{
     customer:Customer
 }
+
+/**
+ * Represents a card component displaying information about a customer.
+ * Allows administrators to delete the customer.
+ * Provides navigation links for updating customer details.
+ *
+ */
 function CustomerCard(props:CustomerProps): JSX.Element {
 
     const navigate = useNavigate();
+
+    /**
+     * Handles the deletion of the customer.
+     * Deletes the customer from the system and triggers a success toast notification.
+     */
     function deleteMe(){
         adminService.deleteCustomer(props.customer.id)
             .then(()=> {toast.success("Customer deleted");navigate("/admin/getcustomers")})

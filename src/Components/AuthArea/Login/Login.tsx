@@ -8,11 +8,23 @@ import {useNavigate} from "react-router-dom";
 import authService from "../../../Services/AuthService";
 import React from "react";
 
+/**
+ * Component for user login.
+ * Allows users to enter their email, password, and select their client type (Administrator, Company, Customer).
+ * Upon successful login, redirects the user to the homepage.
+ */
+
 function Login(): JSX.Element {
     const navigate = useNavigate();
 
     const {register, getValues} = useForm();
-    
+
+    /**
+     * Component for user login.
+     * Allows users to enter their email, password, and select their client type (Administrator, Company, Customer).
+     * Upon successful login, redirects the user to the homepage.
+     */
+
     function sendForm(){
         const email = getValues("email");
         const password = getValues("password");

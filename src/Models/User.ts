@@ -1,3 +1,8 @@
+
+/**
+ * Class representing a user.
+ * A user has an ID, name, first name, last name, email, and client type.
+ */
 export class User{
     public id:number;
     public name:string;

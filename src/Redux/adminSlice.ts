@@ -2,16 +2,25 @@ import Company from "../Models/Company";
 import Customer from "../Models/Customer";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
+/**
+ * Interface representing the shape of the admin store state.
+ */
 export interface AdminStore{
     companies: Company[];
     customers: Customer[];
 }
 
+/**
+ * The initial state of the admin store.
+ */
 const initState:AdminStore={
     companies: [],
     customers: [],
 }
 
+/**
+ * Redux slice for managing admin-related state.
+ */
 export const adminSlice = createSlice({
     name: "admin",
     initialState:initState,
@@ -51,6 +60,9 @@ export const adminSlice = createSlice({
     }
 });
 
+/**
+ * Exporting the actions and reducer from the slice.
+ */
 export const {fetchCompanies,
               fetchCustomers,
               addCompany,

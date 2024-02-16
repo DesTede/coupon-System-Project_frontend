@@ -4,9 +4,16 @@ import { Box, Typography } from "@mui/material";
 import {authStore} from "../../../Redux/OurStore";
 
 
-
+/**
+ * Component representing the home page of the application.
+ * Renders a personalized greeting message based on the user's role.
+ */
 function HomePage(): JSX.Element {
-    
+
+    /**
+     * Get the user information from the Redux store
+     */
+
     const user = authStore.getState().user;
     
     return (

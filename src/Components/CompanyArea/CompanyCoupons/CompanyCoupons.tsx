@@ -13,39 +13,55 @@ import errorHandler from "../../../Utils/ErrorHandler";
 import {Input} from "@mui/material";
 
 
- 
+/**
+ * Displays a list of coupons belonging to a company and provides filtering options by category and price.
+ */
 function CompanyCoupons(): JSX.Element {
-     
+    
+    // State variables to hold coupon data, selected category, and selected price
     const [coupons, setCoupons] = useState<Coupon[]>();
     const [category, setCategory] = useState<string>("");
     const [price, setPrice] = useState<number | "">("");
 
+    /**
+     * Fetches coupons belonging to the company when the component mounts.
+     */
     useEffect(() => {
         fetchCompanyCoupons();
     }, []);
+
     
+     // Fetches coupons belonging to the company.
     const fetchCompanyCoupons = () => {
         companyService.getCompanyCoupons()
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
     };
     
+    // Reloads coupons by fetching them again from the server.
     const reloadCoupons = () => {
         fetchCompanyCoupons();
     }
 
-
-
+    /**
+     * Handles change in the selected category for filtering.
+     * @param event The change event from the category select component.
+     */
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value === "None" ? "" : event.target.value as string);
     };
 
+    /**
+     * Handles change in the selected price for filtering.
+     * @param event The change event from the price input component.
+     */
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(event.target.value as number | "");
     };
 
-    
-
+    /**
+     * Filters coupons based on the selected category and price.
+     */
     const filteredCoupons = coupons?.filter(c =>
         (!category || c.category.toString() === category) &&
         (!price || c.price <= (price as number))

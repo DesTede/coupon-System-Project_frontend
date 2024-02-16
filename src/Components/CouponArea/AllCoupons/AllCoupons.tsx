@@ -12,36 +12,58 @@ import Loading from "../../LayoutArea/Loading/Loading";
 import discoveryService from "../../../Services/DiscoveryService";
 import errorHandler from "../../../Utils/ErrorHandler";
 
+/**
+ * Renders a list of all available coupons with filtering options by category and price.
+ * Allows users to filter coupons by category and price range.
+ * Displays a loading indicator while fetching coupon data from the server.
+ */
 function AllCoupons(): JSX.Element {
+
+    // State variables to manage coupon data, selected category, and price range
     const [coupons, setCoupons] = useState<Coupon[] | null>(null);
-    // const [categories, setCategories] = useState<Category[]>([]);
     const [category, setCategory] = useState<string>("");
-    // const cat = useParams().category!;
     const [price, setPrice] = useState<number | "">("");
-    
-    
+
+
+    /**
+     * Fetches the list of coupons when the component mounts
+     */
     useEffect(() => {
         loadCouponList();
     }, []);
-    
+
+    // Function to load the list of coupons from the server
     function loadCouponList() {
         discoveryService.getAllCoupons()
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
     }
+    
+    // Function to reload coupons when needed
     const reloadCoupons = () => {
         loadCouponList();
     }
-    
+
+    /**
+     * Event handler for category filter selection
+     * @param event - the event object
+     */
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value === "None" ? "" : event.target.value as string);
     };
+    
+    /**
+     * Event handler for price filter input
+     * @param event - the event object
+     */
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(event.target.value as number | "");
     };
 
-    
-    
+
+    /**
+     * Filters the list of coupons based on the selected category and price range
+     */
     const filteredCoupons = coupons?.filter(c =>
         (!category || c.category.toString() === category) &&
         (!price || c.price <= (price as number)) 

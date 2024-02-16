@@ -3,6 +3,10 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 
+/**
+ * Component representing the landing page of the application.
+ * Renders a welcome message and encourages users to explore the platform's features and benefits.
+ */
 function IndexPAge(): JSX.Element {
 
 

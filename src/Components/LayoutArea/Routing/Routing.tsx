@@ -22,6 +22,10 @@ import React from "react";
 import Loading from "../Loading/Loading";
 import IndexPAge from "../../MainArea/IndexPAge/IndexPAge";
 
+/**
+ * Component responsible for defining application routing.
+ * Uses React Router's Routes and Route components to define different routes and their corresponding components.
+ */
 function Routing(): JSX.Element {
     return (
         <div className="Routing">
@@ -32,15 +36,14 @@ function Routing(): JSX.Element {
                 <Route path={"/discovery/coupon/:id"} element={<CouponDetails/>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 
+                
                                     {/* Administrator*/}
                 <Route path={"/homepage"} element={<HomePage/>}/>
                 <Route path={"/admin/details"} element={<HomePage/>}/>
-                
                 <Route path={"/admin/getcompanies"} element={<Companies/>}/>
                 <Route path={"/admin/getcompany/:id"} element={<CompanyProfile/>}/>
                 <Route path={"/admin/addcompany"} element={<AddCompany/>}/>
                 <Route path={"/admin/updatecompany/:id"} element={<UpdateCompany/>}/>
-                
                 <Route path={"/admin/getcustomers"} element={<Customers/>}/>
                 <Route path={"/admin/getcustomer/:id"} element={<CustomerProfile/>}/>
                 <Route path={"/admin/addcustomer"} element={<AddCustomer/>}/>
@@ -61,7 +64,7 @@ function Routing(): JSX.Element {
                 <Route path={"/customer/purchasedcoupons"} element={<PurchasedCoupons/>}/>
                 <Route path={"/customer/availablecoupons"} element={<AllCoupons/>}/>
                 
-                                        {/* Footer */}
+                                        
                 <Route path={"/aboutemporium"} element={<AboutUs/>}/>
                 
                 

@@ -8,14 +8,26 @@ import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 import companyService from "../../../Services/CompanyService";
 import Coupon from "../../../Models/Coupon";
 
+/**
+ * Renders a form to update a coupon's details.
+ * Allows the company to modify the coupon's title, description, category, start and end dates, amount, price, and image.
+ * Upon submission, sends the updated coupon data to the server.
+ */
 function UpdateCoupon(): JSX.Element {
+
+    // Form handling using react-hook-form
     const {register, handleSubmit, setValue, setError, formState:{errors} } = useForm<Coupon>({mode:"onChange"});
     const navigate = useNavigate();
+    
+    // Extracts the coupon's id from the URL
     const id:number = +(useParams().id!);
 
+    // Current date to set min and max values for the start and end date fields
     const currentDate = new Date().toISOString().split('T')[0];
-    
 
+    /**
+     * Fetches the coupon details and populates the form fields when the component mounts
+     */
     useEffect(() => {
         companyService.getCoupon(id)
             .then(coup => {
@@ -32,6 +44,11 @@ function UpdateCoupon(): JSX.Element {
             .catch(err=> {errorHandler.showError(err); navigate("/company/coupons")});
     }, []);
 
+    
+    /**
+     * Handles form submission by updating the coupon data on the server
+     * @param coup - the updated coupon data
+     */
     function sendForm(coup: Coupon){
         if (coup.image) {
             const imageFile = (coup.image as FileList)[0];
@@ -53,6 +70,10 @@ function UpdateCoupon(): JSX.Element {
         }
     }
 
+    /**
+     * Handles input blur events to validate the form fields
+     * @param field - the field to validate
+     */
     const handleBlur = (field: keyof Coupon) => (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value) {
             setError(field, { type: 'manual' });

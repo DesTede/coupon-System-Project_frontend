@@ -3,6 +3,9 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 
+/**
+ * Component for rendering the About Us page.
+ */
 function AboutUs(): JSX.Element {
     return (
         <Box className="root">

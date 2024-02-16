@@ -2,19 +2,25 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {jwtDecode} from "jwt-decode";
 import User from "../Models/User";
 
-
-// do switch-case on the ClientType type just like in the sever side.
-// the client type is stored in the token, so we can decode it and get the client type and then do switch-case on it.
+/**
+ * Interface representing the shape of the authentication store state.
+ */
 export interface AuthState{
     token:string;
     user:User;
 }
 
+/**
+ * The initial state of the authentication store.
+ */
 const initialState:AuthState = {
     user: sessionStorage.getItem("token") ? jwtDecode(sessionStorage.getItem("token")) : null,
     token: sessionStorage.getItem("token") ? sessionStorage.getItem("token") : ""
 }
 
+/**
+ * Redux slice for managing authentication-related state.
+ */
 export const authSlice = createSlice({
     name:"authentication",
     initialState:initialState,
@@ -39,5 +45,8 @@ export const authSlice = createSlice({
     }
 });
 
+/**
+ * Export the actions and reducer.
+ */
 export const {login, logout} = authSlice.actions;
 export default authSlice.reducer;

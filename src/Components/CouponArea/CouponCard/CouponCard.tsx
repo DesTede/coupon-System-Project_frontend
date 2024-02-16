@@ -1,7 +1,7 @@
 import "./CouponCard.css";
 import {Card, CardContent} from "@mui/material";
 import Coupon from "../../../Models/Coupon";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {toast} from "react-toastify";
 import errorHandler from "../../../Utils/ErrorHandler";
 import companyService from "../../../Services/CompanyService";
@@ -9,13 +9,25 @@ import {authStore} from "../../../Redux/OurStore";
 import React from "react";
 
 
+/**
+ * The props containing the coupon data and a function to reload coupons.
+ */
 interface CouponProps{
     coupon: Coupon;
     reloadCoupons: () => void;
 }
+
+/**
+ * Renders a card displaying details of a coupon.
+ */
 function CouponCard(props:CouponProps): JSX.Element{
 
+    // Access the client type from Redux store to determine user role
     const client = authStore.getState().user?.clientType;
+
+    /**
+     * Function to delete the coupon from the database.
+     */
     function deleteMe(){
         companyService.deleteCoupon(props.coupon.id)
             .then(()=> {toast.success("Company deleted");
@@ -23,6 +35,10 @@ function CouponCard(props:CouponProps): JSX.Element{
             .catch(err=>errorHandler.showError(err));
 
     }
+
+    /**
+     * Style to grayscale the coupon image if its amount is zero 
+     */
     const couponStyle: React.CSSProperties = {
         filter: props.coupon.amount === 0 ? "grayscale(100%)" : "none",
     };

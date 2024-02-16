@@ -1,11 +1,16 @@
 import axios from "axios";
 import {authStore} from "../Redux/OurStore";
-import {useNavigate} from "react-router-dom";
-import {jwtDecode} from "jwt-decode";
-import {toast} from "react-toastify";
 
+/**
+ * Class for configuring client-side interceptors for Axios requests.
+ * Interceptors can be used to modify requests or responses before they are handled by Axios.
+ */
 class ClientInterceptors{
-    
+
+    /**
+     * Configures an interceptor to add the authorization token to outgoing requests.
+     * The token is retrieved from the Redux store.
+     */
     public tokenInterceptors() {
         axios.interceptors.request.use(request => {
             if (authStore.getState().token.length > 0)
@@ -15,31 +20,10 @@ class ClientInterceptors{
         });
     }
         
-    //     axios.interceptors.request.use(request => {
-    //         const token = authStore.getState().token;
-    //         if (token) {
-    //             if (this.isExpired(token)) {
-    //                 console.log("Token is expired");
-    //                 window.location.href = "/login";
-    //                 toast.error("Token is expired", {
-    //                     autoClose: 5000, // Duration in milliseconds
-    //                 });
-    //                 return Promise.reject("Token is expired");
-    //             }
-    //             request.headers['Authorization'] = "Bearer " + token;
-    //         }
-    //         return request;
-    //     });
-    // }
-    //
-    //  isExpired(token:string){
-    //     const decodedToken = jwtDecode(token);
-    //     const currentTime = Date.now() / 1000;
-    //    
-    //     return decodedToken.exp < currentTime;
-    //  }
-        
 }
 
+/**
+ * Singleton instance of the ClientInterceptors class to Instantiate clientinterceptors.
+ */
 const clientInterceptors = new ClientInterceptors();
 export default clientInterceptors;

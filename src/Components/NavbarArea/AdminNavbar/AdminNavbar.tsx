@@ -19,6 +19,10 @@ import {toast} from "react-toastify";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 
+
+/**
+ * ResponsiveAppBar component representing the navigation bar for administrators.
+ */
 const pages:string[] = [];
 const settings = ['Profile','Customers', 'Companies', 'Logout'];
 

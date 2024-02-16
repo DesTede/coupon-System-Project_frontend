@@ -7,10 +7,22 @@ import Customer from "../../../Models/Customer";
 import customerService from "../../../Services/CustomerService";
 import {authStore} from "../../../Redux/OurStore";
 
+/**
+ * Represents the profile page of a customer.
+ * Displays the customer's details such as name, email, and password.
+ * Provides navigation back to the homepage.
+ */
 function CustomerProfile(): JSX.Element {
+    
+    // Get the client type from the store
     const client = authStore.getState().user?.clientType;
+    
+    // Set the customer state
     const [customer, setCustomer] = useState<Customer>();
 
+    /**
+     * Fetches the details of the logged-in customer and sets the state, on component load.
+     */
     useEffect(()=>{
         customerService.getDetails()
             .then( c=> setCustomer(c) )

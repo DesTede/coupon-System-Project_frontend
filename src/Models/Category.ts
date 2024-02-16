@@ -1,25 +1,9 @@
-// enum Category{
-//      Travel ="Travel",
-//      Entertainment = "Entertainment",
-//      Education = "Education",
-//      Finance = "Finance",
-//      Insurance = "Insurance",
-//      Pets = "Pets",
-//      Sports = "Sports",
-//      Beauty = "Beauty",
-//      Fashion = "Fashion",
-//      Baby = "Baby",
-//      Books= "Books",
-//      Music= "Music",
-//      Culinary = "Culinary",
-//      Games = "Games",
-//      Other= "Other",
-// }
-
+/**
+ * Enumeration representing different categories.
+ * Categories are used to classify items or entities into distinct groups.
+ */
 export enum Category{
      Others,Travel, Entertainment, Education, Finance, Insurance, Pets, 
      Sports, Beauty, Fashion, Baby, Books, Music, Culinary,
      Games
 }
-
-// export default Category;

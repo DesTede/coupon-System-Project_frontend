@@ -10,14 +10,28 @@ import customerService from "../../../Services/CustomerService";
 import {toast} from "react-toastify";
 
 
+/**
+ * Displays detailed information about a specific coupon.
+ * Allows customers to purchase coupons if logged in.
+ * Redirects users to the appropriate coupon listing page after actions.
+ */
 function CouponDetails(): JSX.Element {
 
-    
+    // Navigation hook for redirecting users to the appropriate page after actions.
     const navigate = useNavigate();
+    
+    // Retrieves the user's client type from the Redux store.
     const client = authStore.getState().user?.clientType;
+    
+    // Component state for storing the coupon to be displayed.
     const [coupon, setCoupon] = useState<Coupon>();
+    
+    // Retrieves the coupon's id from the URL.
     const id = +(useParams().id!);
 
+    /**
+     * Fetches the coupon details from the server upon component mount
+     */
     useEffect(()=>{
         function fetchCoupon() {
             discoveryService.getCoupon(id)
@@ -32,6 +46,11 @@ function CouponDetails(): JSX.Element {
        
     }, [id]);
     
+    /**
+     * Handles the purchase of a coupon by a customer.
+     * Calls the customer service to make the purchase.
+     * Redirects the user to the coupon listing page after the purchase.
+     */
     function handlePurchase(){
         customerService.purchaseCoupon(coupon.id)
             .then(()=>{toast.success("Coupon purchased"); navigate("/discovery/coupons")})

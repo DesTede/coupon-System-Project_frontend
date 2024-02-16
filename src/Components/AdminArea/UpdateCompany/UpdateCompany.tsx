@@ -8,12 +8,18 @@ import errorHandler from "../../../Utils/ErrorHandler";
 import {toast} from "react-toastify";
 import { Button, FormControl, FormLabel, TextField } from "@mui/material";
 
-
+/**
+ * Component for updating company details.
+ * Allows users to update the name, email, and password of a company.
+ */
 function UpdateCompany(): JSX.Element {
     const {register, handleSubmit, setError, formState:{errors}, setValue } = useForm<Company>({mode:"onChange"});
     const navigate = useNavigate();
     const id:number = +(useParams().id!);
 
+    /**
+     * Fetches the company details and sets the form values on component mount
+     */
     useEffect(() => {
         adminService.getCompany(id)
             .then(comp => {
@@ -23,13 +29,23 @@ function UpdateCompany(): JSX.Element {
             })
             .catch(err=> {errorHandler.showError(err); navigate("admin/getcompanies/")});
     }, []);
-    
+
+    /**
+     * Sends the updated company details to the server.
+     * Displays a success message if the update is successful, otherwise shows an error message.
+     * @param comp - The updated company object containing the new details.
+     */
     function sendForm(comp: Company){
         comp.id = id;
         adminService.updateCompany(comp)
             .then(c=> {toast.success("Company updated!"); navigate("/admin/getcompanies")})
             .catch(err=> errorHandler.showError(err));
     }
+
+    /**
+     * Sets an error message if a form field is blurred and its value is empty.
+     * @param field - The field key to set the error for.
+     */
     const handleBlur = (field: keyof Company) => (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value) {
             setError(field, { type: 'manual' });

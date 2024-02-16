@@ -11,33 +11,52 @@ import {Input} from "@mui/material";
 import CouponCard from "../../CouponArea/CouponCard/CouponCard";
 import customerService from "../../../Services/CustomerService";
 
+
+/**
+ * Represents the page displaying coupons purchased by the current customer.
+ * Allows filtering coupons by category and price.
+ * Displays the purchased coupons using CouponCard components.
+ */
 function PurchasedCoupons(): JSX.Element {
+
+    /**
+     * Represents the state of the coupons, category and price.
+     */
     const [coupons, setCoupons] = useState<Coupon[]>();
-    // const [categories, setCategories] = useState<Category[]>();
     const [category, setCategory] = useState<string>("");
     const [price, setPrice] = useState<number | "">("");
 
 
+    /**
+     * Fetches the coupons purchased by the current customer and sets the state,on component mount.
+     */
     useEffect(() => {
         customerService.getCustomerCoupons()
             .then(coup => setCoupons(coup))
             .catch(err => errorHandler.showError(err));
-
-
-        
-
     }, []);
 
 
+    /**
+     * Handles the change in category filter.
+     * @param event - The event object containing the new category value.
+     */
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value === "None" ? "" : event.target.value as string);
     };
+
+    /**
+     * Handles the change in price filter.
+     * @param event - The event object containing the new price value.
+     */
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(event.target.value as number | "");
     };
 
 
-
+    /**
+     * Filters the coupons based on the selected category and price.
+     */
     const filteredCoupons = coupons?.filter(c =>
         (!category || c.category.toString() === category) &&
         (!price || c.price <= (price as number))

@@ -1,5 +1,9 @@
 import Coupon from "./Coupon";
 
+/**
+ * Class representing a customer.
+ * A customer has an ID, first name, last name, email, password, and a list of coupons.
+ */
 class Customer{
     public id:number;
     public firstName:string;

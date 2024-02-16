@@ -12,6 +12,11 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import {Link, NavLink, useNavigate} from "react-router-dom";
 
+
+/**
+ * ResponsiveAppBar component representing the navigation bar for the discovery page.
+ * intended for users who are not logged in.
+ */
 const pages = ['Login', 'Coupons'];
 // const settings = ['Home'];
 

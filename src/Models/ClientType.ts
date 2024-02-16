@@ -1,10 +1,7 @@
-
-
+/**
+ * Enumeration representing different client types.
+ * client types are: Administrator, Company, Customer
+ */
 export enum ClientType{
-    // Company = "Company",
-    // Customer = "Customer",
-    // Admin = "Admin",
-    // Guest = "Guest"
     Administrator, Company, Customer
 }
-// export default ClientType;

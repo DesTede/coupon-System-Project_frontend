@@ -1,5 +1,8 @@
 import "./Header.css";
 
+/**
+ * Header component for displaying the header section with a logo image.
+ */
 function Header(): JSX.Element {
     return (
         <div className="Header">

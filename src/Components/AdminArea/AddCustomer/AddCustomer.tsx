@@ -8,11 +8,20 @@ import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 import Customer from "../../../Models/Customer";
 import React from "react";
 
+/**
+ * Component for adding a new customer.
+ * Allows users to input customer details and submit the form to add the customer.
+ */
 function AddCustomer(): JSX.Element {
 
     const navigate = useNavigate();
     const {register, handleSubmit, setError, formState:{errors} } = useForm<Customer>({mode:"onChange"});
 
+    /**
+     * Submits the form data to add a new customer.
+     * Displays a success message upon successful addition or an error message upon failure.
+     * @param cus - Customer object containing customer details.
+     */
     function sendForm(cus:Customer) {
         adminService.addCustomer(cus)
             .then(c => {
@@ -20,6 +29,11 @@ function AddCustomer(): JSX.Element {
                 navigate("/admin/getcustomers")})
             .catch(err => errorHandler.showError(err))
     }
+    
+    /**
+     * Handles onBlur event for input fields to validate and set errors if fields are empty.
+     * @param field The field being blurred.
+     */
     const handleBlur = (field: keyof Customer) => (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value) {
             setError(field, { type: 'manual' });

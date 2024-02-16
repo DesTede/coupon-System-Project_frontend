@@ -19,6 +19,10 @@ import {toast} from "react-toastify";
 import errorHandler from "../../../Utils/ErrorHandler";
 import {authStore} from "../../../Redux/OurStore";
 
+
+/**
+ * ResponsiveAppBar component representing the navigation bar for customers.
+ */
 const pages: any[] = [];
 const settings = ['Profile','My Coupons', 'Available coupons', 'Logout'];
 

@@ -1,6 +1,11 @@
 import {Category} from "./Category";
 import Company from "./Company";
 
+/**
+ * Class representing a coupon.
+ * A coupon has an ID, associated company, amount, category, title, 
+ * description, image, start date, end date, and price.
+ */
 class Coupon {
     public id: number;
     public company: Company;

@@ -6,11 +6,27 @@ import {toast} from "react-toastify";
 import errorHandler from "../../../Utils/ErrorHandler";
 import { NavLink} from "react-router-dom";
 
+
+/**
+ * Props interface for the CompanyCard component.
+ * It defines the expected properties to display company information.
+ */
 interface CompanyProps{
     company:Company
 }
+
+/**
+ * Component for displaying a company card.
+ * Displays the name, ID, email, and password of the company.
+ * Provides options to delete or update the company.
+ */
 function CompanyCard(props:CompanyProps): JSX.Element{
-    
+
+    /**
+     * Deletes the company from the system.
+     * Displays a success message upon successful deletion.
+     * Shows an error message if the deletion fails.
+     */
     function deleteMe(){
         adminService.deleteCompany(props.company.id)
             .then(()=> toast.success("Company deleted"))

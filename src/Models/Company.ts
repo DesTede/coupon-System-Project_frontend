@@ -1,6 +1,10 @@
 import Coupon from "./Coupon";
 
 
+/**
+ * Class representing a company.
+ * A company has an ID, name, email, password, and a list of coupons.
+ */
 class Company{
     public id:number;
     public name:string;

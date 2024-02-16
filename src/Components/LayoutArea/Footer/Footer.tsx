@@ -1,6 +1,10 @@
 import "./Footer.css";
 import {NavLink} from "react-router-dom";
 
+
+/**
+ * Footer component for displaying a footer section with links to social media platforms and About Us page.
+ */
 function Footer(): JSX.Element {
     return (
         <div className="Footer">

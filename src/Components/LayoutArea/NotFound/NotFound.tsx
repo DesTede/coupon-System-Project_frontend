@@ -1,7 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./NotFound.css"; 
+import "./NotFound.css";
 
+
+/**
+ * Component representing the 404 Not Found page.
+ * Renders a message indicating that the requested page couldn't be found.
+ * Provides a link to redirect users to the homepage.
+ */
 function NotFound(): JSX.Element {
     return (
         <section className="not-found">

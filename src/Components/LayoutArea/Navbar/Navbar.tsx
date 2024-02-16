@@ -6,10 +6,21 @@ import CompanyNavbar from "../../NavbarArea/CompanyNavbar/CompanyNavbar";
 import CustomerNavbar from "../../NavbarArea/CustomerNavbar/CustomerNavbar";
 import DiscoveryNavbar from "../../NavbarArea/DiscoveryNavbar/DiscoveryNavbar";
 
+
+/**
+ * Navbar component dynamically renders different navigation bars based on the user's client type.
+ * It subscribes to changes in the user's client type from the Redux store and updates the navigation bar accordingly.
+ */
 function Navbar(): JSX.Element {
 
-    const [nav, setNav] = useState<any>(); // need to update this type
+    /**
+     * State to hold the current navigation bar component
+     */
+    const [nav, setNav] = useState<any>(); 
 
+    /**
+     * Function to update the navbar based on the user's client type
+     */
     useEffect(() => {
         const updateNavbar = () => {
             switch (authStore.getState().user?.clientType) {
@@ -27,10 +38,12 @@ function Navbar(): JSX.Element {
                     break;
             }
         };
-        
+
+        // Subscribe to changes in the user's client type
         const unsubscribe = authStore.subscribe(updateNavbar);
         updateNavbar();
         
+        // Unsubscribe from changes when the component unmounts
         return ()=> {
             unsubscribe();
         };

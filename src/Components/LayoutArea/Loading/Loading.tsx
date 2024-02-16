@@ -1,6 +1,9 @@
 import "./Loading.css";
 import React from "react";
 
+/**
+ * Component responsible for displaying a loading spinner.
+ */
 function Loading(): JSX.Element {
     return (
         <div className="Loading">

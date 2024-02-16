@@ -11,12 +11,27 @@ import {Category} from "../../../Models/Category";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
+
+/**
+ * Component for adding a new coupon.
+ * Allows a company to add a new coupon with title, description, category, start date, end date, amount, price, and image.
+ */
 function AddCoupon(this: any): JSX.Element {
     
     const navigate = useNavigate();
+    
+    // Form handling using react-hook-form
     const {register, handleSubmit, setError, formState:{errors}} = useForm<Coupon>({mode:"onChange"});
 
+    // Current date to set min and max values for the start and end date fields
     const currentDate = new Date().toISOString().split('T')[0];
+
+    /**
+     * Sends the coupon data to the server for addition.
+     * Displays a success message upon the successful addition of the coupon.
+     * Shows an error message if the addition fails.
+     * @param coupon - The coupon data to be added.
+     */
     function sendCoupon(coupon:Coupon){
         if (coupon.image){
             const imageFile = (coupon.image as FileList)[0];
@@ -36,6 +51,10 @@ function AddCoupon(this: any): JSX.Element {
             
         }
     }
+    /**
+     * Handles the blur event for form fields to set custom error messages.
+     * @param field - The field being blurred.
+     */
     const handleBlur = (field: keyof Coupon) => (e: React.FocusEvent<HTMLInputElement>) => {
         if (!e.target.value) {
             setError(field, { type: 'manual' });

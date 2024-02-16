@@ -6,11 +6,18 @@ import errorHandler from "../../../Utils/ErrorHandler";
 import {Card, CardContent} from "@mui/material";
 import companyService from "../../../Services/CompanyService";
 
-
+/**
+ * Displays the profile details of the logged-in company.
+ * It fetches and shows the company's name, ID, email, and password.
+ */
 function CompanyProfile(): JSX.Element {
-    
+
+    // State variable to hold the company data
     const [company, setCompany] = useState<Company>();
 
+    /**
+     * Fetches company details when the component mounts
+     */
     useEffect(()=>{
         companyService.getDetails()
             .then( e=> setCompany(e) )
