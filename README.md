@@ -1,8 +1,21 @@
-# Getting Started with Create React App
+Coupon Project - Frontend
 
+The Completed Coupon Project is a comprehensive full-stack application built to efficiently manage and use a wide range of coupons. The system features an intuitive interface that supports multiple user roles, including customers, administrators, companies, and guests. It ensures secure authentication using JWT and adheres to RESTful API standards for seamless communication between the front-end and back-end.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+To install the Completed Coupon Project, follow these steps:
+1.	Clone the repository
+git clone git@github.com:moradi12/Completed-Coupon-Project.git
+2.	Navigate to the project directory
+cd Completed-Coupon-Project-master
+3.	Frontend Setup
+o	Navigate to the frontend directory
+cd CouponsWebsite
+o	Install dependencies
+npm install
+o	Start the frontend server
+npm start
+
 
 In the project directory, you can run:
 
